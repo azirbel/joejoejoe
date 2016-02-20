@@ -1,0 +1,31 @@
+{
+  "author": "Joe Price",
+  "version": "0.0.0",
+  "license": "MIT",
+  "name": "joejoejoe",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --hot --inline -d",
+    "postinstall": "if [ -n \"$NPM_CONFIG_PRODUCTION\" ]; then webpack --optimize-minimize; fi"
+  },
+  "dependencies": {
+    "angular": "1.5.0",
+    "angular-mocks": "1.5.0",
+    "angular-resource": "1.5.0",
+    "angular-sanitize": "1.5.0",
+    "babel-core": "6.5.2",
+    "babel-loader": "6.2.3",
+    "babel-preset-es2015": "6.5.0",
+    "webpack": "1.12.13",
+    "ng-annotate-loader": "0.1.0",
+    "html-webpack-plugin": "2.9.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "1.14.1"
+  },
+  "engines": {
+    "node": "5.5.0",
+    "npm": "3.5.3"
+  }
+}

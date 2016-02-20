@@ -1,4 +1,4 @@
-class WeightCalculatorController < ActionController::Base
+class WeightCalculatorController < ApplicationController
   def index
     weight = params[:weight].to_f
 
