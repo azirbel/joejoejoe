@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: <%= ENV['PGUSER'] %>
+  password: <%= ENV['PGPASSWORD'] %>
+
+development:
+  <<: *default
+  database: joejoejoe_development
+  host: localhost
+
+test:
+  <<: *default
+  database: joejoejoe_test
+  host: localhost
+
+production:
+  <<: *default
+  database: joejoejoe_production
+  password: qwertyuiop
