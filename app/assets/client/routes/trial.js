@@ -10,7 +10,4 @@ module.exports = angular.module('routes.trial', [
     template: require('./trial.html'),
   });
 })
-.run(() => {
-  console.log('hello');
-})
 .name;
