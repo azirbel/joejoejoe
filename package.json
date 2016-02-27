@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "license": "MIT",
   "name": "joejoejoe",
-  "main": "index.js",
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server --hot --inline -d",
@@ -14,6 +13,7 @@
     "angular-mocks": "1.5.0",
     "angular-resource": "1.5.0",
     "angular-sanitize": "1.5.0",
+    "angular-ui-router": "0.2.18",
     "babel-core": "6.5.2",
     "babel-loader": "6.2.3",
     "babel-preset-es2015": "6.5.0",

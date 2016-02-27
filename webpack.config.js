@@ -2,7 +2,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry:  './app/assets/javascripts/main.js',
+  entry:  './app/assets/client/joejoejoe.js',
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: process.env.NODE_ENV ?
@@ -29,7 +29,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin( {
-      template: path.resolve(__dirname, 'app/views/index.html')
+      template: path.resolve(__dirname, 'app/assets/index.html')
     })
   ],
 };
