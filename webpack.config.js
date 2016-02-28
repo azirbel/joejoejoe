@@ -27,6 +27,13 @@ module.exports = {
     },
     ]
   },
+  resolve: {
+    alias: {
+      res: path.resolve(__dirname, 'app/assets/client/res'),
+      js: path.resolve(__dirname, 'app/assets/client/js'),
+    },
+    extensions: [ '', '.js' ],
+  },
   devtool: 'source-map',
   devServer: {
     contentBase: 'public',

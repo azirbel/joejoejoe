@@ -1,4 +1,4 @@
-import IntervalTimer from '../common/interval-timer.js'
+import IntervalTimer from 'js/common/interval-timer'
 
 const FPS = 60;
 const MS_PER_FRAME = 1000/FPS;

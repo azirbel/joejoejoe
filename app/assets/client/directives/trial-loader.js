@@ -1,5 +1,5 @@
 import angular from 'angular';
-import Trial from '../js/trial/trial.js'
+import Trial from '../js/trial/trial'
 
 module.exports = angular.module('trial-loader', [])
 .directive('trialLoader', () => {
