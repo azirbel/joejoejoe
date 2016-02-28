@@ -7,6 +7,5 @@ npm-debug.log
 /log/*
 !/log/.keep
 /tmp
-/public
 /node_modules
 /log

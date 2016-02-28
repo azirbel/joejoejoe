@@ -11,20 +11,17 @@ module.exports = {
     sourceMapFilename: '[file].map.json',
   },
   module: {
-    loaders: [
-    {
+    loaders: [ {
       test: /\.js$/,
       loaders: ['ng-annotate?regexp=^.?angular.*$', 'babel?presets=es2015'],
       exclude: /node_modules/
-    },
-    {
+    }, {
       test: /\.html$/,
-      loader: "html"
-    },
-    {
+      loader: 'html'
+    }, {
       test: /\.jade$/,
-      loader: "jade"
-    },
+      loader: 'jade'
+    }
     ]
   },
   resolve: {
