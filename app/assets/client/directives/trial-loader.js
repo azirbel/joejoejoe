@@ -11,7 +11,7 @@ module.exports = angular.module('trial-loader', [])
   return {
     link: linkFn,
     restrict: 'E',
-    template: require('./trial-loader.html'),
+    template: require('./trial-loader.jade'),
   };
 })
 .name;

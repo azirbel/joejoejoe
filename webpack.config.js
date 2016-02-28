@@ -1,5 +1,6 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var jade = require('jade');
 
 module.exports = {
   entry:  './app/assets/client/joejoejoe.js',
@@ -19,7 +20,11 @@ module.exports = {
     {
       test: /\.html$/,
       loader: "html"
-    }
+    },
+    {
+      test: /\.jade$/,
+      loader: "jade"
+    },
     ]
   },
   devtool: 'source-map',
@@ -29,7 +34,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin( {
-      template: path.resolve(__dirname, 'app/assets/index.html')
+      templateContent: (templateParams) => {
+        var template = path.resolve(__dirname, 'app/assets/index.jade');
+        return jade.renderFile(template, templateParams);
+      }
     })
   ],
 };

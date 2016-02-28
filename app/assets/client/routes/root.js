@@ -6,7 +6,7 @@ module.exports = angular.module('routes.root', [
 .config(($stateProvider) => {
   $stateProvider.state('root', {
     url: '/',
-    template: require('./root.html'),
+    template: require('./root.jade'),
   });
 })
 .name;
