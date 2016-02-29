@@ -8,6 +8,7 @@ import DrawEntityAt from 'js/trial/steps/draw-entity-at'
 import Character from 'js/trial/character'
 import Stage from 'js/trial/stage'
 import Tile from 'js/trial/tile'
+import StageBuilder from 'js/trial/stage-builder'
 
 const CHARACTER_GRAVITY = -0.01;
 
@@ -15,7 +16,8 @@ export default class {
   constructor(context) {
     this.context = context;
     this.character = new Character();
-    this.stage = new Stage();
+
+    this.stage = StageBuilder.buildStage(1);
 
     this.updateSteps = [];
     this.drawSteps = [];
