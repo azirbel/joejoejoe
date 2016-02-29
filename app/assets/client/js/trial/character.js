@@ -1,12 +1,15 @@
 const STICK_SHEET = 'res/stick.png';
 
-export default class {
-  constructor(assetManager) {
-    this.respawn(100, 100);
-
+class Character {
+  static loadAssets(assetManager) {
+    this.assetManager = assetManager;
     assetManager.loadAsset(STICK_SHEET);
-    assetManager.onLoad(() => {
-      this.image = assetManager.get(STICK_SHEET);
+  }
+
+  constructor() {
+    this.respawn(100, 100);
+    Character.assetManager.onLoad(() => {
+      this.image = Character.assetManager.get(STICK_SHEET);
     });
   }
 
@@ -26,3 +29,5 @@ export default class {
     return [this.x - this.getImage().width / 2, this.y];
   }
 }
+
+export { Character as default }
