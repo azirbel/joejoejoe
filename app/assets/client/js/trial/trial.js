@@ -1,10 +1,10 @@
 import IntervalTimer from 'js/common/interval-timer'
 import AssetManager from 'js/common/asset-manager'
+import Character from 'js/trial/character'
+import InGame from 'js/trial/in-game'
 
 const FPS = 60;
 const MS_PER_FRAME = 1000/FPS;
-
-const STICK_FILE = 'res/stick.png';
 
 export default class {
   constructor(canvas) {
@@ -14,6 +14,8 @@ export default class {
     this.context = canvas.getContext("2d");
 
     this.assetManager = new AssetManager();
+    this.character = new Character(this.assetManager);
+    this.inGame = new InGame(this.context, this.character);
     this.timer = new IntervalTimer(MS_PER_FRAME, () => {
       this.newFrame()
     });
@@ -21,22 +23,20 @@ export default class {
     this.assetManager.onLoad(() => {
       this.timer.start();
     });
-
-    this.loadAssets();
   }
 
   newFrame() {
+    this.update();
     this.draw();
   }
 
-  draw() {
-    this.context.clearRect(0, 0, this.canvas.with, this.canvas.height);
-
-    let stickImage = this.assetManager.get(STICK_FILE);
-    this.context.drawImage(stickImage, 50, 50);
+  update() {
+    this.inGame.update();
   }
 
-  loadAssets() {
-    this.assetManager.loadAsset(STICK_FILE);
+  draw() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.inGame.draw();
   }
 };

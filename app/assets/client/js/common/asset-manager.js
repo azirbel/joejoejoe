@@ -9,7 +9,11 @@ export default class {
   }
 
   onLoad(handler) {
-    this.onLoadedHandlers.push(handler);
+    if (this.isAllLoaded()) {
+      handler();
+    } else {
+      this.onLoadedHandlers.push(handler);
+    }
   }
 
   loadAsset(path) {
