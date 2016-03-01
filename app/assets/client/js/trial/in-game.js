@@ -1,9 +1,12 @@
 import _ from 'lodash'
 
+import entityPoint from 'js/trial/services/entity-point'
+
 import ApplyGravity from 'js/trial/steps/apply-gravity'
 import ApplyVelocity from 'js/trial/steps/apply-velocity'
 import DrawEntity from 'js/trial/steps/draw-entity'
 import DrawEntityAt from 'js/trial/steps/draw-entity-at'
+import DrawDot from 'js/trial/steps/draw-dot'
 
 import Character from 'js/trial/character'
 import Stage from 'js/trial/stage'
@@ -42,6 +45,9 @@ export default class {
     }
 
     this.drawSteps.push(new DrawEntity(this.context, this.character));
+
+    let posFunc = () => entityPoint(this.character);
+    this.drawSteps.push(new DrawDot(this.context, posFunc, 'green'));
   }
 
   update() {

@@ -26,7 +26,7 @@ class Character {
   }
 
   getDrawCorner() {
-    return [this.x - this.getImage().width / 2, this.y];
+    return [this.x - this.getImage().width / 2, this.y - this.getImage().height];
   }
 }
 
