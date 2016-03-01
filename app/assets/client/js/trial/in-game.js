@@ -5,7 +5,7 @@ import entityPoint from 'js/trial/services/entity-point'
 import Point from 'js/common/point'
 
 import ApplyGravity from 'js/trial/steps/apply-gravity'
-import ApplyVelocity from 'js/trial/steps/apply-velocity'
+import MoveCharacter from 'js/trial/steps/move-character'
 import DrawEntity from 'js/trial/steps/draw-entity'
 import DrawEntityAt from 'js/trial/steps/draw-entity-at'
 import DrawDot from 'js/trial/steps/draw-dot'
@@ -33,7 +33,7 @@ export default class {
 
   initUpdateSteps() {
     this.updateSteps.push(new ApplyGravity(this.character, CHARACTER_GRAVITY));
-    this.updateSteps.push(new ApplyVelocity(this.character));
+    this.updateSteps.push(new MoveCharacter(this.character, this.stage));
   }
 
   initDrawSteps() {
