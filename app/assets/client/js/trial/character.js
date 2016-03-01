@@ -1,3 +1,5 @@
+import getImageBounds from 'js/trial/services/get-image-bounds'
+
 const STICK_SHEET = 'res/stick.png';
 
 class Character {
@@ -10,6 +12,7 @@ class Character {
     this.respawn(100, 100);
     Character.assetManager.onLoad(() => {
       this.image = Character.assetManager.get(STICK_SHEET);
+      this.imageBounds = getImageBounds(this.image);
     });
   }
 
