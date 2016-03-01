@@ -5,7 +5,7 @@ class Point {
   }
 
   add(point) {
-    return new Point(this.x + point.x, this.y, point.y);
+    return new Point(this.x + point.x, this.y + point.y);
   }
 
   addM(point) {

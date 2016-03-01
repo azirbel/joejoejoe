@@ -48,7 +48,19 @@ export default class {
     this.drawSteps.push(new DrawEntity(this.context, this.character));
 
     let posFunc = () => entityPoint(this.character);
-    this.drawSteps.push(new DrawDot(this.context, posFunc, 'green'));
+    this.drawSteps.push(new DrawDot(this.context, posFunc, 'black'));
+
+    let minminFunc = () => this.character.getBound(false, false);
+    this.drawSteps.push(new DrawDot(this.context, minminFunc, 'red'));
+
+    let minmaxFunc = () => this.character.getBound(false, true);
+    this.drawSteps.push(new DrawDot(this.context, minmaxFunc, 'blue'));
+
+    let maxminFunc = () => this.character.getBound(true, false);
+    this.drawSteps.push(new DrawDot(this.context, maxminFunc, 'green'));
+
+    let maxmaxFunc = () => this.character.getBound(true, true);
+    this.drawSteps.push(new DrawDot(this.context, maxmaxFunc, 'yellow'));
   }
 
   update() {

@@ -14,7 +14,7 @@ class Character {
     this.respawn(new Point(100, 100));
     Character.assetManager.onLoad(() => {
       this.image = Character.assetManager.get(STICK_SHEET);
-      this.imageBounds = getImageBounds(this.image);
+      this.bounds = getImageBounds(this.image);
     });
   }
 
@@ -33,6 +33,36 @@ class Character {
 
   getDrawCorner() {
     return this.pos.add(this.getRelativeDrawCorner());
+  }
+
+  getMinXBound() {
+    return this.bounds[0];
+  }
+
+  getMaxXBound() {
+    return this.bounds[1];
+  }
+
+  getMinYBound() {
+    return this.bounds[2];
+  }
+
+  getMaxYBound() {
+    return this.bounds[3];
+  }
+
+  getRawBound(isMaxX, isMaxY) {
+    let xBound = isMaxX ? this.getMaxXBound() : this.getMinXBound();
+    let yBound = isMaxY ? this.getMaxYBound() : this.getMinYBound();
+    return new Point(xBound, yBound);
+  }
+
+  getRelativeBound(isMaxX, isMaxY) {
+    return this.getRawBound(isMaxX, isMaxY).addM(this.getRelativeDrawCorner());
+  }
+
+  getBound(isMaxX, isMaxY) {
+    return this.getRawBound(isMaxX, isMaxY).addM(this.getDrawCorner());
   }
 }
 
