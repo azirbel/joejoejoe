@@ -1,5 +1,7 @@
 import getImageBounds from 'js/trial/services/get-image-bounds'
 
+import Point from 'js/common/point'
+
 const STICK_SHEET = 'res/stick.png';
 
 class Character {
@@ -9,19 +11,16 @@ class Character {
   }
 
   constructor() {
-    this.respawn(100, 100);
+    this.respawn(new Point(100, 100));
     Character.assetManager.onLoad(() => {
       this.image = Character.assetManager.get(STICK_SHEET);
       this.imageBounds = getImageBounds(this.image);
     });
   }
 
-  respawn(x, y) {
-    this.x = x;
-    this.y = y;
-
-    this.vx = 0;
-    this.vy = 0;
+  respawn(point) {
+    this.pos = point.copy();
+    this.velo = new Point(0, 0);
   }
 
   getImage() {
@@ -29,7 +28,7 @@ class Character {
   }
 
   getDrawCorner() {
-    return [this.x - this.getImage().width / 2, this.y - this.getImage().height];
+    return this.pos.sub(new Point(this.getImage().width / 2, this.getImage().height));
   }
 }
 

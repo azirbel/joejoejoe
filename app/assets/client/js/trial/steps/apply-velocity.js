@@ -4,7 +4,6 @@ export default class {
   }
 
   apply() {
-    this.entity.x += this.entity.vx;
-    this.entity.y += this.entity.vy;
+    this.entity.pos.addM(this.entity.velo);
   }
 }

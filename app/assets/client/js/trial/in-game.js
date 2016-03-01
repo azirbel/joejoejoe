@@ -2,6 +2,8 @@ import _ from 'lodash'
 
 import entityPoint from 'js/trial/services/entity-point'
 
+import Point from 'js/common/point'
+
 import ApplyGravity from 'js/trial/steps/apply-gravity'
 import ApplyVelocity from 'js/trial/steps/apply-velocity'
 import DrawEntity from 'js/trial/steps/draw-entity'
@@ -13,7 +15,7 @@ import Stage from 'js/trial/stage'
 import Tile from 'js/trial/tile'
 import StageBuilder from 'js/trial/stage-builder'
 
-const CHARACTER_GRAVITY = -0.01;
+const CHARACTER_GRAVITY = new Point(0, 0.01);
 
 export default class {
   constructor(context) {
@@ -38,9 +40,8 @@ export default class {
     for (let x = 0; x < Stage.WIDTH; x++) {
       for (let y = 0; y < Stage.HEIGHT; y++) {
         let tile = this.stage.tiles[x][y];
-        let xPos = x * Tile.WIDTH;
-        let yPos = y * Tile.WIDTH;
-        this.drawSteps.push(new DrawEntityAt(this.context, tile, xPos, yPos));
+        let tilePoint = new Point(x * Tile.WIDTH, y * Tile.WIDTH);
+        this.drawSteps.push(new DrawEntityAt(this.context, tile, tilePoint));
       }
     }
 

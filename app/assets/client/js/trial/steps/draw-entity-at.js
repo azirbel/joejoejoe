@@ -1,14 +1,13 @@
 export default class {
-  constructor(context, entity, x, y) {
+  constructor(context, entity, point) {
     this.context = context;
     this.entity = entity;
-    this.x = x;
-    this.y = y;
+    this.point = point;
   }
 
   apply() {
     let image = this.entity.getImage();
 
-    this.context.drawImage(image, this.x, this.y);
+    this.context.drawImage(image, this.point.x, this.point.y);
   }
 }

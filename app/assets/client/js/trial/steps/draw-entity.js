@@ -5,7 +5,7 @@ export default class {
   }
 
   apply() {
-    let [x, y] = this.entity.getDrawCorner();
+    let [x, y] = this.entity.getDrawCorner().xy();
     let image = this.entity.getImage();
 
     this.context.drawImage(image, x, y);

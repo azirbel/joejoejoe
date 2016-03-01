@@ -1,3 +1,3 @@
 export default function(entity) {
-  return [entity.x, entity.y];
+  return entity.pos;
 }

@@ -8,7 +8,7 @@ export default class {
   }
 
   apply() {
-    let [x, y] = this.posFunc();
+    let [x, y] = this.posFunc().xy();
 
     this.context.beginPath()
     this.context.arc(x, y, RADIUS, 0, 2 * Math.PI, false);

@@ -5,6 +5,6 @@ export default class {
   }
 
   apply() {
-    this.entity.vy -= this.gravityFactor;
+    this.entity.velo.addM(this.gravityFactor);
   }
 }
