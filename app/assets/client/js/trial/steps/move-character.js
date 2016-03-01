@@ -1,4 +1,7 @@
 import Tile from 'js/trial/tile'
+import Point from 'js/common/point'
+
+const EPSILON = 0.01;
 
 let xToTile = (x) => {
   return Math.floor(x / Tile.WIDTH);
@@ -32,37 +35,63 @@ export default class {
     let xDir = xPositive ? 1 : -1;
     let yDir = yPositive ? 1 : -1;
 
-    let boundCorner = this.character.getBound(xPositive, yPositive);
-    let opposite = this.character.getBound(!xPositive, !yPositive);
+    let epsilonPoint = new Point(xDir, yDir).multM(EPSILON);
 
-    let curXTile = xToTile(boundCorner.x);
-    let curYTile = yToTile(boundCorner.y);
+    let boundCorner = null;
+    let opposite = null;
+
+    let recalcBounds = () => {
+      boundCorner = this.character.getBound(yPositive, yPositive);
+      opposite = this.character.getBound(!xPositive, !yPositive);
+    };
+    recalcBounds();
+
+    let deltaCorner = boundCorner.sub(epsilonPoint);
+
+    let curXTile = xToTile(deltaCorner.x);
+    let curYTile = yToTile(deltaCorner.y);
 
     let nextXBound = calcNextXBound(curXTile, xPositive);
     let nextYBound = calcNextYBound(curYTile, yPositive);
 
     while (true) {
-      let xt = calcTValue(this.character.pos.x, this.character.velo.x, nextXBound);
-      let yt = calcTValue(this.character.pos.y, this.character.velo.y, nextYBound);
+      let xt = calcTValue(boundCorner.x, this.character.velo.x, nextXBound);
+      let yt = calcTValue(boundCorner.y, this.character.velo.y, nextYBound);
 
       if (xt > 1 && yt > 1) {
         break;
       } else if (yt < xt) {
         curYTile += yDir;
-        nextYBound += yDir;
 
-        // Check entire row
         let oppositeX = opposite.x + yt * this.character.velo.x;
         let oppositeXTile = xToTile(oppositeX);
 
         for (let xTile = oppositeXTile; xTile != curXTile + xDir; xTile += xDir) {
           if (this.stage.tiles[xTile][curYTile] === Tile.wallTile) {
+            this.character.pos.y += nextYBound - boundCorner.y;
             this.character.velo.y = 0;
+            recalcBounds();
+            break;
           }
         }
+
+        nextYBound += Tile.HEIGHT * yDir;
       } else {
         curXTile += xDir;
-        nextXBound += xDir;
+
+        let oppositeY = opposite.y + xt * this.character.velo.y;
+        let oppositeYTile = yToTile(oppositeY);
+
+        for (let yTile = oppositeYTile; yTile != curYTile + yDir; yTile += yDir) {
+          if (this.stage.tiles[yTile][curXTile] === Tile.wallTile) {
+            this.character.pos.x += nextXBound - boundCorner.x;
+            this.character.velo.x = 0;
+            recalcBounds();
+            break;
+          }
+        }
+
+        nextXBound += Tile.WIDTH * xDir;
       }
     }
 
