@@ -27,8 +27,12 @@ class Character {
     return this.image;
   }
 
+  getRelativeDrawCorner() {
+    return new Point(-this.getImage().width / 2, -this.getImage().height);
+  }
+
   getDrawCorner() {
-    return this.pos.sub(new Point(this.getImage().width / 2, this.getImage().height));
+    return this.pos.add(this.getRelativeDrawCorner());
   }
 }
 

@@ -26,6 +26,25 @@ class Point {
     return this;
   }
 
+  mult(factor) {
+    return new Point(this.x * factor, this.y * factor);
+  }
+
+  multM(factor) {
+    this.x *= factor;
+    this.y *= factor;
+
+    return this;
+  }
+
+  neg() {
+    return mult(-1);
+  }
+
+  negM() {
+    return multM(-1);
+  }
+
   copy() {
     return new Point(this.x, this.y);
   }
