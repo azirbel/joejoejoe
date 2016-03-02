@@ -20,7 +20,8 @@ let calcNextYBound = (yTile, isPos) => {
 }
 
 let calcTValue = (start, vec, goal) => {
-  return (goal - start) / vec;
+  let result = ((goal - start) / vec) || Infinity;
+  return result >= 0 ? result : Infinity;
 }
 
 export default class {
@@ -30,6 +31,8 @@ export default class {
   }
 
   apply() {
+    this.character.isGrounded = false;
+
     let xPositive = this.character.velo.x >= 0;
     let yPositive = this.character.velo.y >= 0;
     let xDir = xPositive ? 1 : -1;
@@ -41,15 +44,13 @@ export default class {
     let opposite = null;
 
     let recalcBounds = () => {
-      boundCorner = this.character.getBound(yPositive, yPositive);
-      opposite = this.character.getBound(!xPositive, !yPositive);
+      boundCorner = this.character.getBound(xPositive, yPositive).subM(epsilonPoint);
+      opposite = this.character.getBound(!xPositive, !yPositive).addM(epsilonPoint);
     };
     recalcBounds();
 
-    let deltaCorner = boundCorner.sub(epsilonPoint);
-
-    let curXTile = xToTile(deltaCorner.x);
-    let curYTile = yToTile(deltaCorner.y);
+    let curXTile = xToTile(boundCorner.x);
+    let curYTile = yToTile(boundCorner.y);
 
     let nextXBound = calcNextXBound(curXTile, xPositive);
     let nextYBound = calcNextYBound(curYTile, yPositive);
@@ -61,37 +62,45 @@ export default class {
       if (xt > 1 && yt > 1) {
         break;
       } else if (yt < xt) {
-        curYTile += yDir;
-
         let oppositeX = opposite.x + yt * this.character.velo.x;
         let oppositeXTile = xToTile(oppositeX);
 
-        for (let xTile = oppositeXTile; xTile != curXTile + xDir; xTile += xDir) {
-          if (this.stage.tiles[xTile][curYTile] === Tile.wallTile) {
-            this.character.pos.y += nextYBound - boundCorner.y;
-            this.character.velo.y = 0;
-            recalcBounds();
-            break;
+        let didHit = false
+          for (let xTile = oppositeXTile; xTile != curXTile + xDir; xTile += xDir) {
+            if (this.stage.isWall(xTile, curYTile + yDir)) {
+              didHit = true;
+              this.character.isGrounded = true;
+              this.character.pos.y += nextYBound - boundCorner.y - epsilonPoint.y;
+              this.character.velo.y = 0;
+              recalcBounds();
+              break;
+            }
           }
+
+        if (!didHit) {
+          curYTile += yDir;
+          nextYBound += Tile.HEIGHT * yDir;
         }
-
-        nextYBound += Tile.HEIGHT * yDir;
       } else {
-        curXTile += xDir;
-
         let oppositeY = opposite.y + xt * this.character.velo.y;
         let oppositeYTile = yToTile(oppositeY);
 
+        let didHit = false;
         for (let yTile = oppositeYTile; yTile != curYTile + yDir; yTile += yDir) {
-          if (this.stage.tiles[yTile][curXTile] === Tile.wallTile) {
-            this.character.pos.x += nextXBound - boundCorner.x;
+          if (this.stage.isWall(curXTile + xDir, yTile)) {
+            debugger;
+            didHit = true;
+            this.character.pos.x += nextXBound - boundCorner.x - epsilonPoint.x;
             this.character.velo.x = 0;
             recalcBounds();
             break;
           }
         }
 
-        nextXBound += Tile.WIDTH * xDir;
+        if (!didHit) {
+          curXTile += xDir;
+          nextXBound += Tile.WIDTH * xDir;
+        }
       }
     }
 

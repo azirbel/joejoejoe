@@ -16,6 +16,8 @@ export default class {
     this.canvas.height = 640;
     this.context = canvas.getContext("2d");
 
+    this.initKeyEvents();
+
     this.assetManager = new AssetManager();
     _.forEach([Character, Tile, Stage], (type) => {
       type.loadAssets(this.assetManager);
@@ -29,6 +31,32 @@ export default class {
     this.assetManager.onLoad(() => {
       this.timer.start();
     });
+  }
+
+  initKeyEvents() {
+    let makeHandlerFunc = (isPress) => {
+      return (event) => {
+        let keyContinue = this.acceptKeyEvent(event.keyCode, isPress);
+
+        if (keyContinue === false) {
+          if (event.preventDefault) {
+            event.preventDefault();
+          }
+          if (event.stopPropigation) {
+            event.stopPropigation();
+          }
+        }
+
+        return keyContinue;
+      };
+    };
+
+    document.addEventListener('keydown', makeHandlerFunc(true));
+    document.addEventListener('keyup', makeHandlerFunc(false));
+  }
+
+  acceptKeyEvent(event, isPress) {
+    return this.inGame.acceptKeyEvent(event, isPress);
   }
 
   newFrame() {

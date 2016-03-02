@@ -12,6 +12,7 @@ class Character {
 
   constructor() {
     this.respawn(new Point(100, 100));
+    this.isGrounded = false;
     Character.assetManager.onLoad(() => {
       this.image = Character.assetManager.get(STICK_SHEET);
       this.bounds = getImageBounds(this.image);
