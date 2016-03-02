@@ -18,6 +18,25 @@ export default class {
   static buildStage1() {
     let stage = new Stage();
     this.setBounds(stage);
+
+    for (let x = 0; x < 6; x++) {
+      for (let y = 0; y < 6 - x; y++) {
+        stage.tiles[x][19 - y] = Tile.wallTile;
+      }
+    }
+
+    for (let x = 12; x < 17; x++) {
+      stage.tiles[x][15] = Tile.wallTile;
+    }
+
+    for (let x = 7; x < 11; x++) {
+      stage.tiles[x][11] = Tile.wallTile;
+    }
+
+    for (let x = 11; x < 17; x++) {
+      stage.tiles[x][6] = Tile.wallTile;
+    }
+
     return stage;
   }
 

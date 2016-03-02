@@ -13,6 +13,7 @@ class Character {
   constructor() {
     this.respawn(new Point(100, 100));
     this.isGrounded = false;
+    this.fastFall = false;
     Character.assetManager.onLoad(() => {
       this.image = Character.assetManager.get(STICK_SHEET);
       this.bounds = getImageBounds(this.image);
@@ -22,6 +23,11 @@ class Character {
   respawn(point) {
     this.pos = point.copy();
     this.velo = new Point(0, 0);
+  }
+
+  hitGround() {
+    this.fastFall = false;
+    this.isGrounded = true;
   }
 
   getImage() {

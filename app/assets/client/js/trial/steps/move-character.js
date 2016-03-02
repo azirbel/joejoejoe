@@ -69,7 +69,9 @@ export default class {
           for (let xTile = oppositeXTile; xTile != curXTile + xDir; xTile += xDir) {
             if (this.stage.isWall(xTile, curYTile + yDir)) {
               didHit = true;
-              this.character.isGrounded = true;
+              if (yPositive) {
+                this.character.isGrounded = true;
+              }
               this.character.pos.y += nextYBound - boundCorner.y - epsilonPoint.y;
               this.character.velo.y = 0;
               recalcBounds();
@@ -88,7 +90,6 @@ export default class {
         let didHit = false;
         for (let yTile = oppositeYTile; yTile != curYTile + yDir; yTile += yDir) {
           if (this.stage.isWall(curXTile + xDir, yTile)) {
-            debugger;
             didHit = true;
             this.character.pos.x += nextXBound - boundCorner.x - epsilonPoint.x;
             this.character.velo.x = 0;

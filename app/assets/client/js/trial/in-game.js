@@ -5,7 +5,6 @@ import entityPoint from 'js/trial/services/entity-point'
 import Point from 'js/common/point'
 
 import ApplyKeypress from 'js/trial/steps/apply-keypress'
-import ApplyGravity from 'js/trial/steps/apply-gravity'
 import MoveCharacter from 'js/trial/steps/move-character'
 import DrawEntity from 'js/trial/steps/draw-entity'
 import DrawEntityAt from 'js/trial/steps/draw-entity-at'
@@ -15,8 +14,6 @@ import Character from 'js/trial/character'
 import Stage from 'js/trial/stage'
 import Tile from 'js/trial/tile'
 import StageBuilder from 'js/trial/stage-builder'
-
-const CHARACTER_GRAVITY = new Point(0, 0.01);
 
 const LEFT = 65;
 const RIGHT = 68;
@@ -52,7 +49,6 @@ export default class {
 
   initUpdateSteps() {
     this.updateSteps.push(new ApplyKeypress(this.character, this.pressedMapping));
-    this.updateSteps.push(new ApplyGravity(this.character, CHARACTER_GRAVITY));
     this.updateSteps.push(new MoveCharacter(this.character, this.stage));
   }
 
