@@ -1,6 +1,6 @@
-import getImageBounds from 'js/trial/services/get-image-bounds'
+import getImageBounds from 'js/trial/services/get-image-bounds';
 
-import Point from 'js/common/point'
+import Point from 'js/common/point';
 
 const STICK_SHEET = 'res/stick.png';
 
@@ -73,4 +73,4 @@ class Character {
   }
 }
 
-export { Character as default }
+export { Character as default };

@@ -1,16 +1,14 @@
-import Stage from 'js/trial/stage'
-import Tile from 'js/trial/tile'
+import Stage from 'js/trial/stage';
+import Tile from 'js/trial/tile';
 
 export default class {
   static buildStage(level) {
     switch (level) {
       case 1: {
         return this.buildStage1();
-        break;
       }
       default: {
-        throw "Could not build unknown level: " + level;
-        break;
+        throw 'Could not build unknown level: ' + level;
       }
     }
   }

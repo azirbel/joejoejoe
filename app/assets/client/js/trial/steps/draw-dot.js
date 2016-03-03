@@ -10,8 +10,9 @@ export default class {
   apply() {
     let [x, y] = this.posFunc().xy();
 
-    this.context.beginPath()
+    this.context.beginPath();
     this.context.arc(x, y, RADIUS, 0, 2 * Math.PI, false);
+    this.context.endPath();
     this.context.fillStyle = this.fillStyle;
     this.context.fill();
   }

@@ -14,8 +14,7 @@ export default function(image) {
   for (let x = 0; x < image.width; x++) {
     for (let y = 0; y < image.height; y++) {
       let data = context.getImageData(x, y, 1, 1);
-      let [r, b, g, a] = data.data;
-      if (a != 0) {
+      if (data.data[3] != 0) {
         minX = Math.min(x, minX);
         maxX = Math.max(x, maxX);
         minY = Math.min(y, minY);

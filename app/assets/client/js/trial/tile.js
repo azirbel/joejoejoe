@@ -1,5 +1,5 @@
-const WALL_TILE = 'res/wall.png'
-const BACK_TILE = 'res/back.png'
+const WALL_TILE = 'res/wall.png';
+const BACK_TILE = 'res/back.png';
 
 class Tile {
   static loadAssets(assetManager) {

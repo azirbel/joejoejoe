@@ -38,11 +38,11 @@ class Point {
   }
 
   neg() {
-    return mult(-1);
+    return this.mult(-1);
   }
 
   negM() {
-    return multM(-1);
+    return this.multM(-1);
   }
 
   copy() {

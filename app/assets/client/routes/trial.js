@@ -7,7 +7,7 @@ module.exports = angular.module('routes.trial', [
   $stateProvider.state('trial', {
     parent: 'root',
     url: 'trial',
-    template: require('./trial.jade'),
+    template: require('./trial.jade')
   });
 })
 .name;

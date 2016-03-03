@@ -4,8 +4,6 @@ const RIGHT = 68;
 const UP = 87;
 const DOWN = 83;
 
-const CONSUMED_KEYS = [LEFT, RIGHT, UP, DOWN];
-
 const SPEED = 1.4;
 
 const GRAVITY = 0.2;

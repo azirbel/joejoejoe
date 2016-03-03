@@ -1,7 +1,8 @@
+import _ from 'lodash';
+import Tile from 'js/trial/tile';
+
 const STAGE_WIDTH = 20;
 const STAGE_HEIGHT = 20;
-
-import Tile from 'js/trial/tile'
 
 class Stage {
   static loadAssets(assetManager) {
@@ -32,4 +33,4 @@ class Stage {
   }
 }
 
-export { Stage as default }
+export { Stage as default };

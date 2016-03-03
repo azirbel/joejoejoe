@@ -1,28 +1,28 @@
-import Tile from 'js/trial/tile'
-import Point from 'js/common/point'
+import Tile from 'js/trial/tile';
+import Point from 'js/common/point';
 
 const EPSILON = 0.01;
 
 let xToTile = (x) => {
   return Math.floor(x / Tile.WIDTH);
-}
+};
 
 let yToTile = (y) => {
   return Math.floor(y / Tile.HEIGHT);
-}
+};
 
 let calcNextXBound = (xTile, isPos) => {
   return Tile.WIDTH * (xTile + (isPos ? 1 : 0));
-}
+};
 
 let calcNextYBound = (yTile, isPos) => {
   return Tile.HEIGHT * (yTile + (isPos ? 1 : 0));
-}
+};
 
 let calcTValue = (start, vec, goal) => {
   let result = ((goal - start) / vec) || Infinity;
   return result >= 0 ? result : Infinity;
-}
+};
 
 export default class {
   constructor(character, stage) {
@@ -55,7 +55,7 @@ export default class {
     let nextXBound = calcNextXBound(curXTile, xPositive);
     let nextYBound = calcNextYBound(curYTile, yPositive);
 
-    while (true) {
+    for (;;) {
       let xt = calcTValue(boundCorner.x, this.character.velo.x, nextXBound);
       let yt = calcTValue(boundCorner.y, this.character.velo.y, nextYBound);
 
@@ -65,19 +65,19 @@ export default class {
         let oppositeX = opposite.x + yt * this.character.velo.x;
         let oppositeXTile = xToTile(oppositeX);
 
-        let didHit = false
-          for (let xTile = oppositeXTile; xTile != curXTile + xDir; xTile += xDir) {
-            if (this.stage.isWall(xTile, curYTile + yDir)) {
-              didHit = true;
-              if (yPositive) {
-                this.character.isGrounded = true;
-              }
-              this.character.pos.y += nextYBound - boundCorner.y - epsilonPoint.y;
-              this.character.velo.y = 0;
-              recalcBounds();
-              break;
+        let didHit = false;
+        for (let xTile = oppositeXTile; xTile != curXTile + xDir; xTile += xDir) {
+          if (this.stage.isWall(xTile, curYTile + yDir)) {
+            didHit = true;
+            if (yPositive) {
+              this.character.isGrounded = true;
             }
+            this.character.pos.y += nextYBound - boundCorner.y - epsilonPoint.y;
+            this.character.velo.y = 0;
+            recalcBounds();
+            break;
           }
+        }
 
         if (!didHit) {
           curYTile += yDir;
