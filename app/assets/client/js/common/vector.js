@@ -1,11 +1,11 @@
-class Point {
+class Vector {
   constructor(x, y) {
     this.x = x;
     this.y = y;
   }
 
   add(point) {
-    return new Point(this.x + point.x, this.y + point.y);
+    return new Vector(this.x + point.x, this.y + point.y);
   }
 
   addM(point) {
@@ -16,7 +16,7 @@ class Point {
   }
 
   sub(point) {
-    return new Point(this.x - point.x, this.y - point.y);
+    return new Vector(this.x - point.x, this.y - point.y);
   }
 
   subM(point) {
@@ -27,7 +27,7 @@ class Point {
   }
 
   mult(factor) {
-    return new Point(this.x * factor, this.y * factor);
+    return new Vector(this.x * factor, this.y * factor);
   }
 
   multM(factor) {
@@ -46,7 +46,7 @@ class Point {
   }
 
   copy() {
-    return new Point(this.x, this.y);
+    return new Vector(this.x, this.y);
   }
 
   xy() {
@@ -54,4 +54,4 @@ class Point {
   }
 }
 
-export {Point as default};
+export {Vector as default};

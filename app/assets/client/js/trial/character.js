@@ -1,6 +1,6 @@
 import getImageBounds from 'js/trial/services/get-image-bounds';
 
-import Point from 'js/common/point';
+import Vector from 'js/common/vector';
 
 const STICK_SHEET = 'res/stick.png';
 
@@ -11,7 +11,7 @@ class Character {
   }
 
   constructor() {
-    this.respawn(new Point(100, 100));
+    this.respawn(new Vector(100, 100));
     this.isGrounded = false;
     this.fastFall = false;
     Character.assetManager.onLoad(() => {
@@ -22,7 +22,7 @@ class Character {
 
   respawn(point) {
     this.pos = point.copy();
-    this.velo = new Point(0, 0);
+    this.velo = new Vector(0, 0);
   }
 
   hitGround() {
@@ -35,7 +35,7 @@ class Character {
   }
 
   getRelativeDrawCorner() {
-    return new Point(-this.getImage().width / 2, -this.getImage().height);
+    return new Vector(-this.getImage().width / 2, -this.getImage().height);
   }
 
   getDrawCorner() {
@@ -61,7 +61,7 @@ class Character {
   getRawBound(isMaxX, isMaxY) {
     let xBound = isMaxX ? this.getMaxXBound() : this.getMinXBound();
     let yBound = isMaxY ? this.getMaxYBound() : this.getMinYBound();
-    return new Point(xBound, yBound);
+    return new Vector(xBound, yBound);
   }
 
   getRelativeBound(isMaxX, isMaxY) {

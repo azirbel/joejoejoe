@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import Point from 'js/common/point';
+import Vector from 'js/common/vector';
 
 import ApplyKeypress from 'js/trial/steps/apply-keypress';
 import MoveCharacter from 'js/trial/steps/move-character';
@@ -51,7 +51,7 @@ export default class {
     for (let x = 0; x < Stage.WIDTH; x++) {
       for (let y = 0; y < Stage.HEIGHT; y++) {
         let tile = this.stage.tiles[x][y];
-        let tilePoint = new Point(x * Tile.WIDTH, y * Tile.WIDTH);
+        let tilePoint = new Vector(x * Tile.WIDTH, y * Tile.WIDTH);
         this.drawSteps.push(new DrawEntityAt(this.context, tile, tilePoint));
       }
     }

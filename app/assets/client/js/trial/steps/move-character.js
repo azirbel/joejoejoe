@@ -1,5 +1,5 @@
 import Tile from 'js/trial/tile';
-import Point from 'js/common/point';
+import Vector from 'js/common/vector';
 
 const EPSILON = 0.01;
 
@@ -38,7 +38,7 @@ export default class {
     let xDir = xPositive ? 1 : -1;
     let yDir = yPositive ? 1 : -1;
 
-    let epsilonPoint = new Point(xDir, yDir).multM(EPSILON);
+    let epsilonPoint = new Vector(xDir, yDir).multM(EPSILON);
 
     let boundCorner = null;
     let opposite = null;
