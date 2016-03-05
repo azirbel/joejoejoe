@@ -8,6 +8,7 @@ import MoveCharacter from 'js/trial/steps/move-character';
 import UpdateTurretAngles from 'js/trial/steps/update-turret-angles';
 import CreateBullets from 'js/trial/steps/create-bullets';
 import UpdateBullets from 'js/trial/steps/update-bullets';
+import CheckPlayerHit from 'js/trial/steps/check-player-hit'
 
 import DrawEntity from 'js/trial/steps/draw-entity';
 import DrawEntityAt from 'js/trial/steps/draw-entity-at';
@@ -30,6 +31,10 @@ export default class {
   constructor(context) {
     this.context = context;
 
+    this.reset();
+  }
+
+  reset() {
     this.tickTimer = new TickTimer();
     this.character = new Character();
 
@@ -41,6 +46,7 @@ export default class {
     this.pressedMapping = {};
 
     this.initUpdateSteps();
+    this.checkPlayerHit = new CheckPlayerHit(this.character, this.stage);
     this.initDrawSteps();
   }
 
@@ -79,6 +85,11 @@ export default class {
     _.forEach(this.updateSteps, (step) => {
       step.apply();
     });
+
+    this.checkPlayerHit.apply();
+    if (this.checkPlayerHit.hit) {
+      this.reset();
+    }
   }
 
   draw() {
