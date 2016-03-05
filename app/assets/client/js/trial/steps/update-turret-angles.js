@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+import Vector from 'js/common/vector'
+
 export default class {
   constructor(stage, character) {
     this.stage = stage;
@@ -8,7 +10,8 @@ export default class {
 
   apply() {
     _.forEach(this.stage.turrets, (turret) => {
-      let vect = this.character.pos.sub(turret.pos);
+      let charMid = this.character.pos.sub(new Vector(0, this.character.getImage().height / 2));
+      let vect = charMid.sub(turret.pos);
       if (vect.x === 0 && vect.y === 0) {
         return;
       }
