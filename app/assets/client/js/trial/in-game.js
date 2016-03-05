@@ -14,6 +14,7 @@ import DrawEntity from 'js/trial/steps/draw-entity';
 import DrawEntityAt from 'js/trial/steps/draw-entity-at';
 import DrawTurrets from 'js/trial/steps/draw-turrets';
 import DrawBullets from 'js/trial/steps/draw-bullets';
+import DrawText from 'js/trial/steps/draw-text';
 
 import Character from 'js/trial/character';
 import Stage from 'js/trial/stage';
@@ -31,10 +32,17 @@ export default class InGame {
   constructor(context) {
     this.context = context;
 
+    this.bestScore = 0;
+    this.currentScore = 0;
+    this.lastScore = 0;
+
     this.reset();
   }
 
   reset() {
+    this.lastScore = this.currentScore;
+    this.currentScore = 0;
+
     this.tickTimer = new TickTimer();
     this.character = new Character();
 
@@ -81,6 +89,8 @@ export default class InGame {
 
   update() {
     this.tickTimer.addTick();
+    this.currentScore = this.tickTimer.ticks / 60.0;
+    this.bestScore = _.max([this.bestScore, this.currentScore]);
 
     _.forEach(this.updateSteps, (step) => {
       step.apply();
@@ -96,5 +106,14 @@ export default class InGame {
     _.forEach(this.drawSteps, (step) => {
       step.apply();
     });
+
+    let scoreStr = _.round(this.currentScore, 1).toFixed(1);
+    DrawText.apply(this.context, scoreStr, new Vector(36, 22), 'white');
+
+    let lastScoreStr = _.round(this.lastScore, 1).toFixed(1);
+    DrawText.apply(this.context, lastScoreStr, new Vector(100, 22), 'green');
+
+    let bestScoreStr = _.round(this.bestScore, 1).toFixed(1);
+    DrawText.apply(this.context, bestScoreStr, new Vector(200, 22), 'red');
   }
 }
