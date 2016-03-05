@@ -4,24 +4,24 @@ export default class Vector {
     this.y = y;
   }
 
-  add(point) {
-    return new Vector(this.x + point.x, this.y + point.y);
+  add(vector) {
+    return new Vector(this.x + vector.x, this.y + vector.y);
   }
 
-  addM(point) {
-    this.x += point.x;
-    this.y += point.y;
+  addM(vector) {
+    this.x += vector.x;
+    this.y += vector.y;
 
     return this;
   }
 
-  sub(point) {
-    return new Vector(this.x - point.x, this.y - point.y);
+  sub(vector) {
+    return new Vector(this.x - vector.x, this.y - vector.y);
   }
 
-  subM(point) {
-    this.x -= point.x;
-    this.y -= point.y;
+  subM(vector) {
+    this.x -= vector.x;
+    this.y -= vector.y;
 
     return this;
   }
