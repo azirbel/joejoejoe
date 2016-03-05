@@ -39,6 +39,12 @@ export default class {
     }
 
     stage.turrets.push(new Turret(this.getTileMid(5, 5)));
+    stage.turrets.push(new Turret(this.getTileMid(3, 10)));
+    stage.turrets.push(new Turret(this.getTileMid(10, 7)));
+    stage.turrets.push(new Turret(this.getTileMid(6, 18)));
+    stage.turrets.push(new Turret(this.getTileMid(17, 13)));
+    stage.turrets.push(new Turret(this.getTileMid(18, 3)));
+    stage.turrets.push(new Turret(this.getTileMid(18, 18)));
 
     return stage;
   }

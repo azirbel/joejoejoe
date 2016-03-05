@@ -25,6 +25,8 @@ class Turret {
   constructor(pos) {
     this.pos = pos;
     this.angle = Math.PI / 2;
+    this.interval = 45;
+    this.bulletSpeed = 2.5;
   }
 
   getRelativeDrawCorner() {

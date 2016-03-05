@@ -1,9 +1,15 @@
-export default class {
+class ApplyVelocity {
+  static apply(entity) {
+    entity.pos.addM(entity.velo);
+  }
+
   constructor(entity) {
     this.entity = entity;
   }
 
   apply() {
-    this.entity.pos.addM(this.entity.velo);
+    ApplyVelocity.apply(this.entity);
   }
 }
+
+export { ApplyVelocity as default };

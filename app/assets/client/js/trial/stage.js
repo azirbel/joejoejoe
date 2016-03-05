@@ -20,6 +20,7 @@ class Stage {
     });
 
     this.turrets = [];
+    this.bullets = [];
   }
 
   get(x, y) {
