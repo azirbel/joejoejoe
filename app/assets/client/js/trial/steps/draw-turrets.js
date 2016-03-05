@@ -8,12 +8,20 @@ export default class {
 
   apply() {
     _.forEach(this.stage.turrets, (turret) => {
-      let [x, y] = turret.getDrawCorner().xy();
+      let [baseX, baseY] = turret.getDrawCorner().xy();
       let baseImage = turret.getBaseImage();
+      this.context.drawImage(baseImage, baseX, baseY);
+
       let cannonImage = turret.getCannonImage();
 
-      this.context.drawImage(baseImage, x, y);
-      this.context.drawImage(cannonImage, x, y);
+      let [posX, posY] = turret.pos.xy();
+      let [cannonX, cannonY] = turret.getCannonImageSize().mult(-0.5).xy();
+
+      this.context.translate(posX, posY);
+      this.context.rotate(turret.angle);
+      this.context.drawImage(cannonImage, cannonX, cannonY);
+      this.context.rotate(-turret.angle);
+      this.context.translate(-posX, -posY);
     });
   }
 }

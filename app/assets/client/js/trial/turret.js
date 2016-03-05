@@ -12,18 +12,23 @@ class Turret {
     this.assetManager.loadAsset(TEXTURE_CANNON_PATH);
 
     this.assetManager.onLoad(() => {
-      this.TEXTURE_BASE_IMAGE = this.assetManager.get(TEXTURE_BASE_PATH);
-      this.TEXTURE_CANNON_IMAGE = this.assetManager.get(TEXTURE_CANNON_PATH);
+      let baseImage = this.assetManager.get(TEXTURE_BASE_PATH);
+      this.TEXTURE_BASE_IMAGE = baseImage;
+      this.BASE_IMAGE_SIZE = new Vector(baseImage.width, baseImage.height);
+
+      let cannonImage = this.assetManager.get(TEXTURE_CANNON_PATH);
+      this.TEXTURE_CANNON_IMAGE = cannonImage;
+      this.CANON_IMAGE_SIZE = new Vector(cannonImage.width, cannonImage.height);
     });
   }
 
   constructor(pos) {
     this.pos = pos;
-    this.angle = 0;
+    this.angle = Math.PI / 2;
   }
 
   getRelativeDrawCorner() {
-    return new Vector(this.getBaseImage().width, this.getBaseImage().height).multM(-0.5);
+    return Turret.BASE_IMAGE_SIZE.mult(-0.5);
   }
 
   getDrawCorner() {
@@ -36,6 +41,10 @@ class Turret {
 
   getCannonImage() {
     return Turret.TEXTURE_CANNON_IMAGE;
+  }
+
+  getCannonImageSize() {
+    return Turret.CANON_IMAGE_SIZE;
   }
 }
 
