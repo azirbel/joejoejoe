@@ -2,9 +2,57 @@ import StageParser from 'js/trial/stage-parser'
 import Tile from 'js/trial/tile'
 
 describe('StageParser', () => {
-  describe('parseLine', () => {
+  describe('parseTiles', () => {
     it('parsesLine', () => {
-      let line = 'xoooooooooooooooooox';
+      let input =
+        'xooooooooooooooxxoox\n' +
+        'xoooooooooooooooooox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'xooooooooooooooxxoox\n' +
+        'oooooooooooooooooooo\n' +
+        'xxxxxxxxxxxxxxxxxxxx';
+
+      let result = StageParser.parseTiles(input);
+
+      expect(result.length).to.equal(20);
+
+      for (let col = 0; col < 20; col++) {
+        expect(result[18][col]).to.equal(Tile.backTile);
+      }
+      for (let col = 0; col < 20; col++) {
+        expect(result[19][col]).to.equal(Tile.wallTile);
+      }
+    });
+
+    it('handles exception', () => {
+      let input =
+        'xooooooooooooooxxoox\n' +
+        'xoooooorooooooooooox\n' +
+        'xooooooooooooooxxoox\n';
+
+      let testFn = () => StageParser.parseTiles(input);
+
+      expect(testFn).to.throw(/On row 1/);
+    });
+  });
+
+  describe('parseLine', () => {
+    it('works', () => {
+      let line = 'xooooooooooooooxxoox';
       let result = StageParser.parseLine(line, 0);
 
       expect(result.length).to.equal(20);
@@ -24,8 +72,8 @@ describe('StageParser', () => {
       expect(result[12]).to.equal(Tile.backTile);
       expect(result[13]).to.equal(Tile.backTile);
       expect(result[14]).to.equal(Tile.backTile);
-      expect(result[15]).to.equal(Tile.backTile);
-      expect(result[16]).to.equal(Tile.backTile);
+      expect(result[15]).to.equal(Tile.wallTile);
+      expect(result[16]).to.equal(Tile.wallTile);
       expect(result[17]).to.equal(Tile.backTile);
       expect(result[18]).to.equal(Tile.backTile);
       expect(result[19]).to.equal(Tile.wallTile);
@@ -69,6 +117,16 @@ describe('StageParser', () => {
       };
 
       expect(testFn).to.throw(/characters long but was 19/);
+    });
+
+    it('error invalid char', () => {
+      let line = 'xoooooorooooooooooox';
+
+      let testFn = () => {
+        let result = StageParser.parseLine(line, 0);
+      };
+
+      expect(testFn).to.throw(/Invalid character/);
     });
   });
 });
