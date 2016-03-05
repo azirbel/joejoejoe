@@ -4,6 +4,8 @@ import Vector from 'js/common/vector';
 
 import ApplyKeypress from 'js/trial/steps/apply-keypress';
 import MoveCharacter from 'js/trial/steps/move-character';
+import UpdateTurretAngles from 'js/trial/steps/update-turret-angles'
+
 import DrawEntity from 'js/trial/steps/draw-entity';
 import DrawEntityAt from 'js/trial/steps/draw-entity-at';
 import DrawTurrets from 'js/trial/steps/draw-turrets';
@@ -46,6 +48,7 @@ export default class {
   initUpdateSteps() {
     this.updateSteps.push(new ApplyKeypress(this.character, this.pressedMapping));
     this.updateSteps.push(new MoveCharacter(this.character, this.stage));
+    this.updateSteps.push(new UpdateTurretAngles(this.stage, this.character));
   }
 
   initDrawSteps() {
