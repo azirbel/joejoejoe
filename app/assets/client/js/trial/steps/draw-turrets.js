@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default class {
+export default class DrawTurrets {
   constructor(context, stage) {
     this.context = context;
     this.stage = stage;

@@ -1,4 +1,4 @@
-class DrawEntity {
+export default class DrawEntity {
   static apply(context, entity) {
     let [x, y] = entity.getDrawCorner().xy();
     let image = entity.getImage();
@@ -15,5 +15,3 @@ class DrawEntity {
     DrawEntity.apply(this.context, this.entity);
   }
 }
-
-export { DrawEntity as default };

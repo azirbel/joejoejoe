@@ -4,7 +4,7 @@ import Tile from 'js/trial/tile';
 
 import ApplyVelocity from 'js/trial/steps/apply-velocity';
 
-export default class {
+export default class UpdateBullets {
   constructor(stage) {
     this.stage = stage;
   }

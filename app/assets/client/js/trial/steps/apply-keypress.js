@@ -9,7 +9,7 @@ const SPEED = 1.4;
 const GRAVITY = 0.2;
 const FAST_GRAVITY = 0.4;
 
-export default class {
+export default class ApplyKeypress {
   constructor(entity, pressedMapping) {
     this.entity = entity;
     this.pressedMapping = pressedMapping;

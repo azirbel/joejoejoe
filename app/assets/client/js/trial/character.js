@@ -4,7 +4,7 @@ import Vector from 'js/common/vector';
 
 const STICK_SHEET = 'res/stick.png';
 
-class Character {
+export default class Character {
   static loadAssets(assetManager) {
     this.assetManager = assetManager;
     assetManager.loadAsset(STICK_SHEET);
@@ -72,5 +72,3 @@ class Character {
     return this.getRawBound(isMaxX, isMaxY).addM(this.getDrawCorner());
   }
 }
-
-export { Character as default };

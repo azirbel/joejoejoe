@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import Bullet from 'js/trial/bullet';
 
-export default class {
+export default class CheckPlayerHit {
   constructor(character, stage) {
     this.character = character;
     this.stage = stage;

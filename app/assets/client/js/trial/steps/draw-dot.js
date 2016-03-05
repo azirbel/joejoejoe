@@ -1,6 +1,6 @@
 const RADIUS = 2;
 
-export default class {
+export default class DrawDot {
   constructor(context, posFunc, fillStyle = 'black') {
     this.context = context;
     this.posFunc = posFunc;

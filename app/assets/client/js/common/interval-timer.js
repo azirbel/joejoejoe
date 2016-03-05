@@ -1,4 +1,4 @@
-export default class {
+export default class IntervalTimer {
   constructor(interval, func) {
     this.interval = interval;
     this.func = func;

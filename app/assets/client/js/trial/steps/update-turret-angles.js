@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import Vector from 'js/common/vector';
 
-export default class {
+export default class UpdateTurretAngles {
   constructor(stage, character) {
     this.stage = stage;
     this.character = character;

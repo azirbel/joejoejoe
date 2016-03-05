@@ -13,7 +13,7 @@ import Bullet from 'js/trial/bullet';
 const FPS = 60;
 const MS_PER_FRAME = 1000/FPS;
 
-export default class {
+export default class Trial {
   constructor(canvas) {
     this.canvas = canvas;
     this.canvas.width = 640;

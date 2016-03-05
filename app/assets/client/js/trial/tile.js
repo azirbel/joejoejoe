@@ -1,7 +1,7 @@
 const WALL_TILE_PATH = 'res/wall.png';
 const BACK_TILE_PATH = 'res/back.png';
 
-class Tile {
+export default class Tile {
   static loadAssets(assetManager) {
     this.WIDTH = 32;
     this.HEIGHT = 32;
@@ -27,5 +27,3 @@ class Tile {
     return this.image;
   }
 }
-
-export { Tile as default };

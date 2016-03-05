@@ -3,7 +3,7 @@ import Vector from 'js/common/vector';
 const TEXTURE_BASE_PATH = 'res/turret_base.png';
 const TEXTURE_CANNON_PATH = 'res/turret_cannon.png';
 
-class Turret {
+export default class Turret {
   static loadAssets(assetManager) {
     this.assetManager = assetManager;
 
@@ -48,5 +48,3 @@ class Turret {
     return Turret.CANON_IMAGE_SIZE;
   }
 }
-
-export { Turret as default };

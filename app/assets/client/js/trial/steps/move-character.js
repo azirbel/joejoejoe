@@ -24,7 +24,7 @@ let calcTValue = (start, vec, goal) => {
   return result >= 0 ? result : Infinity;
 };
 
-export default class {
+export default class MoveCharacter {
   constructor(character, stage) {
     this.character = character;
     this.stage = stage;

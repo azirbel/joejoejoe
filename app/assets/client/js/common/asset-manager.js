@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 const IS_LOADING_SENTINEL = new Object();
 
-export default class {
+export default class AssetManager {
   constructor() {
     this.assets = {};
     this.onLoadedHandlers = [];

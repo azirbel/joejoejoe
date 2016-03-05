@@ -4,7 +4,7 @@ import Tile from 'js/trial/tile';
 const STAGE_WIDTH = 20;
 const STAGE_HEIGHT = 20;
 
-class Stage {
+export default class Stage {
   static loadAssets(assetManager) {
     this.WIDTH = STAGE_WIDTH;
     this.HEIGHT = STAGE_HEIGHT;
@@ -35,5 +35,3 @@ class Stage {
     return this.get(x, y) === Tile.wallTile;
   }
 }
-
-export { Stage as default };

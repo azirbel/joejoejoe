@@ -1,4 +1,4 @@
-export default class {
+export default class DrawEntityAt {
   constructor(context, entity, point) {
     this.context = context;
     this.entity = entity;

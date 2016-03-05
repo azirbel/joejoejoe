@@ -4,7 +4,7 @@ import Vector from 'js/common/vector';
 
 import Bullet from 'js/trial/bullet';
 
-class CreateBullets {
+export default class CreateBullets {
   static apply(stage, timer) {
     _.forEach(stage.turrets, (turret) => {
       if (timer.isOnInterval(turret.interval)) {
@@ -25,5 +25,3 @@ class CreateBullets {
     CreateBullets.apply(this.stage, this.timer);
   }
 }
-
-export { CreateBullets as default };

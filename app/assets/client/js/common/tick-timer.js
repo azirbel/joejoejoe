@@ -1,4 +1,4 @@
-export default class {
+export default class TickTimer {
   constructor() {
     this.ticks = 0;
   }

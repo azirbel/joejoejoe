@@ -27,7 +27,7 @@ const DOWN = 83;
 
 const CONSUMED_KEYS = [LEFT, RIGHT, UP, DOWN];
 
-export default class {
+export default class InGame {
   constructor(context) {
     this.context = context;
 

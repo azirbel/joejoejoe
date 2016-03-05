@@ -2,7 +2,7 @@ import Vector from 'js/common/vector';
 
 const TEXTURE_BULLET_PATH = 'res/bullet.png';
 
-class Bullet {
+export default class Bullet {
   static loadAssets(assetManager) {
     this.assetManager = assetManager;
 
@@ -32,5 +32,3 @@ class Bullet {
     return Bullet.TEXTURE_BULLET_IMAGE;
   }
 }
-
-export { Bullet as default };

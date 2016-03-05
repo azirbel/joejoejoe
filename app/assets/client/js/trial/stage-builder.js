@@ -4,7 +4,7 @@ import Turret from 'js/trial/turret';
 
 import Vector from 'js/common/vector';
 
-export default class {
+export default class StageBuilder {
   static buildStage(level) {
     switch (level) {
       case 1: {
