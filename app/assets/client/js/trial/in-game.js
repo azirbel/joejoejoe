@@ -68,8 +68,8 @@ export default class {
       }
     }
 
-    this.drawSteps.push(new DrawEntity(this.context, this.character));
     this.drawSteps.push(new DrawTurrets(this.context, this.stage));
+    this.drawSteps.push(new DrawEntity(this.context, this.character));
     this.drawSteps.push(new DrawBullets(this.context, this.stage));
   }
 

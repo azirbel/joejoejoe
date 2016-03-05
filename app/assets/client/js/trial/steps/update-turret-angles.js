@@ -8,8 +8,8 @@ export default class {
 
   apply() {
     _.forEach(this.stage.turrets, (turret) => {
-      let vect = turret.pos.sub(this.character.pos);
-      if (vect.x == 0 && vect.y == 0) {
+      let vect = this.character.pos.sub(turret.pos);
+      if (vect.x === 0 && vect.y === 0) {
         return;
       }
 

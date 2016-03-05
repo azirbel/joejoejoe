@@ -17,10 +17,11 @@ export default class {
       let [posX, posY] = turret.pos.xy();
       let [cannonX, cannonY] = turret.getCannonImageSize().mult(-0.5).xy();
 
+      let newAngle = turret.angle + Math.PI / 2;
       this.context.translate(posX, posY);
-      this.context.rotate(turret.angle);
+      this.context.rotate(newAngle);
       this.context.drawImage(cannonImage, cannonX, cannonY);
-      this.context.rotate(-turret.angle);
+      this.context.rotate(-newAngle);
       this.context.translate(-posX, -posY);
     });
   }

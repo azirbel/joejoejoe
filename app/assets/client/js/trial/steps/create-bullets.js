@@ -7,7 +7,7 @@ class CreateBullets {
     _.forEach(stage.turrets, (turret) => {
       if (timer.isOnRepeat(turret.interval)) {
         let bulletVect = new Vector(Math.cos(turret.angle), Math.sin(turret.angle));
-        bulletVect.multM(-turret.bulletSpeed);
+        bulletVect.multM(turret.bulletSpeed);
 
         stage.bullets.push(new Bullet(turret.pos.copy(), bulletVect));
       }
