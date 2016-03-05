@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import DrawEntity from 'js/trial/steps/draw-entity'
+import DrawEntity from 'js/trial/steps/draw-entity';
 
 export default class {
   constructor(context, stage) {

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import Tile from 'js/trial/tile'
+import Tile from 'js/trial/tile';
 
 import ApplyVelocity from 'js/trial/steps/apply-velocity';
 

@@ -1,4 +1,3 @@
-import Tile from 'js/trial/tile';
 import Vector from 'js/common/vector';
 
 const TEXTURE_BASE_PATH = 'res/turret_base.png';

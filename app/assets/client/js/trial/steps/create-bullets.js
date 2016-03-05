@@ -1,6 +1,8 @@
-import Vector from 'js/common/vector'
+import _ from 'lodash';
 
-import Bullet from 'js/trial/bullet'
+import Vector from 'js/common/vector';
+
+import Bullet from 'js/trial/bullet';
 
 class CreateBullets {
   static apply(stage, timer) {

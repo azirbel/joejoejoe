@@ -5,9 +5,9 @@ import TickTimer from 'js/common/tick-timer';
 
 import ApplyKeypress from 'js/trial/steps/apply-keypress';
 import MoveCharacter from 'js/trial/steps/move-character';
-import UpdateTurretAngles from 'js/trial/steps/update-turret-angles'
-import CreateBullets from 'js/trial/steps/create-bullets'
-import UpdateBullets from 'js/trial/steps/update-bullets'
+import UpdateTurretAngles from 'js/trial/steps/update-turret-angles';
+import CreateBullets from 'js/trial/steps/create-bullets';
+import UpdateBullets from 'js/trial/steps/update-bullets';
 
 import DrawEntity from 'js/trial/steps/draw-entity';
 import DrawEntityAt from 'js/trial/steps/draw-entity-at';
