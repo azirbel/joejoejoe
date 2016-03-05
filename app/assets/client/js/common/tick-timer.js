@@ -7,7 +7,8 @@ export default class {
     this.ticks++;
   }
 
-  isOnRepeat(interval) {
-    return this.ticks % interval === 0;
+  isOnInterval(interval, start = 0) {
+    let adjustedTicks = this.ticks - start;
+    return adjustedTicks >= 0 && adjustedTicks % interval === 0;
   }
 }

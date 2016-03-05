@@ -8,7 +8,7 @@ import MoveCharacter from 'js/trial/steps/move-character';
 import UpdateTurretAngles from 'js/trial/steps/update-turret-angles';
 import CreateBullets from 'js/trial/steps/create-bullets';
 import UpdateBullets from 'js/trial/steps/update-bullets';
-import CheckPlayerHit from 'js/trial/steps/check-player-hit'
+import CheckPlayerHit from 'js/trial/steps/check-player-hit';
 
 import DrawEntity from 'js/trial/steps/draw-entity';
 import DrawEntityAt from 'js/trial/steps/draw-entity-at';

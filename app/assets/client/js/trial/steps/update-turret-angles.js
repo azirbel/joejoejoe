@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import Vector from 'js/common/vector'
+import Vector from 'js/common/vector';
 
 export default class {
   constructor(stage, character) {

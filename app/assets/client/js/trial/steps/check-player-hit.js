@@ -1,4 +1,6 @@
-import Bullet from 'js/trial/bullet'
+import _ from 'lodash';
+
+import Bullet from 'js/trial/bullet';
 
 export default class {
   constructor(character, stage) {
