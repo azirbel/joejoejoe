@@ -6,9 +6,6 @@ const STAGE_HEIGHT = 20;
 
 export default class Stage {
   static loadAssets(assetManager) {
-    this.WIDTH = STAGE_WIDTH;
-    this.HEIGHT = STAGE_HEIGHT;
-
     this.assetManager = assetManager;
   }
 
@@ -35,3 +32,6 @@ export default class Stage {
     return this.get(x, y) === Tile.wallTile;
   }
 }
+
+Stage.WIDTH = STAGE_WIDTH;
+Stage.HEIGHT = STAGE_HEIGHT;

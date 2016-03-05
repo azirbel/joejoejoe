@@ -10,9 +10,6 @@ export default class Tile {
     assetManager.loadAsset(WALL_TILE_PATH);
     assetManager.loadAsset(BACK_TILE_PATH);
 
-    this.wallTile = new Tile();
-    this.backTile = new Tile();
-
     assetManager.onLoad(() => {
       this.wallTile.image = assetManager.get(WALL_TILE_PATH);
       this.backTile.image = assetManager.get(BACK_TILE_PATH);
@@ -27,3 +24,6 @@ export default class Tile {
     return this.image;
   }
 }
+
+Tile.wallTile = new Tile();
+Tile.backTile = new Tile();
