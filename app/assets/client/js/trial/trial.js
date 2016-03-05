@@ -7,6 +7,7 @@ import InGame from 'js/trial/in-game';
 import Character from 'js/trial/character';
 import Stage from 'js/trial/stage';
 import Tile from 'js/trial/tile';
+import Turret from 'js/trial/turret';
 
 const FPS = 60;
 const MS_PER_FRAME = 1000/FPS;
@@ -21,7 +22,7 @@ export default class {
     this.initKeyEvents();
 
     this.assetManager = new AssetManager();
-    _.forEach([Character, Tile, Stage], (type) => {
+    _.forEach([Character, Tile, Stage, Turret], (type) => {
       type.loadAssets(this.assetManager);
     });
 

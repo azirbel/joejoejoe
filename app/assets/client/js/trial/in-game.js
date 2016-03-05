@@ -6,6 +6,7 @@ import ApplyKeypress from 'js/trial/steps/apply-keypress';
 import MoveCharacter from 'js/trial/steps/move-character';
 import DrawEntity from 'js/trial/steps/draw-entity';
 import DrawEntityAt from 'js/trial/steps/draw-entity-at';
+import DrawTurrets from 'js/trial/steps/draw-turrets';
 
 import Character from 'js/trial/character';
 import Stage from 'js/trial/stage';
@@ -57,6 +58,7 @@ export default class {
     }
 
     this.drawSteps.push(new DrawEntity(this.context, this.character));
+    this.drawSteps.push(new DrawTurrets(this.context, this.stage));
   }
 
   update() {

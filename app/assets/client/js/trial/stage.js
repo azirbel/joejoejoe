@@ -18,11 +18,13 @@ class Stage {
         return Tile.backTile;
       });
     });
+
+    this.turrets = [];
   }
 
   get(x, y) {
     if (x < 0 || x >= STAGE_WIDTH || y < 0 || y >= STAGE_HEIGHT) {
-      return true;
+      return Tile.wallTile;
     }
 
     return this.tiles[x][y];

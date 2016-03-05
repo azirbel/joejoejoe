@@ -1,5 +1,8 @@
 import Stage from 'js/trial/stage';
 import Tile from 'js/trial/tile';
+import Turret from 'js/trial/turret';
+
+import Vector from 'js/common/vector';
 
 export default class {
   static buildStage(level) {
@@ -35,6 +38,8 @@ export default class {
       stage.tiles[x][6] = Tile.wallTile;
     }
 
+    stage.turrets.push(new Turret(this.getTileMid(5, 5)));
+
     return stage;
   }
 
@@ -48,6 +53,10 @@ export default class {
     for (let y = 0; y < Stage.HEIGHT; y++) {
       stage.tiles[col][y] = tile;
     }
+  }
+
+  static getTileMid(x, y) {
+    return new Vector((x + 0.5) * Tile.WIDTH, (y + 0.5) * Tile.HEIGHT);
   }
 
   static setBounds(stage, tile = Tile.wallTile) {
