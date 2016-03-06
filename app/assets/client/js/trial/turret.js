@@ -7,8 +7,8 @@ export default class Turret {
   static loadAssets(assetManager) {
     this.assetManager = assetManager;
 
-    this.assetManager.loadAsset(TEXTURE_BASE_PATH);
-    this.assetManager.loadAsset(TEXTURE_CANNON_PATH);
+    this.assetManager.loadImage(TEXTURE_BASE_PATH);
+    this.assetManager.loadImage(TEXTURE_CANNON_PATH);
 
     this.assetManager.onLoad(() => {
       let baseImage = this.assetManager.get(TEXTURE_BASE_PATH);

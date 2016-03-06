@@ -4,16 +4,33 @@ import Turret from 'js/trial/turret';
 
 import Vector from 'js/common/vector';
 
+import StageParser from 'js/trial/stage-parser.js';
+
+let getStagePath = (name) => {
+  return 'res/trial/stages/' + name +'.stage';
+}
+
+let STAGE_NAMES = ['1'];
+
 export default class StageBuilder {
+  static loadAssets(assetManager) {
+    this.assetManager = assetManager;
+    _.forEach(STAGE_NAMES, (rawName) => {
+      let stagePath = getStagePath(rawName);
+
+      this.assetManager.loadAsset(stagePath);
+    });
+  }
+
   static buildStage(level) {
-    switch (level) {
-      case 1: {
+    if (level == 'hard') {
         return this.buildStage1();
-      }
-      default: {
-        throw 'Could not build unknown level: ' + level;
-      }
     }
+
+    let stagePath = getStagePath(level);
+    let rawStage = this.assetManager.get(stagePath);
+
+    return StageParser.parse(rawStage);
   }
 
   static buildStage1() {

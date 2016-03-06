@@ -35,8 +35,6 @@ export default class InGame {
     this.bestScore = 0;
     this.currentScore = 0;
     this.lastScore = 0;
-
-    this.reset();
   }
 
   reset() {

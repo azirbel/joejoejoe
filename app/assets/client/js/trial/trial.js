@@ -9,6 +9,7 @@ import Stage from 'js/trial/stage';
 import Tile from 'js/trial/tile';
 import Turret from 'js/trial/turret';
 import Bullet from 'js/trial/bullet';
+import StageBuilder from 'js/trial/stage-builder';
 
 const FPS = 60;
 const MS_PER_FRAME = 1000/FPS;
@@ -23,7 +24,7 @@ export default class Trial {
     this.initKeyEvents();
 
     this.assetManager = new AssetManager();
-    _.forEach([Character, Tile, Stage, Turret, Bullet], (type) => {
+    _.forEach([Character, Tile, Stage, Turret, Bullet, StageBuilder], (type) => {
       type.loadAssets(this.assetManager);
     });
 
@@ -33,6 +34,7 @@ export default class Trial {
     });
 
     this.assetManager.onLoad(() => {
+      this.inGame.reset();
       this.timer.start();
     });
   }

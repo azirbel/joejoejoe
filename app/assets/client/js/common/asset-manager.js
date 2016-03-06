@@ -16,7 +16,7 @@ export default class AssetManager {
     }
   }
 
-  loadAsset(path) {
+  loadImage(path) {
     if (!(path in this.assets)) {
       let newAsset = new Image();
       this.assets[path] = IS_LOADING_SENTINEL;
@@ -24,11 +24,34 @@ export default class AssetManager {
       newAsset.onload = () => {
         this.assets[path] = newAsset;
 
-        if (this.isAllLoaded()) {
-          this.flushHandlers();
+        this.tryFlush();
+      };
+      //TODO: handle fail
+      newAsset.src = path;
+    }
+  }
+
+  loadAsset(path) {
+    if (!(path in this.assets)) {
+      this.assets[path] = IS_LOADING_SENTINEL;
+
+      let request = new XMLHttpRequest();
+
+      request.onreadystatechange = () => {
+        if (request.readyState == 4 && request.status == 200) {
+          this.assets[path] = request.responseText;
+          this.tryFlush();
         }
       };
-      newAsset.src = path;
+      //TODO: handle fail
+      request.open("GET", path, true);
+      request.send();
+    }
+  }
+
+  tryFlush() {
+    if (this.isAllLoaded()) {
+      this.flushHandlers();
     }
   }
 

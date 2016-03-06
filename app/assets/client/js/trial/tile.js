@@ -7,8 +7,8 @@ export default class Tile {
     this.HEIGHT = 32;
     this.assetManager = assetManager;
 
-    assetManager.loadAsset(WALL_TILE_PATH);
-    assetManager.loadAsset(BACK_TILE_PATH);
+    assetManager.loadImage(WALL_TILE_PATH);
+    assetManager.loadImage(BACK_TILE_PATH);
 
     assetManager.onLoad(() => {
       this.wallTile.image = assetManager.get(WALL_TILE_PATH);

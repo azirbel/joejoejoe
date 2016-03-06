@@ -7,7 +7,7 @@ const STICK_SHEET = 'res/stick.png';
 export default class Character {
   static loadAssets(assetManager) {
     this.assetManager = assetManager;
-    assetManager.loadAsset(STICK_SHEET);
+    assetManager.loadImage(STICK_SHEET);
   }
 
   constructor() {

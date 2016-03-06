@@ -21,7 +21,12 @@ export default class StageParser {
   }
 
   static parse(input) {
-    return StageParser.parseLine(input);
+    let tiles = StageParser.parseTiles(input);
+
+    let newStage = new Stage();
+    newStage.tiles = tiles;
+
+    return newStage;
   }
 
   static parseTiles(input) {

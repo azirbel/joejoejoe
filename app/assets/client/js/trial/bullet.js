@@ -6,7 +6,7 @@ export default class Bullet {
   static loadAssets(assetManager) {
     this.assetManager = assetManager;
 
-    this.assetManager.loadAsset(TEXTURE_BULLET_PATH);
+    this.assetManager.loadImage(TEXTURE_BULLET_PATH);
 
     this.assetManager.onLoad(() => {
       let bulletImage = this.assetManager.get(TEXTURE_BULLET_PATH);
