@@ -31,10 +31,10 @@ describe('StageParser', () => {
       expect(result.length).to.equal(20);
 
       for (let col = 0; col < 20; col++) {
-        expect(result[18][col]).to.equal(Tile.backTile);
+        expect(result[col][18]).to.equal(Tile.backTile);
       }
       for (let col = 0; col < 20; col++) {
-        expect(result[19][col]).to.equal(Tile.wallTile);
+        expect(result[col][19]).to.equal(Tile.wallTile);
       }
     });
 

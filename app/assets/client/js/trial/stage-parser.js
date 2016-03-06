@@ -30,12 +30,18 @@ export default class StageParser {
   }
 
   static parseTiles(input) {
-    return _.times(Stage.HEIGHT, (row) => {
+    let rows = _.times(Stage.HEIGHT, (row) => {
       try {
         return StageParser.parseLine(input, row * (Stage.WIDTH + 1));
       } catch (err) {
         throw 'On row ' + row + ': ' + err;
       }
+    });
+
+    return _.times(Stage.WIDTH, (x) => {
+      return _.times(Stage.HEIGHT, (y) => {
+        return rows[y][x];
+      });
     });
   }
 
