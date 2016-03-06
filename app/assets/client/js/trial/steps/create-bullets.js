@@ -7,7 +7,7 @@ import Bullet from 'js/trial/bullet';
 export default class CreateBullets {
   static apply(stage, timer) {
     _.forEach(stage.turrets, (turret) => {
-      if (timer.isOnInterval(turret.interval)) {
+      if (timer.isOnInterval(turret.interval, turret.timeOffset)) {
         let bulletVect = new Vector(Math.cos(turret.angle), Math.sin(turret.angle));
         bulletVect.multM(turret.bulletSpeed);
 

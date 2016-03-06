@@ -8,7 +8,8 @@ const TEXTURE_CANNON_PATH = 'res/turret_cannon.png';
 
 const DEFAULT_PROPERTIES = {
   interval: [parseInt, 60],
-  bulletSpeed: [parseFloat, 2.5]
+  bulletSpeed: [parseFloat, 2.5],
+  timeOffset: [parseInt, 0]
 };
 const REQUIRED_PROPERTIES = {
   x: parseInt,

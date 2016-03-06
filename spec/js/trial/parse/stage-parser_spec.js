@@ -30,6 +30,7 @@ describe('StageParser', () => {
       expect(entity.y).to.equal(6);
       expect(entity.interval).to.equal(60);
       expect(entity.bulletSpeed).to.equal(2.5);
+      expect(entity.timeOffset).to.equal(0);
     });
 
     it('expected behaviour with optionals', () => {
@@ -37,8 +38,9 @@ describe('StageParser', () => {
         'turret:\n' +
         '  x: 4\n'  +
         '  y: 6\n'  +
+        '  interval: 80\n' +
         '  bulletSpeed: 3.1\n'  +
-        '  interval: 80\n';
+        '  timeOffset: 30\n';
 
       let properties = StageParser.parseEntity(input, 0)[0];
       let entity = StageParser.transformEntity(properties);
@@ -46,6 +48,7 @@ describe('StageParser', () => {
       expect(entity.x).to.equal(4);
       expect(entity.y).to.equal(6);
       expect(entity.interval).to.equal(80);
+      expect(entity.timeOffset).to.equal(30);
       expect(entity.bulletSpeed).to.equal(3.1);
     });
 

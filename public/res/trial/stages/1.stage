@@ -20,6 +20,20 @@ xxxx               x
 xxxxxxxxxxxxxxxxxxxx
 
 turret:
-  x: 2
+  x: 16
+  y: 4
+  bulletSpeed: 5
+  interval: 20
+
+turret:
+  x: 5
   y: 4
   bulletSpeed: 2.5
+  interval: 60
+
+turret:
+  x: 6
+  y: 4
+  bulletSpeed: 2.5
+  interval: 60
+  timeOffset: 30
