@@ -44,7 +44,7 @@ export default class AssetManager {
         }
       };
       //TODO: handle fail
-      request.open("GET", path, true);
+      request.open('GET', path, true);
       request.send();
     }
   }

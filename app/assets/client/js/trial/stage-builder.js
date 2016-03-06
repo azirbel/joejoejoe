@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Stage from 'js/trial/stage';
 import Tile from 'js/trial/tile';
 import Turret from 'js/trial/turret';
@@ -8,7 +9,7 @@ import StageParser from 'js/trial/stage-parser.js';
 
 let getStagePath = (name) => {
   return 'res/trial/stages/' + name +'.stage';
-}
+};
 
 let STAGE_NAMES = ['1'];
 
@@ -24,7 +25,7 @@ export default class StageBuilder {
 
   static buildStage(level) {
     if (level == 'hard') {
-        return this.buildStage1();
+      return this.buildStage1();
     }
 
     let stagePath = getStagePath(level);
