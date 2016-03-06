@@ -1,4 +1,4 @@
-import StageParser from 'js/trial/stage-parser'
+import StageParser from 'js/trial/parse/stage-parser'
 import Tile from 'js/trial/tile'
 
 describe('StageParser', () => {

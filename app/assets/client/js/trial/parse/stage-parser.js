@@ -18,7 +18,7 @@ const ERR_DUPLICATE_PROPERTY = 'Property appears twice: ';
 
 const WORD_CHAR_REGEX = /\w/;
 const WORD_END_REGEX = /:/;
-const WHITESPACE_REGEX = /[ \t]/;
+const WHITESPACE_CHAR_REGEX = /[ \t]/;
 
 export default class StageParser {
   static get tileMap() {
@@ -79,7 +79,7 @@ export default class StageParser {
     let properties = {};
 
     for (;;) {
-      if (index < input.length && WHITESPACE_REGEX.test(input.charAt(index))) {
+      if (index < input.length && WHITESPACE_CHAR_REGEX.test(input.charAt(index))) {
         index = StageParser.skipWhitespace(input, index);
 
         let [name, newIndex] = StageParser.parseName(input, index);
@@ -114,7 +114,7 @@ export default class StageParser {
   }
 
   static skipWhitespace(input, index) {
-    while (index < input.length && WHITESPACE_REGEX.test(input.charAt(index))) {
+    while (index < input.length && WHITESPACE_CHAR_REGEX.test(input.charAt(index))) {
       index++;
     }
     return index;

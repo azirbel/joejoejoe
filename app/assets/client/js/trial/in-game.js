@@ -19,7 +19,7 @@ import DrawText from 'js/trial/steps/draw-text';
 import Character from 'js/trial/character';
 import Stage from 'js/trial/stage';
 import Tile from 'js/trial/tile';
-import StageBuilder from 'js/trial/stage-builder';
+import StageBuilder from 'js/trial/parse/stage-builder';
 
 const LEFT = 65;
 const RIGHT = 68;

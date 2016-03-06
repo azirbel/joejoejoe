@@ -5,7 +5,7 @@ import Turret from 'js/trial/turret';
 
 import Vector from 'js/common/vector';
 
-import StageParser from 'js/trial/stage-parser.js';
+import StageParser from 'js/trial/parse/stage-parser';
 
 let getStagePath = (name) => {
   return 'res/trial/stages/' + name +'.stage';
