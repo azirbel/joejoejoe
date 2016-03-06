@@ -44,7 +44,7 @@ export default class InGame {
     this.tickTimer = new TickTimer();
     this.character = new Character();
 
-    this.stage = StageBuilder.buildStage(1);
+    this.stage = StageBuilder.buildStage(2);
 
     this.updateSteps = [];
     this.drawSteps = [];

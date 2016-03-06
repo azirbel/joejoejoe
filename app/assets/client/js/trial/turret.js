@@ -1,9 +1,29 @@
+import _ from 'lodash';
+
 import Vector from 'js/common/vector';
+import getTileMid from 'js/trial/services/get-tile-mid';
 
 const TEXTURE_BASE_PATH = 'res/turret_base.png';
 const TEXTURE_CANNON_PATH = 'res/turret_cannon.png';
 
+const DEFAULT_PROPERTIES = {
+  interval: [parseInt, 60],
+  bulletSpeed: [parseFloat, 2.5]
+};
+const REQUIRED_PROPERTIES = {
+  x: parseInt,
+  y: parseInt
+};
+
 export default class Turret {
+  static get DEFAULT_PROPERTIES() {
+    return DEFAULT_PROPERTIES;
+  }
+
+  static get REQUIRED_PROPERTIES() {
+    return REQUIRED_PROPERTIES;
+  }
+
   static loadAssets(assetManager) {
     this.assetManager = assetManager;
 
@@ -21,11 +41,11 @@ export default class Turret {
     });
   }
 
-  constructor(pos) {
-    this.pos = pos;
+  constructor(options) {
+    _.assign(this, DEFAULT_PROPERTIES, options);
+
+    this.pos = getTileMid(this.x, this.y);
     this.angle = Math.PI / 2;
-    this.interval = 45;
-    this.bulletSpeed = 2.5;
   }
 
   getRelativeDrawCorner() {

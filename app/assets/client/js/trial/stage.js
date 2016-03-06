@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Tile from 'js/trial/tile';
 
 const STAGE_WIDTH = 20;
@@ -17,14 +16,10 @@ export default class Stage {
     this.assetManager = assetManager;
   }
 
-  constructor() {
-    this.tiles = _.times(STAGE_WIDTH, () => {
-      return _.times(STAGE_HEIGHT, () => {
-        return Tile.backTile;
-      });
-    });
+  constructor(tiles, entities) {
+    this.tiles = tiles;
+    this.turrets = entities;
 
-    this.turrets = [];
     this.bullets = [];
   }
 

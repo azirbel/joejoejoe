@@ -2,6 +2,77 @@ import StageParser from 'js/trial/parse/stage-parser'
 import Tile from 'js/trial/tile'
 
 describe('StageParser', () => {
+  describe('transformEntity - unknown type', () => {
+    it('error - unknown type', () => {
+      let input =
+        'zombie:\n' +
+        '  x: 4\n'  +
+        '  y: 6\n';
+
+      let properties = StageParser.parseEntity(input, 0)[0];
+      let testFn = () => StageParser.transformEntity(properties);
+
+      expect(testFn).to.throw(/Unknown entity type: zombie/);
+    });
+  });
+
+  describe('transformEntity - turret', () => {
+    it('expected behaviour with defaults', () => {
+      let input =
+        'turret:\n' +
+        '  x: 4\n'  +
+        '  y: 6\n';
+
+      let properties = StageParser.parseEntity(input, 0)[0];
+      let entity = StageParser.transformEntity(properties);
+
+      expect(entity.x).to.equal(4);
+      expect(entity.y).to.equal(6);
+      expect(entity.interval).to.equal(60);
+      expect(entity.bulletSpeed).to.equal(2.5);
+    });
+
+    it('expected behaviour with optionals', () => {
+      let input =
+        'turret:\n' +
+        '  x: 4\n'  +
+        '  y: 6\n'  +
+        '  bulletSpeed: 3.1\n'  +
+        '  interval: 80\n';
+
+      let properties = StageParser.parseEntity(input, 0)[0];
+      let entity = StageParser.transformEntity(properties);
+
+      expect(entity.x).to.equal(4);
+      expect(entity.y).to.equal(6);
+      expect(entity.interval).to.equal(80);
+      expect(entity.bulletSpeed).to.equal(3.1);
+    });
+
+    it('missing required', () => {
+      let input =
+        'turret:\n' +
+        '  x: 4\n';
+
+      let properties = StageParser.parseEntity(input, 0)[0];
+      let testFn = () => StageParser.transformEntity(properties);
+      debugger;
+      expect(testFn).to.throw(/Missing required.*y/);
+    });
+
+    it('unknown property', () => {
+      let input =
+        'turret:\n' +
+        '  x: 4\n'  +
+        '  y: 4\n'  +
+        '  pants: no\n';
+
+      let properties = StageParser.parseEntity(input, 0)[0];
+      let testFn = () => StageParser.transformEntity(properties);
+      expect(testFn).to.throw(/Unknown properties: pants/);
+    });
+  });
+
   describe('parseEntities', () => {
     it('expected behaviour, terminated by EOF', () => {
       let input =

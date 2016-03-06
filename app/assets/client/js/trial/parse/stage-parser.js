@@ -3,6 +3,8 @@ import _ from 'lodash';
 import Stage from 'js/trial/stage';
 import Tile from 'js/trial/tile';
 
+import Turret from 'js/trial/turret';
+
 const ERR_SHORT_ROW = 'Row must be ' + Stage.WIDTH + ' characters long but was ';
 const ERR_INTEGER_INDEX = 'Must supply an integer index';
 const ERR_POSITIVE_INDEX = 'Index must be >= 0';
@@ -16,9 +18,18 @@ const ERR_ENTITY_NEWLINE = 'Entity tags must be followed by a newline';
 const ERR_EMPTY_PROPERTY = 'Property must not be empty';
 const ERR_DUPLICATE_PROPERTY = 'Property appears twice: ';
 
+const ERR_UNKNOWN_ENTITY_TYPE = 'Unknown entity type: ';
+
+const ERR_MISSING_PROPERTIES = 'Missing required properties: ';
+const ERR_EXTRA_PROPERTIES = 'Unknown properties: ';
+
 const WORD_CHAR_REGEX = /\w/;
 const WORD_END_REGEX = /:/;
 const WHITESPACE_CHAR_REGEX = /[ \t]/;
+
+const TYPE_MAP = {
+  turret: Turret
+};
 
 export default class StageParser {
   static get tileMap() {
@@ -35,13 +46,56 @@ export default class StageParser {
   static parse(input) {
     let tiles = StageParser.parseTiles(input);
 
-    let newStage = new Stage();
-    newStage.tiles = tiles;
-
     let entitiesIndex = Stage.HEIGHT * (Stage.WIDTH + 1);
-    StageParser.parseEntities(input, entitiesIndex);
+    let entityProperties = StageParser.parseEntities(input, entitiesIndex);
+    let entities = StageParser.transformEntities(entityProperties);
 
-    return newStage;
+    return new Stage(tiles, entities);
+  }
+
+  static transformEntities(entities) {
+    return _.map(entities, StageParser.transformEntity);
+  }
+
+  static transformEntity(entity) {
+    let Type = TYPE_MAP[entity.type];
+    if (Type) {
+      let REQUIRED_PROPERTIES = Type.REQUIRED_PROPERTIES;
+      let DEFAULT_PROPERTIES = Type.DEFAULT_PROPERTIES;
+
+      let properties = entity.properties;
+      let givenKeys = _.keys(properties);
+
+      let missingKeys = _.difference(_.keys(REQUIRED_PROPERTIES), givenKeys);
+      if (missingKeys.length > 0) {
+        throw ERR_MISSING_PROPERTIES + missingKeys.join(', ');
+      }
+
+      let ALL_KEYS = _.concat(_.keys(DEFAULT_PROPERTIES), _.keys(REQUIRED_PROPERTIES));
+      let extraKeys = _.difference(givenKeys, ALL_KEYS);
+      if (extraKeys.length > 0) {
+        throw ERR_EXTRA_PROPERTIES + extraKeys.join(', ');
+      }
+
+      let defaultValues = _.mapValues(DEFAULT_PROPERTIES, (value) => {
+        return value[1];
+      });
+      let defaultFuncs = _.mapValues(DEFAULT_PROPERTIES, (value) => {
+        return value[0];
+      });
+
+      properties = _.mapValues(properties, (value, key) => {
+        if (key in REQUIRED_PROPERTIES) {
+          return REQUIRED_PROPERTIES[key](value);
+        } else {
+          return defaultFuncs[key](value);
+        }
+      });
+
+      return new Type(_.assign(defaultValues, properties));
+    } else {
+      throw ERR_UNKNOWN_ENTITY_TYPE + entity.type;
+    }
   }
 
   static parseEntities(input, index) {
