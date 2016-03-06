@@ -1,6 +1,6 @@
 import Vector from 'js/common/vector';
 
-const TEXTURE_BULLET_PATH = 'res/bullet.png';
+const TEXTURE_BULLET_PATH = 'res/trial/bullet.png';
 
 export default class Bullet {
   static loadAssets(assetManager) {
