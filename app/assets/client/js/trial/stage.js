@@ -1,4 +1,5 @@
 import Tile from 'js/trial/tile';
+import Vector from 'js/common/vector';
 
 const STAGE_WIDTH = 20;
 const STAGE_HEIGHT = 20;
@@ -16,9 +17,10 @@ export default class Stage {
     this.assetManager = assetManager;
   }
 
-  constructor(tiles, entities) {
+  constructor(tiles, entities, spawn) {
     this.tiles = tiles;
     this.turrets = entities;
+    this.spawn = spawn;
 
     this.bullets = [];
   }
@@ -33,5 +35,9 @@ export default class Stage {
 
   isWall(x, y) {
     return this.get(x, y) === Tile.wallTile;
+  }
+
+  getSpawnVect() {
+    return new Vector((this.spawn.x + 0.5) * Tile.WIDTH, (this.spawn.y + 1) * Tile.HEIGHT);
   }
 }

@@ -2,6 +2,90 @@ import StageParser from 'js/trial/parse/stage-parser'
 import Tile from 'js/trial/tile'
 
 describe('StageParser', () => {
+  describe('parse', () => {
+    it('fails on multiple spawns', () => {
+      let input =
+        'x              xx  x\n' +
+        'x                  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x       ss     xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        '                    \n' +
+        'xxxxxxxxxxxxxxxxxxxx';
+
+      let testFn = () => StageParser.parse(input);
+
+      expect(testFn).to.throw(/Multiple spawn positions/);
+    });
+
+    it('on no multiple spawns', () => {
+      let input =
+        'x              xx  x\n' +
+        'x                  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        '                    \n' +
+        'xxxxxxxxxxxxxxxxxxxx';
+
+      let testFn = () => StageParser.parse(input);
+
+      expect(testFn).to.throw(/Missing spawn position/);
+    });
+
+    it('passes', () => {
+      let input =
+        'x              xx  x\n' +
+        'x                  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x   s          xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        'x              xx  x\n' +
+        '                    \n' +
+        'xxxxxxxxxxxxxxxxxxxx';
+
+      StageParser.parse(input);
+    });
+  });
+
   describe('transformEntity - unknown type', () => {
     it('error - unknown type', () => {
       let input =
@@ -59,7 +143,6 @@ describe('StageParser', () => {
 
       let properties = StageParser.parseEntity(input, 0)[0];
       let testFn = () => StageParser.transformEntity(properties);
-      debugger;
       expect(testFn).to.throw(/Missing required.*y/);
     });
 

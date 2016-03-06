@@ -10,6 +10,6 @@ module.exports = angular.module('routes.root', [
   });
 })
 .run(($state) => {
-   $state.go('trial');
+  $state.go('trial');
 })
 .name;

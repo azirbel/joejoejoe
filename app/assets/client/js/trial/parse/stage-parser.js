@@ -2,14 +2,13 @@ import _ from 'lodash';
 
 import Stage from 'js/trial/stage';
 import Tile from 'js/trial/tile';
-
 import Turret from 'js/trial/turret';
+import Vector from 'js/common/vector';
 
 const ERR_SHORT_ROW = 'Row must be ' + Stage.WIDTH + ' characters long but was ';
 const ERR_INTEGER_INDEX = 'Must supply an integer index';
 const ERR_POSITIVE_INDEX = 'Index must be >= 0';
 const ERR_INVALID_CHAR = 'Invalid character: ';
-
 const ERR_UNEXPECTED_END = 'Unexpected end of input.';
 const ERR_INVALID_WORD_CHAR = 'Unexpected character encountered in word: ';
 const ERR_EXPECTED_PROPERY_NAME = 'Expected newline or property name, but got: ';
@@ -17,11 +16,11 @@ const ERR_EMPTY_NAME = 'Name must not be empty';
 const ERR_ENTITY_NEWLINE = 'Entity tags must be followed by a newline';
 const ERR_EMPTY_PROPERTY = 'Property must not be empty';
 const ERR_DUPLICATE_PROPERTY = 'Property appears twice: ';
-
 const ERR_UNKNOWN_ENTITY_TYPE = 'Unknown entity type: ';
-
 const ERR_MISSING_PROPERTIES = 'Missing required properties: ';
 const ERR_EXTRA_PROPERTIES = 'Unknown properties: ';
+const ERR_DUPLICATE_SPAWN = 'Multiple spawn positions';
+const ERR_MISSING_SPAWN = 'Missing spawn position';
 
 const WORD_CHAR_REGEX = /\w/;
 const WORD_END_REGEX = /:/;
@@ -36,7 +35,8 @@ export default class StageParser {
     if (this._tileMap === undefined) {
       this._tileMap = {
         'x': Tile.wallTile,
-        ' ': Tile.backTile
+        ' ': Tile.backTile,
+        's': Tile.startTile
       };
     }
 
@@ -46,11 +46,27 @@ export default class StageParser {
   static parse(input) {
     let tiles = StageParser.parseTiles(input);
 
+    let spawn = null;
+    _.each(tiles, (col, x) => {
+      _.each(col, (tile, y) => {
+        if (tile === Tile.startTile) {
+          if (spawn !== null) {
+            throw ERR_DUPLICATE_SPAWN;
+          }
+          spawn = new Vector(x, y);
+        }
+      });
+    });
+
+    if (spawn === null) {
+      throw ERR_MISSING_SPAWN;
+    }
+
     let entitiesIndex = Stage.HEIGHT * (Stage.WIDTH + 1);
     let entityProperties = StageParser.parseEntities(input, entitiesIndex);
     let entities = StageParser.transformEntities(entityProperties);
 
-    return new Stage(tiles, entities);
+    return new Stage(tiles, entities, spawn);
   }
 
   static transformEntities(entities) {

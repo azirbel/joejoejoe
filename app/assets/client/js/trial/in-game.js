@@ -42,9 +42,10 @@ export default class InGame {
     this.currentScore = 0;
 
     this.tickTimer = new TickTimer();
-    this.character = new Character();
 
     this.stage = StageBuilder.buildStage(1);
+    this.character = new Character(this.stage.getSpawnVect());
+
 
     this.updateSteps = [];
     this.drawSteps = [];

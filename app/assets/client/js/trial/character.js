@@ -10,8 +10,8 @@ export default class Character {
     assetManager.loadImage(STICK_SHEET);
   }
 
-  constructor() {
-    this.respawn(new Vector(100, 100));
+  constructor(spawn) {
+    this.respawn(spawn);
     this.isGrounded = false;
     this.fastFall = false;
     Character.assetManager.onLoad(() => {
