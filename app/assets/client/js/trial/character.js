@@ -2,7 +2,7 @@ import getImageBounds from 'js/trial/services/get-image-bounds';
 
 import Vector from 'js/common/vector';
 
-const STICK_SHEET = 'res/stick.png';
+const STICK_SHEET = 'res/trial/character.png';
 
 export default class Character {
   static loadAssets(assetManager) {
