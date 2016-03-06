@@ -9,4 +9,7 @@ module.exports = angular.module('routes.root', [
     template: require('./root.jade')
   });
 })
+.run(($state) => {
+   $state.go('trial');
+})
 .name;
