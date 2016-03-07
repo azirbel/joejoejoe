@@ -20,7 +20,15 @@ export default class Character {
       });
 
       this.bounds = _.mapValues(this.images, (image) => {
-        return getImageBounds(image);
+        let imageBounds = getImageBounds(image);
+        let dx = -image.width / 2;
+        let dy = -image.height;
+        return [
+          imageBounds[0] + dx,
+          imageBounds[1] + dx,
+          imageBounds[2] + dy,
+          imageBounds[3] + dy
+        ];
       });
     });
   }
@@ -89,6 +97,6 @@ export default class Character {
   }
 
   getBound(isMaxX, isMaxY) {
-    return this.getRawBound(isMaxX, isMaxY).addM(this.getDrawCorner());
+    return this.getRawBound(isMaxX, isMaxY).addM(this.pos);
   }
 }
