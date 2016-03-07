@@ -58,16 +58,16 @@ export default class Character {
     }
   }
 
-  get bounds() {
+  getBounds() {
     return Character.bounds[this.imageState];
   }
 
-  get image() {
+  getImage() {
     return Character.images[this.imageState];
   }
 
   getRelativeDrawCorner() {
-    return new Vector(-this.image.width / 2, -this.image.height);
+    return new Vector(-this.getImage().width / 2, -this.getImage().height);
   }
 
   getDrawCorner() {
@@ -75,19 +75,19 @@ export default class Character {
   }
 
   getMinXBound() {
-    return this.bounds[0];
+    return this.getBounds()[0];
   }
 
   getMaxXBound() {
-    return this.bounds[1];
+    return this.getBounds()[1];
   }
 
   getMinYBound() {
-    return this.bounds[2];
+    return this.getBounds()[2];
   }
 
   getMaxYBound() {
-    return this.bounds[3];
+    return this.getBounds()[3];
   }
 
   getRawBound(isMaxX, isMaxY) {

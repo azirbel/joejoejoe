@@ -6,6 +6,6 @@ export default class DrawEntityAt {
   }
 
   apply() {
-    this.context.drawImage(this.entity.image, this.point.x, this.point.y);
+    this.context.drawImage(this.entity.getImage(), this.point.x, this.point.y);
   }
 }

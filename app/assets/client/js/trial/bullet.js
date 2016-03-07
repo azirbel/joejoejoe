@@ -28,7 +28,7 @@ export default class Bullet {
     return this.pos.add(this.getRelativeDrawCorner());
   }
 
-  get image() {
+  getImage() {
     return Bullet.TEXTURE_BULLET_IMAGE;
   }
 }

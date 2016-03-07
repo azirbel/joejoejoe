@@ -13,18 +13,18 @@ export default class Tile {
     assetManager.loadImage(START_TILE_PATH);
 
     assetManager.onLoad(() => {
-      this.wallTile._image = assetManager.get(WALL_TILE_PATH);
-      this.backTile._image = assetManager.get(BACK_TILE_PATH);
-      this.startTile._image = assetManager.get(START_TILE_PATH);
+      this.wallTile.image = assetManager.get(WALL_TILE_PATH);
+      this.backTile.image = assetManager.get(BACK_TILE_PATH);
+      this.startTile.image = assetManager.get(START_TILE_PATH);
     });
   }
 
   constructor() {
-    this._image = null;
+    this.image = null;
   }
 
-  get image() {
-    return this._image;
+  getImage() {
+    return this.image;
   }
 }
 

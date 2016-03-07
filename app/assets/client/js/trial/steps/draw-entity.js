@@ -1,7 +1,7 @@
 export default class DrawEntity {
   static apply(context, entity) {
     let [x, y] = entity.getDrawCorner().xy();
-    context.drawImage(entity.image, x, y);
+    context.drawImage(entity.getImage(), x, y);
   }
 
   constructor(context, entity) {
