@@ -7,6 +7,11 @@ const IMAGE_PATHS = {
   CROUCH: 'res/trial/crouch.png'
 };
 
+let getImagePositionOffset = (image) => {
+  //TODO: figure out proper boundaries
+  return new Vector(-image.width / 2, -image.height);
+};
+
 export default class Character {
   static loadAssets(assetManager) {
     this.assetManager = assetManager;
@@ -21,8 +26,7 @@ export default class Character {
 
       this.bounds = _.mapValues(this.images, (image) => {
         let imageBounds = getImageBounds(image);
-        let dx = -image.width / 2;
-        let dy = -image.height;
+        let [dx, dy] = getImagePositionOffset(image).xy();
         return [
           imageBounds[0] + dx,
           imageBounds[1] + dx,
@@ -66,12 +70,8 @@ export default class Character {
     return Character.images[this.imageState];
   }
 
-  getRelativeDrawCorner() {
-    return new Vector(-this.getImage().width / 2, -this.getImage().height);
-  }
-
   getDrawCorner() {
-    return this.pos.add(this.getRelativeDrawCorner());
+    return this.pos.add(getImagePositionOffset(this.getImage()));
   }
 
   getMinXBound() {
