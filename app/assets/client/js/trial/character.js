@@ -2,22 +2,34 @@ import getImageBounds from 'js/trial/services/get-image-bounds';
 
 import Vector from 'js/common/vector';
 
-const STICK_SHEET = 'res/trial/character.png';
+const IMAGE_PATHS = {
+  STAND: 'res/trial/character.png',
+  CROUCH: 'res/trial/crouch.png'
+};
 
 export default class Character {
   static loadAssets(assetManager) {
     this.assetManager = assetManager;
-    assetManager.loadImage(STICK_SHEET);
+    _.forEach(IMAGE_PATHS, (value) => {
+      assetManager.loadImage(value);
+    })
+
+    Character.assetManager.onLoad(() => {
+      this.images = _.mapValues(IMAGE_PATHS, (path) => {
+        return Character.assetManager.get(path);
+      });
+
+      this.bounds = _.mapValues(this.images, (image) => {
+        return getImageBounds(image);
+      });
+    });
   }
 
   constructor(spawn) {
     this.respawn(spawn);
     this.isGrounded = false;
     this.fastFall = false;
-    Character.assetManager.onLoad(() => {
-      this.image = Character.assetManager.get(STICK_SHEET);
-      this.bounds = getImageBounds(this.image);
-    });
+    this.isCrouch = false;
   }
 
   respawn(point) {
@@ -30,8 +42,20 @@ export default class Character {
     this.isGrounded = true;
   }
 
+  get imageState() {
+    if (this.isCrouch) {
+      return 'CROUCH';
+    } else {
+      return 'STAND';
+    }
+  }
+
+  get bounds() {
+    return Character.bounds[this.imageState];
+  }
+
   getImage() {
-    return this.image;
+    return Character.images[this.imageState];
   }
 
   getRelativeDrawCorner() {

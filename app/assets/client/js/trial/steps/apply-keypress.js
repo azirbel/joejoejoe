@@ -5,6 +5,7 @@ const UP = 87;
 const DOWN = 83;
 
 const SPEED = 1.4;
+const CROUCH_AIR_DI = 0.4;
 
 const GRAVITY = 0.2;
 const FAST_GRAVITY = 0.4;
@@ -16,9 +17,28 @@ export default class ApplyKeypress {
   }
 
   apply() {
-    if (this.pressedMapping[LEFT] ^ this.pressedMapping[RIGHT]) {
-      let dir = this.pressedMapping[LEFT] ? -1 : 1;
-      this.entity.velo.x += dir * SPEED;
+    if (this.pressedMapping[DOWN]) {
+      this.entity.isCrouch = true;
+    } else {
+      this.entity.isCrouch = false;
+    }
+
+    if (this.entity.isCrouch) {
+      if (this.entity.isGrounded) {
+        this.entity.velo.x *= 0.5;
+      } else {
+        if (this.pressedMapping[LEFT] ^ this.pressedMapping[RIGHT]) {
+          let dir = this.pressedMapping[LEFT] ? -1 : 1;
+          this.entity.velo.x += dir * CROUCH_AIR_DI;
+        }
+        this.entity.velo.x *= 0.95;
+      }
+    } else {
+      if (this.pressedMapping[LEFT] ^ this.pressedMapping[RIGHT]) {
+        let dir = this.pressedMapping[LEFT] ? -1 : 1;
+        this.entity.velo.x += dir * SPEED;
+      }
+      this.entity.velo.x *= 0.8;
     }
 
     if (this.pressedMapping[UP]) {
@@ -26,8 +46,6 @@ export default class ApplyKeypress {
         this.entity.velo.y = -15;
       }
     }
-
-    this.entity.velo.x *= 0.8;
 
     if (this.entity.velo.y > 0 && this.pressedMapping[DOWN]) {
       this.entity.faseFall = true;
