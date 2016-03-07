@@ -10,7 +10,7 @@ export default class UpdateTurretAngles {
 
   apply() {
     _.forEach(this.stage.turrets, (turret) => {
-      let charMid = this.character.pos.sub(new Vector(0, this.character.getImage().height / 2));
+      let charMid = this.character.pos.sub(new Vector(0, this.character.image.height / 2));
       let vect = charMid.sub(turret.pos);
       if (vect.x === 0 && vect.y === 0) {
         return;

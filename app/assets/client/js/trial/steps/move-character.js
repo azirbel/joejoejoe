@@ -25,16 +25,11 @@ let calcTValue = (start, vec, goal) => {
 };
 
 export default class MoveCharacter {
-  constructor(character, stage) {
-    this.character = character;
-    this.stage = stage;
-  }
+  static apply(character, stage) {
+    character.isGrounded = false;
 
-  apply() {
-    this.character.isGrounded = false;
-
-    let xPositive = this.character.velo.x >= 0;
-    let yPositive = this.character.velo.y >= 0;
+    let xPositive = character.velo.x >= 0;
+    let yPositive = character.velo.y >= 0;
     let xDir = xPositive ? 1 : -1;
     let yDir = yPositive ? 1 : -1;
 
@@ -44,8 +39,8 @@ export default class MoveCharacter {
     let opposite = null;
 
     let recalcBounds = () => {
-      boundCorner = this.character.getBound(xPositive, yPositive).subM(epsilonPoint);
-      opposite = this.character.getBound(!xPositive, !yPositive).addM(epsilonPoint);
+      boundCorner = character.getBound(xPositive, yPositive).subM(epsilonPoint);
+      opposite = character.getBound(!xPositive, !yPositive).addM(epsilonPoint);
     };
     recalcBounds();
 
@@ -56,24 +51,24 @@ export default class MoveCharacter {
     let nextYBound = calcNextYBound(curYTile, yPositive);
 
     for (;;) {
-      let xt = calcTValue(boundCorner.x, this.character.velo.x, nextXBound);
-      let yt = calcTValue(boundCorner.y, this.character.velo.y, nextYBound);
+      let xt = calcTValue(boundCorner.x, character.velo.x, nextXBound);
+      let yt = calcTValue(boundCorner.y, character.velo.y, nextYBound);
 
       if (xt > 1 && yt > 1) {
         break;
       } else if (yt < xt) {
-        let oppositeX = opposite.x + yt * this.character.velo.x;
+        let oppositeX = opposite.x + yt * character.velo.x;
         let oppositeXTile = xToTile(oppositeX);
 
         let didHit = false;
         for (let xTile = oppositeXTile; xTile != curXTile + xDir; xTile += xDir) {
-          if (this.stage.isWall(xTile, curYTile + yDir)) {
+          if (stage.isWall(xTile, curYTile + yDir)) {
             didHit = true;
             if (yPositive) {
-              this.character.isGrounded = true;
+              character.isGrounded = true;
             }
-            this.character.pos.y += nextYBound - boundCorner.y - epsilonPoint.y;
-            this.character.velo.y = 0;
+            character.pos.y += nextYBound - boundCorner.y - epsilonPoint.y;
+            character.velo.y = 0;
             recalcBounds();
             break;
           }
@@ -84,15 +79,15 @@ export default class MoveCharacter {
           nextYBound += Tile.HEIGHT * yDir;
         }
       } else {
-        let oppositeY = opposite.y + xt * this.character.velo.y;
+        let oppositeY = opposite.y + xt * character.velo.y;
         let oppositeYTile = yToTile(oppositeY);
 
         let didHit = false;
         for (let yTile = oppositeYTile; yTile != curYTile + yDir; yTile += yDir) {
-          if (this.stage.isWall(curXTile + xDir, yTile)) {
+          if (stage.isWall(curXTile + xDir, yTile)) {
             didHit = true;
-            this.character.pos.x += nextXBound - boundCorner.x - epsilonPoint.x;
-            this.character.velo.x = 0;
+            character.pos.x += nextXBound - boundCorner.x - epsilonPoint.x;
+            character.velo.x = 0;
             recalcBounds();
             break;
           }
@@ -105,6 +100,15 @@ export default class MoveCharacter {
       }
     }
 
-    this.character.pos.addM(this.character.velo);
+    character.pos.addM(character.velo);
+  }
+
+  constructor(character, stage) {
+    this.character = character;
+    this.stage = stage;
+  }
+
+  apply() {
+    MoveCharacter.apply(this.character, this.stage);
   }
 }

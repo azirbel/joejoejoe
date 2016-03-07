@@ -54,12 +54,12 @@ export default class Character {
     return Character.bounds[this.imageState];
   }
 
-  getImage() {
+  get image() {
     return Character.images[this.imageState];
   }
 
   getRelativeDrawCorner() {
-    return new Vector(-this.getImage().width / 2, -this.getImage().height);
+    return new Vector(-this.image.width / 2, -this.image.height);
   }
 
   getDrawCorner() {
@@ -86,10 +86,6 @@ export default class Character {
     let xBound = isMaxX ? this.getMaxXBound() : this.getMinXBound();
     let yBound = isMaxY ? this.getMaxYBound() : this.getMinYBound();
     return new Vector(xBound, yBound);
-  }
-
-  getRelativeBound(isMaxX, isMaxY) {
-    return this.getRawBound(isMaxX, isMaxY).addM(this.getRelativeDrawCorner());
   }
 
   getBound(isMaxX, isMaxY) {
