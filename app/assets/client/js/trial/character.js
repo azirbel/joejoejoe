@@ -8,7 +8,6 @@ const IMAGE_PATHS = {
 };
 
 let getImagePositionOffset = (image) => {
-  //TODO: figure out proper boundaries
   return new Vector(-image.width / 2, -image.height);
 };
 
@@ -28,10 +27,10 @@ export default class Character {
         let imageBounds = getImageBounds(image);
         let [dx, dy] = getImagePositionOffset(image).xy();
         return [
-          imageBounds[0] + dx,
-          imageBounds[1] + dx,
+          -9,
+          9,
           imageBounds[2] + dy,
-          imageBounds[3] + dy
+          imageBounds[3] + dy + 1
         ];
       });
     });
