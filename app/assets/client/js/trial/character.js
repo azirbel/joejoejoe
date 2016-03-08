@@ -1,11 +1,16 @@
+import _ from 'lodash';
+
 import getImageBounds from 'js/trial/services/get-image-bounds';
+import imageToSprites from 'js/common/image-to-sprites';
 
 import Vector from 'js/common/vector';
 
-const IMAGE_PATHS = {
-  STAND: 'res/trial/character.png',
-  CROUCH: 'res/trial/crouch.png'
-};
+const SPRITE_PATH = 'res/trial/character.png';
+
+const STATE_INDICES = [
+  'STAND',
+  'CROUCH'
+];
 
 let getImagePositionOffset = (image) => {
   return new Vector(-image.width / 2, -image.height);
@@ -14,18 +19,15 @@ let getImagePositionOffset = (image) => {
 export default class Character {
   static loadAssets(assetManager) {
     this.assetManager = assetManager;
-    _.forEach(IMAGE_PATHS, (value) => {
-      assetManager.loadImage(value);
-    })
+    assetManager.loadImage(SPRITE_PATH);
 
     Character.assetManager.onLoad(() => {
-      this.images = _.mapValues(IMAGE_PATHS, (path) => {
-        return Character.assetManager.get(path);
-      });
+      let spriteSheet = Character.assetManager.get(SPRITE_PATH);
+      this.images = _.zipObject(STATE_INDICES, imageToSprites(spriteSheet, 32, 64));
 
       this.bounds = _.mapValues(this.images, (image) => {
         let imageBounds = getImageBounds(image);
-        let [dx, dy] = getImagePositionOffset(image).xy();
+        let dy = getImagePositionOffset(image).xy()[1];
         return [
           -9,
           9,
