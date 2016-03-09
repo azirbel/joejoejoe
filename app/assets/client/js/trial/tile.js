@@ -3,9 +3,15 @@ const BACK_TILE_PATH = 'res/back.png';
 const START_TILE_PATH = 'res/trial/start_tile.png';
 
 export default class Tile {
+  static get WIDTH() {
+    return 32;
+  }
+
+  static get HEIGHT() {
+    return 32;
+  }
+
   static loadAssets(assetManager) {
-    this.WIDTH = 32;
-    this.HEIGHT = 32;
     this.assetManager = assetManager;
 
     assetManager.loadImage(WALL_TILE_PATH);
