@@ -3,7 +3,7 @@ import _ from 'lodash';
 import Vector from 'js/common/vector';
 import getTileMid from 'js/trial/services/get-tile-mid';
 
-const TEXTURE_BASE_PATH = 'res/turret_base.png';
+const TEXTURE_BASE_PATH = 'res/trial/turret_base.png';
 const TEXTURE_CANNON_PATH = 'res/turret_cannon.png';
 
 const DEFAULT_PROPERTIES = {
