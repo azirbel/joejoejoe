@@ -9,19 +9,31 @@ let getImagePositionOffset = (image) => {
   return new Vector(-image.width / 2, -image.height);
 };
 
-let makeStandFilm = (standRow) => {
+let makeStandFilm = (row) => {
   return [
-    [150, standRow[0]],
-    [30, standRow[1]],
-    [150, standRow[0]],
-    [30, standRow[2]]
+    [150, row[0]],
+    [30, row[1]],
+    [150, row[0]],
+    [30, row[2]]
   ];
 };
 
-let makeCrouchFilm = (crouchRow) => {
+let makeCrouchFilm = (row) => {
   return [
-    [100, crouchRow[0]],
-    [3, crouchRow[1]]
+    [100, row[0]],
+    [3, row[1]]
+  ];
+};
+
+let makeRollFilm = (row) => {
+  return [
+    [5, row[0]],
+    [5, row[1]],
+    [5, row[2]],
+    [5, row[3]],
+    [5, row[4]],
+    [5, row[5]],
+    [5, row[6]]
   ];
 };
 
@@ -37,12 +49,14 @@ export default class Character {
 
       this.films = {
         STAND: makeStandFilm(spriteRows[0]),
-        CROUCH: makeCrouchFilm(spriteRows[1])
+        CROUCH: makeCrouchFilm(spriteRows[1]),
+        ROLL: makeRollFilm(spriteRows[2])
       };
 
       this.bounds = {
         STAND: [-10, 10, -62, 0],
-        CROUCH: [-10, 10, -30, 0]
+        CROUCH: [-10, 10, -30, 0],
+        ROLL: [-10, 10, -30, 0]
       };
     });
   }
@@ -54,14 +68,21 @@ export default class Character {
   advance() {
     this.currentAnimation.advance();
     if (this.currentAnimation.isOver()) {
+      if (this.state === 'ROLL') {
+        this.isRoll = false;
+      }
+
       this.resetAnimation();
     }
   }
 
   respawn(point) {
+    this.isRight = true;
     this.isGrounded = false;
     this.fastFall = false;
     this.isCrouch = false;
+    this.isRoll = false;
+
     this.pos = point.copy();
     this.velo = new Vector(0, 0);
 
@@ -78,7 +99,9 @@ export default class Character {
   }
 
   get state() {
-    if (this.isCrouch) {
+    if (this.isRoll) {
+      return 'ROLL';
+    } else if (this.isCrouch) {
       return 'CROUCH';
     } else {
       return 'STAND';
@@ -90,7 +113,7 @@ export default class Character {
   }
 
   getImage() {
-    return this.currentAnimation.image;
+    return this.currentAnimation.image[this.isRight ? 0 : 1];
   }
 
   getDrawCorner() {

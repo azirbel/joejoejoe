@@ -14,7 +14,16 @@ export default function imageToSprites(image, dx, dy) {
 
       let sprite = new Image();
       sprite.src = canvas.toDataURL('image/png');
-      rowSprites.push(sprite);
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.scale(-1, 1);
+      context.drawImage(image, x, y, dx, dy, 0, 0, -dx, dy);
+      context.scale(-1, 1);
+
+      let flippedSprite = new Image();
+      flippedSprite.src = canvas.toDataURL('image/png');
+
+      rowSprites.push([sprite, flippedSprite]);
     }
     result.push(rowSprites);
   }
