@@ -23,7 +23,15 @@ export default class Character {
 
     Character.assetManager.onLoad(() => {
       let spriteSheet = Character.assetManager.get(SPRITE_PATH);
-      this.images = _.zipObject(STATE_INDICES, imageToSprites(spriteSheet, 32, 64));
+
+      let sprites = imageToSprites(spriteSheet, 32, 64);
+      let STAND_IMAGE = sprites[0][0];
+      let CROUCH_IMAGE = sprites[0][1];
+
+      this.images = {
+        CROUCH: CROUCH_IMAGE,
+        STAND: STAND_IMAGE
+      };
 
       this.bounds = _.mapValues(this.images, (image) => {
         let imageBounds = getImageBounds(image);
@@ -55,7 +63,7 @@ export default class Character {
     this.isGrounded = true;
   }
 
-  get imageState() {
+  get state() {
     if (this.isCrouch) {
       return 'CROUCH';
     } else {
@@ -64,11 +72,11 @@ export default class Character {
   }
 
   getBounds() {
-    return Character.bounds[this.imageState];
+    return Character.bounds[this.state];
   }
 
   getImage() {
-    return Character.images[this.imageState];
+    return Character.images[this.state];
   }
 
   getDrawCorner() {
