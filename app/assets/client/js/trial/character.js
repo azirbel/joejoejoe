@@ -1,19 +1,28 @@
-import _ from 'lodash';
-
-import getImageBounds from 'js/trial/services/get-image-bounds';
 import imageToSprites from 'js/common/image-to-sprites';
 
+import Animation from 'js/common/animation';
 import Vector from 'js/common/vector';
 
 const SPRITE_PATH = 'res/trial/character.png';
 
-const STATE_INDICES = [
-  'STAND',
-  'CROUCH'
-];
-
 let getImagePositionOffset = (image) => {
   return new Vector(-image.width / 2, -image.height);
+};
+
+let makeStandFilm = (standRow) => {
+  return [
+    [150, standRow[0]],
+    [30, standRow[1]],
+    [150, standRow[0]],
+    [30, standRow[2]]
+  ];
+};
+
+let makeCrouchFilm = (crouchRow) => {
+  return [
+    [100, crouchRow[0]],
+    [3, crouchRow[1]]
+  ];
 };
 
 export default class Character {
@@ -24,38 +33,43 @@ export default class Character {
     Character.assetManager.onLoad(() => {
       let spriteSheet = Character.assetManager.get(SPRITE_PATH);
 
-      let sprites = imageToSprites(spriteSheet, 32, 64);
-      let STAND_IMAGE = sprites[0][0];
-      let CROUCH_IMAGE = sprites[0][1];
+      let spriteRows = imageToSprites(spriteSheet, 32, 64);
 
-      this.images = {
-        CROUCH: CROUCH_IMAGE,
-        STAND: STAND_IMAGE
+      this.films = {
+        STAND: makeStandFilm(spriteRows[0]),
+        CROUCH: makeCrouchFilm(spriteRows[1])
       };
 
-      this.bounds = _.mapValues(this.images, (image) => {
-        let imageBounds = getImageBounds(image);
-        let dy = getImagePositionOffset(image).xy()[1];
-        return [
-          -9,
-          9,
-          imageBounds[2] + dy,
-          imageBounds[3] + dy + 1
-        ];
-      });
+      this.bounds = {
+        STAND: [-10, 10, -62, 0],
+        CROUCH: [-10, 10, -30, 0]
+      };
     });
   }
 
   constructor(spawn) {
     this.respawn(spawn);
-    this.isGrounded = false;
-    this.fastFall = false;
-    this.isCrouch = false;
+  }
+
+  advance() {
+    this.currentAnimation.advance();
+    if (this.currentAnimation.isOver()) {
+      this.resetAnimation();
+    }
   }
 
   respawn(point) {
+    this.isGrounded = false;
+    this.fastFall = false;
+    this.isCrouch = false;
     this.pos = point.copy();
     this.velo = new Vector(0, 0);
+
+    this.resetAnimation();
+  }
+
+  resetAnimation() {
+    this.currentAnimation = new Animation(Character.films[this.state]);
   }
 
   hitGround() {
@@ -76,7 +90,7 @@ export default class Character {
   }
 
   getImage() {
-    return Character.images[this.state];
+    return this.currentAnimation.image;
   }
 
   getDrawCorner() {
