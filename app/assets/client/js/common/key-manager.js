@@ -5,8 +5,11 @@ export default class KeyManager {
   }
 
   pressKey(key) {
+    if (!this.isDown(key)) {
+      this.pressed.add(key);
+    }
+
     this.downMap[key] = true;
-    this.pressed.add(key);
   }
 
   releaseKey(key) {

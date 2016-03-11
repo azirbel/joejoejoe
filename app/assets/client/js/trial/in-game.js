@@ -9,6 +9,8 @@ import UpdateTurretAngles from 'js/trial/steps/update-turret-angles';
 import CreateBullets from 'js/trial/steps/create-bullets';
 import UpdateBullets from 'js/trial/steps/update-bullets';
 import CheckPlayerHit from 'js/trial/steps/check-player-hit';
+import KeepState from 'js/trial/steps/keep-state';
+import MoveReaction from 'js/trial/steps/move-reaction';
 
 import DrawEntity from 'js/trial/steps/draw-entity';
 import DrawEntityAt from 'js/trial/steps/draw-entity-at';
@@ -21,16 +23,10 @@ import Stage from 'js/trial/stage';
 import Tile from 'js/trial/tile';
 import StageBuilder from 'js/trial/parse/stage-builder';
 
-const LEFT = 65;
-const RIGHT = 68;
-const UP = 87;
-const DOWN = 83;
-
-const CONSUMED_KEYS = [LEFT, RIGHT, UP, DOWN];
-
 export default class InGame {
-  constructor(context) {
+  constructor(context, keyManager) {
     this.context = context;
+    this.keyManager = keyManager;
 
     this.bestScore = 0;
     this.currentScore = 0;
@@ -43,33 +39,26 @@ export default class InGame {
 
     this.tickTimer = new TickTimer();
 
-    this.stage = StageBuilder.buildStage(1);
+    this.stage = StageBuilder.buildStage('empty');
     this.character = new Character(this.stage.getSpawnVect());
-
+    KeepState.apply(this.character);
 
     this.updateSteps = [];
     this.drawSteps = [];
-
-    this.pressedMapping = {};
 
     this.initUpdateSteps();
     this.checkPlayerHit = new CheckPlayerHit(this.character, this.stage);
     this.initDrawSteps();
   }
 
-  acceptKeyEvent(key, isPress) {
-    if(_.includes(CONSUMED_KEYS, key)) {
-      this.pressedMapping[key] = isPress;
-      return false;
-    }
-  }
-
   initUpdateSteps() {
-    this.updateSteps.push(new ApplyKeypress(this.character, this.pressedMapping));
+    this.updateSteps.push(new KeepState(this.character));
+    this.updateSteps.push(new ApplyKeypress(this.character, this.keyManager));
     this.updateSteps.push(new MoveCharacter(this.character, this.stage));
     this.updateSteps.push(new UpdateTurretAngles(this.stage, this.character));
     this.updateSteps.push(new CreateBullets(this.stage, this.tickTimer));
     this.updateSteps.push(new UpdateBullets(this.stage));
+    this.updateSteps.push(new MoveReaction(this.character, this.keyManager));
   }
 
   initDrawSteps() {

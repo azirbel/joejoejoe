@@ -36,6 +36,25 @@ describe('key manager', () => {
     expect(keyManager.isPressed(1)).to.equal(false);
   });
 
+  it('key down events from being held do not trigger a press', () => {
+    let keyManager = new KeyManager();
+
+    keyManager.pressKey(1);
+
+    expect(keyManager.isDown(1)).to.equal(true);
+    expect(keyManager.isPressed(1)).to.equal(true);
+
+    keyManager.newFrame();
+
+    expect(keyManager.isDown(1)).to.equal(true);
+    expect(keyManager.isPressed(1)).to.equal(false);
+
+    keyManager.pressKey(1);
+
+    expect(keyManager.isDown(1)).to.equal(true);
+    expect(keyManager.isPressed(1)).to.equal(false);
+  });
+
   it('keys may be released', () => {
     let keyManager = new KeyManager();
 

@@ -1,8 +1,9 @@
-//TODO: centralize
-const LEFT = 65;
-const RIGHT = 68;
-const UP = 87;
-const DOWN = 83;
+import { KEY_W, KEY_A, KEY_S, KEY_D } from 'js/common/key-codes';
+
+const UP = KEY_W;
+const LEFT = KEY_A;
+const DOWN = KEY_S;
+const RIGHT = KEY_D;
 
 const SPEED = 1.4;
 const CROUCH_AIR_DI = 0.4;
@@ -13,65 +14,58 @@ const GRAVITY = 0.2;
 const FAST_GRAVITY = 0.4;
 
 export default class ApplyKeypress {
-  static apply(entity, pressedMapping) {
+  static apply(entity, keys) {
     entity.advance();
 
     let oldState = entity.state;
 
-    if (pressedMapping[DOWN]) {
+    if (keys.isDown(DOWN)) {
       entity.isCrouch = true;
     } else {
       entity.isCrouch = false;
     }
 
-    if (entity.isRoll) {
-      let entityDir = entity.isRight ? 1 : -1;
-      let pressedDir = 0;
-      if (pressedMapping[LEFT] ^ pressedMapping[RIGHT]) {
-        pressedDir = pressedMapping[RIGHT] ? 1 : -1;
-      }
+    let isSide = keys.isDown(LEFT) != keys.isDown(RIGHT);
+    let isRight = keys.isDown(RIGHT);
+    let downDir = isSide ? (isRight ? 1 : -1) : 0;
 
-      entity.velo.x = entityDir * ROLL_BASE_SPEED + pressedDir * ROLL_INFLUENCE_SPEED;
+    let isSidePress = keys.isPressed(LEFT) != keys.isPressed(RIGHT);
+    let isRightPress = keys.isPressed(RIGHT);
+
+    let entityDir = entity.isRight ? 1 : -1;
+
+    if (entity.isRoll) {
+      entity.velo.x = entityDir * ROLL_BASE_SPEED + downDir * ROLL_INFLUENCE_SPEED;
     } else if (entity.isCrouch) {
       if (entity.isGrounded) {
-        if (pressedMapping[LEFT] ^ pressedMapping[RIGHT]) {
-          entity.isRight = pressedMapping[RIGHT];
+        if (isSidePress) {
+          entity.isRight = isRightPress;
           entity.isRoll = true;
-        }
-        entity.velo.x *= 0.95;
-        entity.velo.x *= 0.5;
-
-        if (pressedMapping[UP]) {
+        } else if (keys.isPressed(UP)) {
           entity.velo.y = -15;
         }
+
+        entity.velo.x *= 0.95;
+        entity.velo.x *= 0.5;
       } else {
-        if (pressedMapping[LEFT] ^ pressedMapping[RIGHT]) {
-          let dir = pressedMapping[LEFT] ? -1 : 1;
-          entity.velo.x += dir * CROUCH_AIR_DI;
-        }
+        entity.velo.x += downDir * CROUCH_AIR_DI;
         entity.velo.x *= 0.95;
       }
     } else {
-      if (pressedMapping[LEFT] ^ pressedMapping[RIGHT]) {
-        let dir = pressedMapping[LEFT] ? -1 : 1;
-        entity.velo.x += dir * SPEED;
-      }
+      entity.velo.x += downDir * SPEED;
       entity.velo.x *= 0.8;
 
-      if (pressedMapping[UP]) {
-        if (entity.isGrounded) {
-          entity.velo.y = -15;
-        }
+      if (keys.isPressed(UP) && entity.isGrounded) {
+        entity.velo.y = -15;
       }
     }
 
-
-    if (entity.velo.y > 0 && pressedMapping[DOWN]) {
-      entity.faseFall = true;
+    if (entity.velo.y > 0 && keys.isDown(DOWN)) {
+      entity.isFastfall = true;
       entity.velo.y += 2 * FAST_GRAVITY;
     }
 
-    if (entity.fastFall) {
+    if (entity.isFastfall) {
       entity.velo.y += FAST_GRAVITY;
     } else {
       entity.velo.y += GRAVITY;
@@ -81,19 +75,17 @@ export default class ApplyKeypress {
       entity.velo.y *= 0.96;
     }
 
-    let newState = entity.state;
-
-    if (newState != oldState) {
+    if (entity.state != oldState) {
       entity.resetAnimation();
     }
   }
 
-  constructor(entity, pressedMapping) {
+  constructor(entity, keyManager) {
     this.entity = entity;
-    this.pressedMapping = pressedMapping;
+    this.keyManager = keyManager;
   }
 
   apply() {
-    ApplyKeypress.apply(this.entity, this.pressedMapping);
+    ApplyKeypress.apply(this.entity, this.keyManager);
   }
 }

@@ -79,7 +79,7 @@ export default class Character {
   respawn(point) {
     this.isRight = true;
     this.isGrounded = false;
-    this.fastFall = false;
+    this.isFastfall = false;
     this.isCrouch = false;
     this.isRoll = false;
 
@@ -91,11 +91,6 @@ export default class Character {
 
   resetAnimation() {
     this.currentAnimation = new Animation(Character.films[this.state]);
-  }
-
-  hitGround() {
-    this.fastFall = false;
-    this.isGrounded = true;
   }
 
   get state() {
