@@ -5,7 +5,7 @@ const LEFT = KEY_A;
 const DOWN = KEY_S;
 const RIGHT = KEY_D;
 
-const SPEED = 1.4;
+const RUN_SPEED = 1.4;
 const CROUCH_AIR_DI = 0.4;
 const ROLL_BASE_SPEED = 3;
 const ROLL_INFLUENCE_SPEED = 1.5;
@@ -49,7 +49,13 @@ export default class ApplyKeypress {
         entity.velo.x *= 0.95;
       }
     } else {
-      entity.velo.x += downDir * SPEED;
+      if (isSide) {
+        entity.velo.x += downDir * RUN_SPEED;
+        entity.isRight = isRight;
+        entity.isRunning = true;
+      } else {
+        entity.isRunning = false;
+      }
       entity.velo.x *= 0.8;
 
       let jumpPressed = keys.isPressed(UP) || keys.isDown(UP) && preAdvanceState === 'ROLL';

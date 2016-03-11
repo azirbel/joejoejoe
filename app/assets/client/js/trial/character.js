@@ -18,6 +18,15 @@ let makeStandFilm = (row) => {
   ];
 };
 
+let makeRunFilm = (row) => {
+  return [
+    [9, row[0]],
+    [9, row[1]],
+    [9, row[2]],
+    [9, row[3]],
+  ];
+};
+
 let makeCrouchFilm = (row) => {
   return [
     [100, row[0]],
@@ -49,14 +58,19 @@ export default class Character {
 
       this.films = {
         STAND: makeStandFilm(spriteRows[0]),
-        CROUCH: makeCrouchFilm(spriteRows[1]),
-        ROLL: makeRollFilm(spriteRows[2])
+        RUN: makeRunFilm(spriteRows[1]),
+        CROUCH: makeCrouchFilm(spriteRows[2]),
+        ROLL: makeRollFilm(spriteRows[3])
       };
 
+      const SIDE_BOUND = 10;
+      const TALL_BOUNDS = [-SIDE_BOUND, SIDE_BOUND, -62, 0];
+      const SHORT_BOUNDS = [-SIDE_BOUND, SIDE_BOUND, -30, 0];
       this.bounds = {
-        STAND: [-10, 10, -62, 0],
-        CROUCH: [-10, 10, -30, 0],
-        ROLL: [-10, 10, -30, 0]
+        STAND: TALL_BOUNDS,
+        RUN: TALL_BOUNDS,
+        CROUCH: SHORT_BOUNDS,
+        ROLL: SHORT_BOUNDS,
       };
     });
   }
@@ -82,6 +96,7 @@ export default class Character {
     this.isFastfall = false;
     this.isCrouch = false;
     this.isRoll = false;
+    this.isRunning = false;
 
     this.pos = point.copy();
     this.velo = new Vector(0, 0);
@@ -98,6 +113,8 @@ export default class Character {
       return 'ROLL';
     } else if (this.isCrouch) {
       return 'CROUCH';
+    } else if (this.isRunning) {
+      return 'RUN';
     } else {
       return 'STAND';
     }

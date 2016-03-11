@@ -6,6 +6,7 @@ export default class KeepState {
       isFastfall: character.isFastfall,
       isCrouch: character.isCrouch,
       isRoll: character.isRoll,
+      isRunning: character.isRunning,
       state: character.state
     };
   }
