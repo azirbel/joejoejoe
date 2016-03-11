@@ -3,7 +3,7 @@ import _ from 'lodash';
 import IntervalTimer from 'js/common/interval-timer';
 import AssetManager from 'js/common/asset-manager';
 import KeyManager from 'js/common/key-manager';
-import { KEY_W, KEY_A, KEY_S, KEY_D } from 'js/common/key-codes'
+import { KEY_W, KEY_A, KEY_S, KEY_D } from 'js/common/key-codes';
 
 import Bullet from 'js/trial/bullet';
 import Character from 'js/trial/character';

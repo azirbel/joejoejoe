@@ -1,8 +1,6 @@
-import { KEY_W, KEY_A, KEY_S, KEY_D } from 'js/common/key-codes';
+import { KEY_A, KEY_D } from 'js/common/key-codes';
 
-const UP = KEY_W;
 const LEFT = KEY_A;
-const DOWN = KEY_S;
 const RIGHT = KEY_D;
 
 export default class MoveReaction {
