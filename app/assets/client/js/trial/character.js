@@ -78,7 +78,7 @@ export default class Character {
 
   respawn(point) {
     this.isRight = true;
-    this.isGrounded = false;
+    this.isGrounded = true;
     this.isFastfall = false;
     this.isCrouch = false;
     this.isRoll = false;
