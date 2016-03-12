@@ -6,10 +6,25 @@ import getTileMid from 'js/trial/services/get-tile-mid';
 const TEXTURE_BASE_PATH = 'res/trial/turret_base.png';
 const TEXTURE_CANNON_PATH = 'res/turret_cannon.png';
 
+let OrNull = (func) => {
+  return (input) => {
+    if (input === null || input === 'null') {
+      return null;
+    }
+
+    return func(input);
+  };
+};
+
+let parseAngle = (input) => {
+  return parseFloat(input) * Math.PI / 180.0;
+};
+
 const DEFAULT_PROPERTIES = {
   interval: [parseInt, 60],
   bulletSpeed: [parseFloat, 2.5],
-  timeOffset: [parseInt, 0]
+  timeOffset: [parseInt, 0],
+  constAngle: [OrNull(parseAngle), null]
 };
 const REQUIRED_PROPERTIES = {
   x: parseInt,

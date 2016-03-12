@@ -9,14 +9,19 @@ export default class UpdateTurretAngles {
   }
 
   apply() {
-    _.forEach(this.stage.turrets, (turret) => {
-      let charMid = this.character.pos.sub(new Vector(0, this.character.getImage().height / 2));
-      let vect = charMid.sub(turret.pos);
-      if (vect.x === 0 && vect.y === 0) {
-        return;
-      }
+    let charMid = this.character.pos.sub(new Vector(0, this.character.getImage().height / 2));
 
-      turret.angle = Math.atan2(vect.y, vect.x);
+    _.forEach(this.stage.turrets, (turret) => {
+      if (turret.constAngle != null) {
+        turret.angle = turret.constAngle;
+      } else {
+        let vect = charMid.sub(turret.pos);
+        if (vect.x === 0 && vect.y === 0) {
+          return;
+        }
+
+        turret.angle = Math.atan2(vect.y, vect.x);
+      }
     });
   }
 }

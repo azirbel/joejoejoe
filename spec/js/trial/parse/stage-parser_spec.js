@@ -124,7 +124,8 @@ describe('StageParser', () => {
         '  y: 6\n'  +
         '  interval: 80\n' +
         '  bulletSpeed: 3.1\n'  +
-        '  timeOffset: 30\n';
+        '  timeOffset: 30\n' +
+        '  constAngle: 5.5\n';
 
       let properties = StageParser.parseEntity(input, 0)[0];
       let entity = StageParser.transformEntity(properties);
@@ -134,6 +135,22 @@ describe('StageParser', () => {
       expect(entity.interval).to.equal(80);
       expect(entity.timeOffset).to.equal(30);
       expect(entity.bulletSpeed).to.equal(3.1);
+      expect(entity.constAngle).to.equal(5.5 * Math.PI / 180.0);
+    });
+
+    it('expected behaviour with nullable fields', () => {
+      let input =
+        'turret:\n' +
+        '  x: 4\n'  +
+        '  y: 6\n'  +
+        '  constAngle: null\n';
+
+      let properties = StageParser.parseEntity(input, 0)[0];
+      let entity = StageParser.transformEntity(properties);
+
+      expect(entity.x).to.equal(4);
+      expect(entity.y).to.equal(6);
+      expect(entity.constAngle).to.equal(null);
     });
 
     it('missing required', () => {
