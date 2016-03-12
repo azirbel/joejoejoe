@@ -5,12 +5,13 @@ import Tile from 'js/trial/tile';
 import ApplyVelocity from 'js/trial/steps/apply-velocity';
 
 export default class UpdateBullets {
-  constructor(stage) {
+  constructor(stage, bullets) {
     this.stage = stage;
+    this.bullets = bullets;
   }
 
   apply() {
-    _.forEach(this.stage.bullets, (bullet) => {
+    _.forEach(this.bullets, (bullet) => {
       ApplyVelocity.apply(bullet);
     });
 
@@ -21,6 +22,6 @@ export default class UpdateBullets {
       return this.stage.isWall(xTile, yTile);
     };
 
-    _.remove(this.stage.bullets, isBulletOutOfBoundsFunc);
+    _.remove(this.bullets, isBulletOutOfBoundsFunc);
   }
 }

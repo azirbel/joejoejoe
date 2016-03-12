@@ -20,7 +20,6 @@ const FAST_GRAVITY = 0.4;
 
 export default class ApplyKeypress {
   static apply(entity, keys, stage) {
-    let preAdvanceState = entity.state;
     entity.advance();
     let preApplyState = entity.state;
 
@@ -67,7 +66,7 @@ export default class ApplyKeypress {
       }
     } else {
       if (keys.isDown(UP) && entity.isGrounded) {
-        entity.isGrounded = false
+        entity.isGrounded = false;
         entity.velo.y = -15;
       }
 

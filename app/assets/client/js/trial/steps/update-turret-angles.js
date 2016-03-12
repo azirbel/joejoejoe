@@ -3,10 +3,10 @@ import _ from 'lodash';
 import Vector from 'js/common/vector';
 
 export default class UpdateTurretAngles {
-  static apply(stage, character) {
+  static apply(turrets, character) {
     let charMid = character.pos.sub(new Vector(0, character.getImage().height / 2));
 
-    _.forEach(stage.turrets, (turret) => {
+    _.forEach(turrets, (turret) => {
       if (turret.constAngle != null) {
         turret.angle = turret.constAngle;
       } else {
@@ -20,12 +20,12 @@ export default class UpdateTurretAngles {
     });
   }
 
-  constructor(stage, character) {
-    this.stage = stage;
+  constructor(turrets, character) {
+    this.turrets = turrets;
     this.character = character;
   }
 
   apply() {
-    UpdateTurretAngles.apply(this.stage, this.character);
+    UpdateTurretAngles.apply(this.turrets, this.character);
   }
 }

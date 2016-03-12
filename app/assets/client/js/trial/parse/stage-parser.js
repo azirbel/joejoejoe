@@ -3,6 +3,7 @@ import _ from 'lodash';
 import Stage from 'js/trial/stage';
 import Tile from 'js/trial/tile';
 import Turret from 'js/trial/turret';
+import LaserTurret from 'js/trial/laser-turret';
 import Vector from 'js/common/vector';
 
 const ERR_SHORT_ROW = 'Row must be ' + Stage.WIDTH + ' characters long but was ';
@@ -26,9 +27,8 @@ const WORD_CHAR_REGEX = /\w/;
 const WORD_END_REGEX = /:/;
 const WHITESPACE_CHAR_REGEX = /[ \t]/;
 
-const TYPE_MAP = {
-  turret: Turret
-};
+const TYPES = [Turret, LaserTurret];
+const TYPE_MAP = _.keyBy(TYPES, 'NAME');
 
 export default class StageParser {
   static get tileMap() {
@@ -70,7 +70,10 @@ export default class StageParser {
   }
 
   static transformEntities(entities) {
-    return _.map(entities, StageParser.transformEntity);
+    return _.chain(entities)
+      .map(StageParser.transformEntity)
+      .groupBy((entity) => entity.type)
+      .value();
   }
 
   static transformEntity(entity) {
@@ -108,7 +111,7 @@ export default class StageParser {
         }
       });
 
-      return new Type(_.assign(defaultValues, properties));
+      return new Type(_.assign(defaultValues, properties, { type: entity.type }));
     } else {
       throw ERR_UNKNOWN_ENTITY_TYPE + entity.type;
     }

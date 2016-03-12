@@ -12,6 +12,7 @@ import Stage from 'js/trial/stage';
 import StageBuilder from 'js/trial/parse/stage-builder';
 import Tile from 'js/trial/tile';
 import Turret from 'js/trial/turret';
+import LaserTurret from 'js/trial/laser-turret';
 
 const FPS = 60;
 const MS_PER_FRAME = 1000/FPS;
@@ -26,7 +27,7 @@ export default class Trial {
     this.context = canvas.getContext('2d');
 
     this.assetManager = new AssetManager();
-    _.forEach([Character, Tile, Stage, Turret, Bullet, StageBuilder], (type) => {
+    _.forEach([Character, Tile, Stage, LaserTurret, Turret, Bullet, StageBuilder], (type) => {
       type.loadAssets(this.assetManager);
     });
 

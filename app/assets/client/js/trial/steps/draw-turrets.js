@@ -1,13 +1,13 @@
 import _ from 'lodash';
 
 export default class DrawTurrets {
-  constructor(context, stage) {
+  constructor(context, turrets) {
     this.context = context;
-    this.stage = stage;
+    this.turrets = turrets;
   }
 
   apply() {
-    _.forEach(this.stage.turrets, (turret) => {
+    _.forEach(this.turrets, (turret) => {
       let [baseX, baseY] = turret.getDrawCorner().xy();
       let baseImage = turret.getBaseImage();
       this.context.drawImage(baseImage, baseX, baseY);

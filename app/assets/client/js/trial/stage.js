@@ -17,9 +17,9 @@ export default class Stage {
     this.assetManager = assetManager;
   }
 
-  constructor(tiles, entities, spawn) {
+  constructor(tiles, enemies, spawn) {
     this.tiles = tiles;
-    this.turrets = entities;
+    this.enemies = enemies;
     this.spawn = spawn;
 
     this.bullets = [];

@@ -5,23 +5,24 @@ import Vector from 'js/common/vector';
 import Bullet from 'js/trial/bullet';
 
 export default class CreateBullets {
-  static apply(stage, timer) {
-    _.forEach(stage.turrets, (turret) => {
+  static apply(turrets, bullets, timer) {
+    _.forEach(turrets, (turret) => {
       if (timer.isOnInterval(turret.interval, turret.timeOffset)) {
         let bulletVect = new Vector(Math.cos(turret.angle), Math.sin(turret.angle));
         bulletVect.multM(turret.bulletSpeed);
 
-        stage.bullets.push(new Bullet(turret.pos.copy(), bulletVect));
+        bullets.push(new Bullet(turret.pos.copy(), bulletVect));
       }
     });
   }
 
-  constructor(stage, timer) {
-    this.stage = stage;
+  constructor(turrets, bullets, timer) {
+    this.turrets = turrets;
+    this.bullets = bullets;
     this.timer = timer;
   }
 
   apply() {
-    CreateBullets.apply(this.stage, this.timer);
+    CreateBullets.apply(this.turrets, this.bullets, this.timer);
   }
 }

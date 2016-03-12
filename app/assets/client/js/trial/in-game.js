@@ -39,7 +39,7 @@ export default class InGame {
 
     this.tickTimer = new TickTimer();
 
-    this.stage = StageBuilder.buildStage(3);
+    this.stage = StageBuilder.buildStage(4);
     this.character = new Character(this.stage.getSpawnVect());
     KeepState.apply(this.character);
 
@@ -54,8 +54,9 @@ export default class InGame {
   }
 
   runPreUpdateSteps() {
-    UpdateTurretAngles.apply(this.stage, this.character);
-    CreateBullets.apply(this.stage, this.tickTimer);
+    UpdateTurretAngles.apply(this.stage.enemies.turret || [], this.character);
+    UpdateTurretAngles.apply(this.stage.enemies.laser || [], this.character);
+    CreateBullets.apply(this.stage.enemies.turret, this.stage.bullets, this.tickTimer);
   }
 
   initUpdateSteps() {
@@ -63,9 +64,10 @@ export default class InGame {
       new KeepState(this.character),
       new ApplyKeypress(this.character, this.keyManager, this.stage),
       new MoveCharacter(this.character, this.stage),
-      new UpdateTurretAngles(this.stage, this.character),
-      new UpdateBullets(this.stage),
-      new CreateBullets(this.stage, this.tickTimer),
+      new UpdateTurretAngles(this.stage.enemies.turret || [], this.character),
+      new UpdateTurretAngles(this.stage.enemies.laser || [], this.character),
+      new UpdateBullets(this.stage, this.stage.bullets),
+      new CreateBullets(this.stage.enemies.turret, this.stage.bullets, this.tickTimer),
       new MoveReaction(this.character, this.keyManager)
     ];
   }
@@ -79,7 +81,8 @@ export default class InGame {
       }
     }
 
-    this.drawSteps.push(new DrawTurrets(this.context, this.stage));
+    this.drawSteps.push(new DrawTurrets(this.context, this.stage.enemies.turret || []));
+    this.drawSteps.push(new DrawTurrets(this.context, this.stage.enemies.laser || []));
     this.drawSteps.push(new DrawEntity(this.context, this.character));
     this.drawSteps.push(new DrawBullets(this.context, this.stage));
   }

@@ -8,8 +8,9 @@ const TEXTURE_BASE_PATH = 'res/trial/turret_base.png';
 const TEXTURE_CANNON_PATH = 'res/turret_cannon.png';
 
 const DEFAULT_PROPERTIES = {
-  interval: [parseInt, 60],
-  bulletSpeed: [parseFloat, 2.5],
+  waitTime: [parseInt, 60],
+  chargeTime: [parseInt, 10],
+  shootTime: [parseInt, 10],
   timeOffset: [parseInt, 0],
   constAngle: [orNull(parseAngle), null]
 };
@@ -18,9 +19,9 @@ const REQUIRED_PROPERTIES = {
   y: parseInt
 };
 
-export default class Turret {
+export default class LaserTurret {
   static get NAME() {
-    return 'turret';
+    return 'laser';
   }
 
   static get DEFAULT_PROPERTIES() {
@@ -56,7 +57,7 @@ export default class Turret {
   }
 
   getRelativeDrawCorner() {
-    return Turret.BASE_IMAGE_SIZE.mult(-0.5);
+    return LaserTurret.BASE_IMAGE_SIZE.mult(-0.5);
   }
 
   getDrawCorner() {
@@ -64,14 +65,14 @@ export default class Turret {
   }
 
   getBaseImage() {
-    return Turret.TEXTURE_BASE_IMAGE;
+    return LaserTurret.TEXTURE_BASE_IMAGE;
   }
 
   getCannonImage() {
-    return Turret.TEXTURE_CANNON_IMAGE;
+    return LaserTurret.TEXTURE_CANNON_IMAGE;
   }
 
   getCannonImageSize() {
-    return Turret.CANON_IMAGE_SIZE;
+    return LaserTurret.CANON_IMAGE_SIZE;
   }
 }
