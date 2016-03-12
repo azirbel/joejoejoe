@@ -46,14 +46,36 @@ let makeRollFilm = (row) => {
   ];
 };
 
+const SIDE_BOUND = 10;
+const TALL_BOUNDS = [-SIDE_BOUND, SIDE_BOUND, -62, 0];
+const SHORT_BOUNDS = [-SIDE_BOUND, SIDE_BOUND, -30, 0];
+
+const BOUNDS = {
+  STAND: TALL_BOUNDS,
+  RUN: TALL_BOUNDS,
+  CROUCH: SHORT_BOUNDS,
+  ROLL: SHORT_BOUNDS,
+};
+
 export default class Character {
+  static get TALL_BOUNDS() {
+    return TALL_BOUNDS;
+  }
+
+  static get SHORT_BOUNDS() {
+    return SHORT_BOUNDS;
+  }
+
+  static get BOUNDS() {
+    return BOUNDS;
+  }
+
   static loadAssets(assetManager) {
     this.assetManager = assetManager;
     assetManager.loadImage(SPRITE_PATH);
 
     Character.assetManager.onLoad(() => {
       let spriteSheet = Character.assetManager.get(SPRITE_PATH);
-
       let spriteRows = imageToSprites(spriteSheet, 32, 64);
 
       this.films = {
@@ -61,16 +83,6 @@ export default class Character {
         RUN: makeRunFilm(spriteRows[1]),
         CROUCH: makeCrouchFilm(spriteRows[2]),
         ROLL: makeRollFilm(spriteRows[3])
-      };
-
-      const SIDE_BOUND = 10;
-      const TALL_BOUNDS = [-SIDE_BOUND, SIDE_BOUND, -62, 0];
-      const SHORT_BOUNDS = [-SIDE_BOUND, SIDE_BOUND, -30, 0];
-      this.bounds = {
-        STAND: TALL_BOUNDS,
-        RUN: TALL_BOUNDS,
-        CROUCH: SHORT_BOUNDS,
-        ROLL: SHORT_BOUNDS,
       };
     });
   }
@@ -121,7 +133,7 @@ export default class Character {
   }
 
   getBounds() {
-    return Character.bounds[this.state];
+    return Character.BOUNDS[this.state];
   }
 
   getImage() {
