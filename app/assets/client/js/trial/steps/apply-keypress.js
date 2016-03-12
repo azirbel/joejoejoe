@@ -15,9 +15,9 @@ const FAST_GRAVITY = 0.4;
 
 export default class ApplyKeypress {
   static apply(entity, keys) {
+    let preAdvanceState = entity.state;
     entity.advance();
-
-    let oldState = entity.state;
+    let preApplyState = entity.state;
 
     if (keys.isDown(DOWN)) {
       entity.isCrouch = true;
@@ -52,7 +52,8 @@ export default class ApplyKeypress {
       entity.velo.x += downDir * SPEED;
       entity.velo.x *= 0.8;
 
-      if (keys.isPressed(UP) && entity.isGrounded) {
+      let jumpPressed = keys.isPressed(UP) || keys.isDown(UP) && preAdvanceState === 'ROLL';
+      if (jumpPressed && entity.isGrounded) {
         entity.velo.y = -15;
       }
     }
@@ -72,7 +73,7 @@ export default class ApplyKeypress {
       entity.velo.y *= 0.96;
     }
 
-    if (entity.state != oldState) {
+    if (entity.state != preApplyState) {
       entity.resetAnimation();
     }
   }
