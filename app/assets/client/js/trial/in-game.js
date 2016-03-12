@@ -49,16 +49,25 @@ export default class InGame {
     this.initUpdateSteps();
     this.checkPlayerHit = new CheckPlayerHit(this.character, this.stage);
     this.initDrawSteps();
+
+    this.runPreUpdateSteps();
+  }
+
+  runPreUpdateSteps() {
+    UpdateTurretAngles.apply(this.stage, this.character);
+    CreateBullets.apply(this.stage, this.tickTimer);
   }
 
   initUpdateSteps() {
-    this.updateSteps.push(new KeepState(this.character));
-    this.updateSteps.push(new ApplyKeypress(this.character, this.keyManager));
-    this.updateSteps.push(new MoveCharacter(this.character, this.stage));
-    this.updateSteps.push(new UpdateTurretAngles(this.stage, this.character));
-    this.updateSteps.push(new CreateBullets(this.stage, this.tickTimer));
-    this.updateSteps.push(new UpdateBullets(this.stage));
-    this.updateSteps.push(new MoveReaction(this.character, this.keyManager));
+    this.updateSteps = [
+      new KeepState(this.character),
+      new ApplyKeypress(this.character, this.keyManager),
+      new MoveCharacter(this.character, this.stage),
+      new UpdateTurretAngles(this.stage, this.character),
+      new UpdateBullets(this.stage),
+      new CreateBullets(this.stage, this.tickTimer),
+      new MoveReaction(this.character, this.keyManager)
+    ];
   }
 
   initDrawSteps() {
