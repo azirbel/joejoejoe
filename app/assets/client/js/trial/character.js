@@ -23,7 +23,7 @@ let makeRunFilm = (row) => {
     [9, row[0]],
     [9, row[1]],
     [9, row[2]],
-    [9, row[3]],
+    [9, row[3]]
   ];
 };
 
@@ -54,7 +54,7 @@ const BOUNDS = {
   STAND: TALL_BOUNDS,
   RUN: TALL_BOUNDS,
   CROUCH: SHORT_BOUNDS,
-  ROLL: SHORT_BOUNDS,
+  ROLL: SHORT_BOUNDS
 };
 
 export default class Character {
