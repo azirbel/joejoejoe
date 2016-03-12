@@ -7,8 +7,8 @@ const RIGHT = KEY_D;
 
 const SPEED = 1.4;
 const CROUCH_AIR_DI = 0.4;
-const ROLL_BASE_SPEED = 3.5;
-const ROLL_INFLUENCE_SPEED = 1.0;
+const ROLL_BASE_SPEED = 3;
+const ROLL_INFLUENCE_SPEED = 1.5;
 
 const GRAVITY = 0.2;
 const FAST_GRAVITY = 0.4;
@@ -29,17 +29,14 @@ export default class ApplyKeypress {
     let isRight = keys.isDown(RIGHT);
     let downDir = isSide ? (isRight ? 1 : -1) : 0;
 
-    let isSidePress = keys.isPressed(LEFT) != keys.isPressed(RIGHT);
-    let isRightPress = keys.isPressed(RIGHT);
-
     let entityDir = entity.isRight ? 1 : -1;
 
     if (entity.isRoll) {
       entity.velo.x = entityDir * ROLL_BASE_SPEED + downDir * ROLL_INFLUENCE_SPEED;
     } else if (entity.isCrouch) {
       if (entity.isGrounded) {
-        if (isSidePress) {
-          entity.isRight = isRightPress;
+        if (isSide) {
+          entity.isRight = isRight;
           entity.isRoll = true;
         } else if (keys.isPressed(UP)) {
           entity.velo.y = -15;
