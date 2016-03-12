@@ -6,10 +6,16 @@ module.exports = angular.module('routes.root', [
 .config(($stateProvider) => {
   $stateProvider.state('root', {
     url: '/',
-    template: require('./root.jade')
+    template: require('./root.jade'),
+    redirectTo: 'trial'
   });
 })
-.run(($state) => {
-  $state.go('trial');
+.run(($rootScope, $state) => {
+  $rootScope.$on('$stateChangeStart', function(e, to, params) {
+    if (to.redirectTo) {
+      e.preventDefault();
+      $state.go(to.redirectTo, params);
+    }
+  });
 })
 .name;
