@@ -1,4 +1,9 @@
+import _ from 'lodash';
+
+import Character from 'js/trial/character';
+
 import { KEY_W, KEY_A, KEY_S, KEY_D } from 'js/common/key-codes';
+import { xToTile, yToTile } from 'js/trial/services/pos-to-tile';
 
 const UP = KEY_W;
 const LEFT = KEY_A;
@@ -14,15 +19,27 @@ const GRAVITY = 0.2;
 const FAST_GRAVITY = 0.4;
 
 export default class ApplyKeypress {
-  static apply(entity, keys) {
+  static apply(entity, keys, stage) {
     let preAdvanceState = entity.state;
     entity.advance();
     let preApplyState = entity.state;
 
     if (keys.isDown(DOWN)) {
       entity.isCrouch = true;
-    } else {
-      entity.isCrouch = false;
+    } else if (preApplyState === 'CROUCH') {
+      let testYTile = yToTile(entity.pos.y + Character.TALL_BOUNDS[2]);
+      let xPositions = [
+        entity.pos.x + Character.TALL_BOUNDS[0],
+        entity.pos.x + Character.TALL_BOUNDS[1] - 1e-10
+      ];
+      let canStand = _.chain(xPositions)
+        .map(xToTile)
+        .uniq()
+        .every((xTile) => !stage.isWall(xTile, testYTile))
+        .value();
+      if (canStand) {
+        entity.isCrouch = false;
+      }
     }
 
     let isSide = keys.isDown(LEFT) != keys.isDown(RIGHT);
@@ -84,12 +101,13 @@ export default class ApplyKeypress {
     }
   }
 
-  constructor(entity, keyManager) {
+  constructor(entity, keyManager, stage) {
     this.entity = entity;
     this.keyManager = keyManager;
+    this.stage = stage;
   }
 
   apply() {
-    ApplyKeypress.apply(this.entity, this.keyManager);
+    ApplyKeypress.apply(this.entity, this.keyManager, this.stage);
   }
 }

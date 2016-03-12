@@ -1,15 +1,8 @@
 import Tile from 'js/trial/tile';
 import Vector from 'js/common/vector';
+import { xToTile, yToTile } from 'js/trial/services/pos-to-tile';
 
-const EPSILON = 0.01;
-
-let xToTile = (x) => {
-  return Math.floor(x / Tile.WIDTH);
-};
-
-let yToTile = (y) => {
-  return Math.floor(y / Tile.HEIGHT);
-};
+const EPSILON = 0.00001;
 
 let calcNextXBound = (xTile, isPos) => {
   return Tile.WIDTH * (xTile + (isPos ? 1 : 0));

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import imageToSprites from 'js/common/image-to-sprites';
 
 import Animation from 'js/common/animation';
@@ -170,3 +172,7 @@ export default class Character {
     return this.getRawBound(isMaxX, isMaxY).addM(this.pos);
   }
 }
+
+Character.films = _.mapValues(BOUNDS, () => {
+  return [[100, null]];
+});

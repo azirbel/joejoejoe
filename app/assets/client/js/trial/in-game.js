@@ -39,7 +39,7 @@ export default class InGame {
 
     this.tickTimer = new TickTimer();
 
-    this.stage = StageBuilder.buildStage('empty');
+    this.stage = StageBuilder.buildStage(3);
     this.character = new Character(this.stage.getSpawnVect());
     KeepState.apply(this.character);
 
@@ -61,7 +61,7 @@ export default class InGame {
   initUpdateSteps() {
     this.updateSteps = [
       new KeepState(this.character),
-      new ApplyKeypress(this.character, this.keyManager),
+      new ApplyKeypress(this.character, this.keyManager, this.stage),
       new MoveCharacter(this.character, this.stage),
       new UpdateTurretAngles(this.stage, this.character),
       new UpdateBullets(this.stage),
