@@ -66,6 +66,11 @@ export default class ApplyKeypress {
         entity.velo.x *= 0.95;
       }
     } else {
+      if (keys.isDown(UP) && entity.isGrounded) {
+        entity.isGrounded = false
+        entity.velo.y = -15;
+      }
+
       if (isSide) {
         entity.velo.x += downDir * RUN_SPEED;
         entity.isRight = isRight;
@@ -74,11 +79,6 @@ export default class ApplyKeypress {
         entity.isRunning = false;
       }
       entity.velo.x *= 0.8;
-
-      let jumpPressed = keys.isPressed(UP) || keys.isDown(UP) && preAdvanceState === 'ROLL';
-      if (jumpPressed && entity.isGrounded) {
-        entity.velo.y = -15;
-      }
     }
 
     if (entity.velo.y > 0 && keys.isDown(DOWN)) {
