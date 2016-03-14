@@ -40,7 +40,7 @@ export let iterateRay = (start, dir, callback) => {
       }
     } else {
       nextYBound += Tile.HEIGHT * yDir;
-      curYTile += xDir;
+      curYTile += yDir;
       if (callback(yt, false, curXTile, curYTile)) {
         break;
       }

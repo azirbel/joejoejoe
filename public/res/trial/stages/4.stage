@@ -8,21 +8,17 @@ x                  x
 x                  x
 x                  x
 x                  x
+x       x          x
 x                  x
 x                  x
 x                  x
 x                  x
 x                  x
+x       xxxxxxxxxxxx
 x                  x
-x                  x
-x                  x
-x        s         x
+x      s           x
 xxxxxxxxxxxxxxxxxxxx
 
 laser:
-  x: 4
-  y: 4
-
-turret:
-  x: 14
+  x: 13
   y: 4

@@ -49,6 +49,22 @@ export default class Vector {
     return new Vector(this.x, this.y);
   }
 
+  dot(other) {
+    return this.x * other.x + this.y * other.y;
+  }
+
+  length() {
+    return Math.sqrt(this.dot(this));
+  }
+
+  norm() {
+    return this.mult(1 / this.length());
+  }
+
+  turn() {
+    return new Vector(this.y, -this.x);
+  }
+
   xy() {
     return [this.x, this.y];
   }

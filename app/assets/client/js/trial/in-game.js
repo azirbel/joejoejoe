@@ -17,6 +17,7 @@ import DrawEntityAt from 'js/trial/steps/draw-entity-at';
 import DrawTurrets from 'js/trial/steps/draw-turrets';
 import DrawBullets from 'js/trial/steps/draw-bullets';
 import DrawText from 'js/trial/steps/draw-text';
+import DrawLasers from 'js/trial/steps/draw-lasers';
 
 import Character from 'js/trial/character';
 import Stage from 'js/trial/stage';
@@ -85,6 +86,7 @@ export default class InGame {
     this.drawSteps.push(new DrawTurrets(this.context, this.stage.enemies.laser || []));
     this.drawSteps.push(new DrawEntity(this.context, this.character));
     this.drawSteps.push(new DrawBullets(this.context, this.stage));
+    this.drawSteps.push(new DrawLasers(this.context, this.stage.enemies.laser, this.character, this.stage));
   }
 
   update() {
