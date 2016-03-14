@@ -34,14 +34,28 @@ export let iterateRay = (start, dir, callback) => {
       break;
     } else if (xt < yt) {
       nextXBound += Tile.HEIGHT * xDir;
-      if (callback(xt, yt, true)) {
+      curXTile += xDir;
+      if (callback(xt, true, curXTile, curYTile)) {
         break;
       }
     } else {
       nextYBound += Tile.HEIGHT * yDir;
-      if (callback(xt, yt, false)) {
+      curYTile += xDir;
+      if (callback(yt, false, curXTile, curYTile)) {
         break;
       }
     }
   }
+};
+
+export let getRayCollision = (start, dir, stage) => {
+  let result = null;
+  iterateRay(start, dir, (t, isX, curXTile, curYTile) => {
+    if (stage.isWall(curXTile, curYTile)) {
+      result = start.add(dir.mult(t));
+      return true;
+    }
+  });
+
+  return result;
 };
