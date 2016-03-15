@@ -41,7 +41,7 @@ export default class InGame {
 
     this.tickTimer = new TickTimer();
 
-    this.stage = StageBuilder.buildStage(4);
+    this.stage = StageBuilder.buildStage(3);
     this.character = new Character(this.stage.getSpawnVect());
     KeepState.apply(this.character);
 
