@@ -8,8 +8,8 @@ const TEXTURE_BASE_PATH = 'res/trial/turret_base.png';
 const TEXTURE_CANNON_PATH = 'res/turret_cannon.png';
 
 const DEFAULT_PROPERTIES = {
-  waitTime: [parseInt, 60],
-  chargeTime: [parseInt, 10],
+  waitTime: [parseInt, 120],
+  chargeTime: [parseInt, 50],
   shootTime: [parseInt, 10],
   timeOffset: [parseInt, 0],
   constAngle: [orNull(parseAngle), null]

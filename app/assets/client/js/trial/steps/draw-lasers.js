@@ -1,20 +1,24 @@
 import _ from 'lodash';
 
-import Vector from 'js/common/vector';
 import { getRayCollision } from 'js/trial/services/cast-ray';
 
 export default class DrawLasers {
-  static apply(context, turrets, character, stage) {
+  static apply(context, turrets, stage) {
     _.forEach(turrets, (turret) => {
-      let charMid = character.pos.sub(new Vector(0, character.getImage().height / 2));
-      let dir = charMid.sub(turret.pos);
+      if (turret.laserState === 'waiting') {
+        return;
+      }
 
+      let dir = turret.target.sub(turret.pos);
       let rootStart = turret.pos.add(dir.norm().multM(14));
 
-      context.lineWidth = 1.4;
       let ortho = dir.norm().turn();
 
-      let strokeStyles = ['yellow', 'orange', 'red'];
+      let strokeStyles = turret.laserState === 'charging' ?
+        ['orange'] : ['yellow', 'orange', 'red'];
+      context.lineWidth = turret.laserState === 'charging' ?
+        0.5 : 1.4;
+
       _.times(strokeStyles.length, (index) => {
         context.strokeStyle = strokeStyles[strokeStyles.length - index - 1];
 
@@ -35,14 +39,13 @@ export default class DrawLasers {
     });
   }
 
-  constructor(context, turrets, character, stage) {
+  constructor(context, turrets, stage) {
     this.context = context;
     this.turrets = turrets;
-    this.character = character;
     this.stage = stage;
   }
 
   apply() {
-    DrawLasers.apply(this.context, this.turrets, this.character, this.stage);
+    DrawLasers.apply(this.context, this.turrets, this.stage);
   }
 }

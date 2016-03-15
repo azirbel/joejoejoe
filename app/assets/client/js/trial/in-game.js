@@ -6,6 +6,7 @@ import TickTimer from 'js/common/tick-timer';
 import ApplyKeypress from 'js/trial/steps/apply-keypress';
 import MoveCharacter from 'js/trial/steps/move-character';
 import UpdateTurretAngles from 'js/trial/steps/update-turret-angles';
+import UpdateLaserTurrets from 'js/trial/steps/update-laser-turrets';
 import CreateBullets from 'js/trial/steps/create-bullets';
 import UpdateBullets from 'js/trial/steps/update-bullets';
 import CheckPlayerHit from 'js/trial/steps/check-player-hit';
@@ -56,7 +57,7 @@ export default class InGame {
 
   runPreUpdateSteps() {
     UpdateTurretAngles.apply(this.stage.enemies.turret || [], this.character);
-    UpdateTurretAngles.apply(this.stage.enemies.laser || [], this.character);
+    UpdateLaserTurrets.apply(this.stage.enemies.laser || [], this.character, this.tickTimer);
     CreateBullets.apply(this.stage.enemies.turret, this.stage.bullets, this.tickTimer);
   }
 
@@ -66,7 +67,7 @@ export default class InGame {
       new ApplyKeypress(this.character, this.keyManager, this.stage),
       new MoveCharacter(this.character, this.stage),
       new UpdateTurretAngles(this.stage.enemies.turret || [], this.character),
-      new UpdateTurretAngles(this.stage.enemies.laser || [], this.character),
+      new UpdateLaserTurrets(this.stage.enemies.laser || [], this.character, this.tickTimer),
       new UpdateBullets(this.stage, this.stage.bullets),
       new CreateBullets(this.stage.enemies.turret, this.stage.bullets, this.tickTimer),
       new MoveReaction(this.character, this.keyManager)
@@ -86,7 +87,7 @@ export default class InGame {
     this.drawSteps.push(new DrawTurrets(this.context, this.stage.enemies.laser || []));
     this.drawSteps.push(new DrawEntity(this.context, this.character));
     this.drawSteps.push(new DrawBullets(this.context, this.stage));
-    this.drawSteps.push(new DrawLasers(this.context, this.stage.enemies.laser, this.character, this.stage));
+    this.drawSteps.push(new DrawLasers(this.context, this.stage.enemies.laser, this.stage));
   }
 
   update() {

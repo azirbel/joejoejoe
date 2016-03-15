@@ -22,3 +22,7 @@ xxxxxxxxxxxxxxxxxxxx
 laser:
   x: 13
   y: 4
+
+turret:
+  x: 8
+  y: 4
