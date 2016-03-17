@@ -36,7 +36,8 @@ export default class StageParser {
       this._tileMap = {
         'x': Tile.wallTile,
         ' ': Tile.backTile,
-        's': Tile.startTile
+        's': Tile.startTile,
+        'e': Tile.exitTile
       };
     }
 

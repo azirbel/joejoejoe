@@ -15,6 +15,7 @@ import MoveReaction from 'js/trial/steps/move-reaction';
 
 import DrawEntity from 'js/trial/steps/draw-entity';
 import DrawEntityAt from 'js/trial/steps/draw-entity-at';
+import DrawExitTileAt from 'js/trial/steps/draw-exit-tile-at.js';
 import DrawTurrets from 'js/trial/steps/draw-turrets';
 import DrawBullets from 'js/trial/steps/draw-bullets';
 import DrawText from 'js/trial/steps/draw-text';
@@ -30,14 +31,11 @@ export default class InGame {
     this.context = context;
     this.keyManager = keyManager;
 
-    this.bestScore = 0;
-    this.currentScore = 0;
-    this.lastScore = 0;
+    this.requiredTime = 5.0;
   }
 
   reset() {
-    this.lastScore = this.currentScore;
-    this.currentScore = 0;
+    this.currentTime = this.requiredTime;
 
     this.tickTimer = new TickTimer();
 
@@ -79,7 +77,11 @@ export default class InGame {
       for (let y = 0; y < Stage.HEIGHT; y++) {
         let tile = this.stage.tiles[x][y];
         let tilePoint = new Vector(x * Tile.WIDTH, y * Tile.WIDTH);
-        this.drawSteps.push(new DrawEntityAt(this.context, tile, tilePoint));
+        if (tile === Tile.exitTile) {
+          this.drawSteps.push(new DrawExitTileAt(this.context, tile, tilePoint, this.stage));
+        }else {
+          this.drawSteps.push(new DrawEntityAt(this.context, tile, tilePoint));
+        }
       }
     }
 
@@ -92,8 +94,11 @@ export default class InGame {
 
   update() {
     this.tickTimer.addTick();
-    this.currentScore = this.tickTimer.ticks / 60.0;
-    this.bestScore = _.max([this.bestScore, this.currentScore]);
+    this.currentTime = _.max([this.requiredTime - this.tickTimer.ticks / 60.0, 0]);
+
+    if (this.currentTime <= 0) {
+      this.stage.isExitable = true;
+    }
 
     _.forEach(this.updateSteps, (step) => {
       step.apply();
@@ -110,13 +115,7 @@ export default class InGame {
       step.apply();
     });
 
-    let scoreStr = _.round(this.currentScore, 1).toFixed(1);
-    DrawText.apply(this.context, scoreStr, new Vector(36, 22), 'white');
-
-    let lastScoreStr = _.round(this.lastScore, 1).toFixed(1);
-    DrawText.apply(this.context, lastScoreStr, new Vector(100, 22), 'green');
-
-    let bestScoreStr = _.round(this.bestScore, 1).toFixed(1);
-    DrawText.apply(this.context, bestScoreStr, new Vector(200, 22), 'red');
+    let currentTimeStr = _.round(this.currentTime, 1).toFixed(1);
+    DrawText.apply(this.context, currentTimeStr, new Vector(36, 22), 'white');
   }
 }
