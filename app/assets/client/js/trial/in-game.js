@@ -10,6 +10,7 @@ import UpdateLaserTurrets from 'js/trial/steps/update-laser-turrets';
 import CreateBullets from 'js/trial/steps/create-bullets';
 import UpdateBullets from 'js/trial/steps/update-bullets';
 import CheckPlayerHit from 'js/trial/steps/check-player-hit';
+import CheckPlayerExit from 'js/trial/steps/check-player-exit';
 import KeepState from 'js/trial/steps/keep-state';
 import MoveReaction from 'js/trial/steps/move-reaction';
 
@@ -48,6 +49,7 @@ export default class InGame {
 
     this.initUpdateSteps();
     this.checkPlayerHit = new CheckPlayerHit(this.character, this.stage);
+    this.checkPlayerExit = new CheckPlayerExit(this.character, this.stage);
     this.initDrawSteps();
 
     this.runPreUpdateSteps();
@@ -106,6 +108,12 @@ export default class InGame {
 
     this.checkPlayerHit.apply();
     if (this.checkPlayerHit.hit) {
+      this.reset();
+    }
+
+    this.checkPlayerExit.apply();
+    if (this.checkPlayerExit.isExit) {
+      //TODO: next level
       this.reset();
     }
   }

@@ -16,7 +16,7 @@ x                  x
 x                  x
 x                  x
 x                  e
-x        s         e
+xs                 e
 xxxxxxxxxxxxxxxxxxxx
 
 turret:
@@ -24,19 +24,21 @@ turret:
   y: 18
   constAngle: 0
   interval: 100
-
-turret:
-  x: 18
-  y: 17
-  constAngle: 180
-  timeOffset: 50
-  interval: 100
+  imeOffset: 50
 
 turret:
   x: 1
   y: 16
   constAngle: 0
   interval: 100
+  timeOffset: 50
+
+turret:
+  x: 18
+  y: 17
+  constAngle: 180
+  interval: 100
+
 
 turret:
   x: 4

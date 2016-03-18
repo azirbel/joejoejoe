@@ -37,7 +37,6 @@ export default class Stage {
   isWall(x, y) {
     let tile = this.get(x, y);
     return tile == Tile.wallTile || !this.isExitable && tile == Tile.exitTile;
-    return this.get(x, y) === Tile.wallTile;
   }
 
   getSpawnVect() {
