@@ -1,6 +1,7 @@
 export default class KeepState {
   static apply(character) {
     character.oldState = {
+      pos: character.pos.copy(),
       isRight: character.isRight,
       isGrounded: character.isGrounded,
       isFastfall: character.isFastfall,

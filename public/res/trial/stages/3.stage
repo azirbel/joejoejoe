@@ -24,7 +24,7 @@ turret:
   y: 18
   constAngle: 0
   interval: 100
-  imeOffset: 50
+  timeOffset: 50
 
 turret:
   x: 1
