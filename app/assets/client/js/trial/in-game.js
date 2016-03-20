@@ -38,11 +38,13 @@ export default class InGame {
 
     //TODO: move to stage
     this.requiredTime = 20.0;
+    this.currentTime = this.requiredTime;
 
     this.reset();
   }
 
   reset() {
+    this.lastTime = this.currentTime;
     this.currentTime = this.requiredTime;
 
     this.tickTimer = new TickTimer();
@@ -151,5 +153,8 @@ export default class InGame {
 
     let currentTimeStr = _.round(this.currentTime, 1).toFixed(1);
     DrawText.apply(this.context, currentTimeStr, new Vector(36, 22), 'white');
+
+    let lastTimeStr = _.round(this.lastTime, 1).toFixed(1);
+    DrawText.apply(this.context, lastTimeStr, new Vector(86, 22), 'green');
   }
 }
