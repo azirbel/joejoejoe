@@ -30,10 +30,11 @@ import Tile from 'js/trial/tile';
 import StageBuilder from 'js/trial/parse/stage-builder';
 
 export default class InGame {
-  constructor(context, keyManager, stageName) {
-    this.stageName = stageName;
+  constructor(context, keyManager, stageName, callbacks) {
     this.context = context;
     this.keyManager = keyManager;
+    this.stageName = stageName;
+    this.callbacks = callbacks;
 
     //TODO: move to stage
     this.requiredTime = 20.0;
@@ -139,8 +140,7 @@ export default class InGame {
 
     this.checkPlayerExit.apply();
     if (this.checkPlayerExit.isExit) {
-      //TODO: next level
-      this.reset();
+      this.callbacks.onExit && this.callbacks.onExit();
     }
   }
 

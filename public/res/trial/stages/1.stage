@@ -7,10 +7,10 @@ x           xxxxxxxx
 x                  x
 x                  x
 x                  x
-xxxxxxxxx          x
+xxxxxxxx           x
 x                  x
 x                  x
-x           xxxxxxxx
+x          xxxxxxxxx
 x                  x
 x                  x
 x                  x
@@ -50,7 +50,8 @@ turret:
   interval: 100
 
 turret:
-  x: 14
+  x: 16
   y: 1
   timeOffset: 50
-  interval: 100
+  interval: 140
+  bulletSpeed: 3.5

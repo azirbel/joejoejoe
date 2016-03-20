@@ -12,12 +12,21 @@ export default class StoryMode {
     this.keyManager = keyManager;
     this.currentStageIdx = 0;
 
+    this.callbacks = {
+      onExit: () => {
+        this.currentStageIdx = (this.currentStageIdx + 1) % stageNames.length;
+
+        this.nextGame();
+      }
+    };
+
     this.nextGame();
   }
 
   nextGame() {
     let stageName = stageNames[this.currentStageIdx];
-    this.inGame = new InGame(this.context, this.keyManager, stageName);
+
+    this.inGame = new InGame(this.context, this.keyManager, stageName, this.callbacks);
   }
 
   update() {
