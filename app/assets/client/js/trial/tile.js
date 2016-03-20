@@ -25,7 +25,13 @@ export default class Tile {
     assetManager.onLoad(() => {
       this.wallTile.image = assetManager.get(WALL_TILE_PATH);
       this.backTile.image = assetManager.get(BACK_TILE_PATH);
-      this.startTile.image = assetManager.get(START_TILE_PATH);
+
+      this.startTile.image = assetManager.get(WALL_TILE_PATH);
+      this.startWallTile.image = assetManager.get(WALL_TILE_PATH);
+
+      this.startWallTile.startImage = assetManager.get(BACK_TILE_PATH);
+      this.startTile.startImage = assetManager.get(START_TILE_PATH);
+
       this.exitTile.image = assetManager.get(EXIT_CLOSED_TILE_PATH);
       this.exitTile.openImage = assetManager.get(EXIT_OPEN_TILE_PATH);
     });
@@ -43,4 +49,5 @@ export default class Tile {
 Tile.wallTile = new Tile();
 Tile.backTile = new Tile();
 Tile.startTile = new Tile();
+Tile.startWallTile = new Tile();
 Tile.exitTile = new Tile();

@@ -11,12 +11,14 @@ import CreateBullets from 'js/trial/steps/create-bullets';
 import UpdateBullets from 'js/trial/steps/update-bullets';
 import CheckPlayerHit from 'js/trial/steps/check-player-hit';
 import CheckPlayerExit from 'js/trial/steps/check-player-exit';
+import CheckStarted from 'js/trial/steps/check-started';
 import KeepState from 'js/trial/steps/keep-state';
 import MoveReaction from 'js/trial/steps/move-reaction';
 
 import DrawEntity from 'js/trial/steps/draw-entity';
 import DrawEntityAt from 'js/trial/steps/draw-entity-at';
-import DrawExitTileAt from 'js/trial/steps/draw-exit-tile-at.js';
+import DrawExitTileAt from 'js/trial/steps/draw-exit-tile-at';
+import DrawStartTileAt from 'js/trial/steps/draw-start-tile-at';
 import DrawTurrets from 'js/trial/steps/draw-turrets';
 import DrawBullets from 'js/trial/steps/draw-bullets';
 import DrawText from 'js/trial/steps/draw-text';
@@ -41,6 +43,7 @@ export default class InGame {
     this.tickTimer = new TickTimer();
 
     this.stage = StageBuilder.buildStage(3);
+    this.stage.isStarted = false;
     this.character = new Character(this.stage.getSpawnVect());
     KeepState.apply(this.character);
 
@@ -62,6 +65,16 @@ export default class InGame {
   }
 
   initUpdateSteps() {
+    this.checkStartedStep = new CheckStarted(this.character, this.stage);
+
+    this.preStartedSteps = [
+      new KeepState(this.character),
+      new ApplyKeypress(this.character, this.keyManager, this.stage),
+      new MoveCharacter(this.character, this.stage),
+      new UpdateTurretAngles(this.stage.enemies.turret || [], this.character),
+      new MoveReaction(this.character, this.keyManager)
+    ];
+
     this.updateSteps = [
       new KeepState(this.character),
       new ApplyKeypress(this.character, this.keyManager, this.stage),
@@ -81,7 +94,9 @@ export default class InGame {
         let tilePoint = new Vector(x * Tile.WIDTH, y * Tile.WIDTH);
         if (tile === Tile.exitTile) {
           this.drawSteps.push(new DrawExitTileAt(this.context, tile, tilePoint, this.stage));
-        }else {
+        } else if (_.includes([Tile.startTile, Tile.startWallTile], tile))  {
+          this.drawSteps.push(new DrawStartTileAt(this.context, tile, tilePoint, this.stage));
+        } else {
           this.drawSteps.push(new DrawEntityAt(this.context, tile, tilePoint));
         }
       }
@@ -95,6 +110,20 @@ export default class InGame {
   }
 
   update() {
+    if (!this.stage.isStarted) {
+      this.checkStartedStep.apply();
+
+      this.stage.isStarted = this.checkStartedStep.isStarted;
+
+      if (!this.stage.isStarted) {
+        _.forEach(this.preStartedSteps, (step) => {
+          step.apply();
+        });
+
+        return;
+      }
+    }
+
     this.tickTimer.addTick();
     this.currentTime = _.max([this.requiredTime - this.tickTimer.ticks / 60.0, 0]);
 

@@ -32,7 +32,7 @@ describe('ApplyKeypress', () => {
     'x                  x\n' +
     'x                  x\n' +
     'xx                 x\n' +
-    'x        s         x\n' +
+    'x        S         x\n' +
     'xxxxxxxxxxxxxxxxxxxx';
   let stage = StageParser.parse(rawStage);
   let keys = new KeyManager();

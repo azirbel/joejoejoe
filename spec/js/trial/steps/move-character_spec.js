@@ -14,7 +14,7 @@ describe('MoveCharacter', () => {
     'x                  x\n' +
     'x                  x\n' +
     'x                  x\n' +
-    'x        s         x\n' +
+    'x        S         x\n' +
     'x                  x\n' +
     'x                  x\n' +
     'x                  x\n' +

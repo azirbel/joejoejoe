@@ -17,7 +17,7 @@ describe('StageParser', () => {
         'x              xx  x\n' +
         'x              xx  x\n' +
         'x              xx  x\n' +
-        'x       ss     xx  x\n' +
+        'x       SS     xx  x\n' +
         'x              xx  x\n' +
         'x              xx  x\n' +
         'x              xx  x\n' +
@@ -74,7 +74,7 @@ describe('StageParser', () => {
         'x              xx  x\n' +
         'x              xx  x\n' +
         'x              xx  x\n' +
-        'x   s          xx  x\n' +
+        'x   S          xx  x\n' +
         'x              xx  x\n' +
         'x              xx  x\n' +
         'x              xx  x\n' +

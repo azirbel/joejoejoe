@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import Tile from 'js/trial/tile';
 import Vector from 'js/common/vector';
 
@@ -21,6 +23,7 @@ export default class Stage {
     this.tiles = tiles;
     this.enemies = enemies;
     this.spawn = spawn;
+    this.isStarted = false;
 
     this.bullets = [];
     this.isExitable = false;
@@ -36,7 +39,9 @@ export default class Stage {
 
   isWall(x, y) {
     let tile = this.get(x, y);
-    return tile == Tile.wallTile || !this.isExitable && tile == Tile.exitTile;
+    return tile == Tile.wallTile ||
+      !this.isExitable && tile == Tile.exitTile ||
+      this.isStarted && _.includes([Tile.startTile, Tile.startWallTile], tile);
   }
 
   getSpawnVect() {
