@@ -30,11 +30,15 @@ import Tile from 'js/trial/tile';
 import StageBuilder from 'js/trial/parse/stage-builder';
 
 export default class InGame {
-  constructor(context, keyManager) {
+  constructor(context, keyManager, stageName) {
+    this.stageName = stageName;
     this.context = context;
     this.keyManager = keyManager;
 
-    this.requiredTime = 5.0;
+    //TODO: move to stage
+    this.requiredTime = 20.0;
+
+    this.reset();
   }
 
   reset() {
@@ -42,26 +46,16 @@ export default class InGame {
 
     this.tickTimer = new TickTimer();
 
-    this.stage = StageBuilder.buildStage(3);
+    this.stage = StageBuilder.buildStage(this.stageName);
     this.stage.isStarted = false;
     this.character = new Character(this.stage.getSpawnVect());
     KeepState.apply(this.character);
 
-    this.updateSteps = [];
-    this.drawSteps = [];
-
     this.initUpdateSteps();
-    this.checkPlayerHit = new CheckPlayerHit(this.character, this.stage);
-    this.checkPlayerExit = new CheckPlayerExit(this.character, this.stage);
     this.initDrawSteps();
 
-    this.runPreUpdateSteps();
-  }
-
-  runPreUpdateSteps() {
-    UpdateTurretAngles.apply(this.stage.enemies.turret || [], this.character);
-    UpdateLaserTurrets.apply(this.stage.enemies.laser || [], this.character, this.tickTimer);
-    CreateBullets.apply(this.stage.enemies.turret, this.stage.bullets, this.tickTimer);
+    this.checkPlayerHit = new CheckPlayerHit(this.character, this.stage);
+    this.checkPlayerExit = new CheckPlayerExit(this.character, this.stage);
   }
 
   initUpdateSteps() {
@@ -88,6 +82,8 @@ export default class InGame {
   }
 
   initDrawSteps() {
+    this.drawSteps = [];
+
     for (let x = 0; x < Stage.WIDTH; x++) {
       for (let y = 0; y < Stage.HEIGHT; y++) {
         let tile = this.stage.tiles[x][y];
@@ -122,9 +118,10 @@ export default class InGame {
 
         return;
       }
+    } else {
+      this.tickTimer.addTick();
     }
 
-    this.tickTimer.addTick();
     this.currentTime = _.max([this.requiredTime - this.tickTimer.ticks / 60.0, 0]);
 
     if (this.currentTime <= 0) {

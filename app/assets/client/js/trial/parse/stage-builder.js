@@ -6,7 +6,7 @@ let getStagePath = (name) => {
   return 'res/trial/stages/' + name +'.stage';
 };
 
-let STAGE_NAMES = ['1', '2', '3', '4', 'empty'];
+let STAGE_NAMES = ['1', 'empty'];
 
 export default class StageBuilder {
   static loadAssets(assetManager) {

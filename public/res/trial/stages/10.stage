@@ -1,0 +1,86 @@
+xxxxxxxxxxxxxxxxxxxx
+x                  x
+x                  x
+x                  x
+x                  x
+x                  x
+x                  x
+x                  x
+x                  x
+x                  x
+x                  x
+x                  x
+x                  x
+x         S        x
+x    xxxxxxxxxxx   x
+x                  x
+xx                 x
+xxx                e
+xxxx               e
+xxxxxxxxxxxxxxxxxxxx
+
+turret:
+  x: 2
+  y: 2
+  timeOffset: 0
+
+turret:
+  x: 3
+  y: 2
+  timeOffset: 5
+
+turret:
+  x: 4
+  y: 2
+  timeOffset: 10
+
+turret:
+  x: 5
+  y: 2
+  timeOffset: 15
+
+turret:
+  x: 6
+  y: 2
+  timeOffset: 20
+
+turret:
+  x: 7
+  y: 2
+  timeOffset: 25
+
+turret:
+  x: 8
+  y: 2
+  timeOffset: 30
+
+turret:
+  x: 9
+  y: 2
+  timeOffset: 35
+
+turret:
+  x: 10
+  y: 2
+  timeOffset: 40
+
+turret:
+  x: 11
+  y: 2
+  timeOffset: 45
+
+turret:
+  x: 12
+  y: 2
+  timeOffset: 50
+
+turret:
+  x: 13
+  y: 2
+  timeOffset: 55
+
+turret:
+  x: 10
+  y: 18
+  interval: 5
+  bulletSpeed: 5

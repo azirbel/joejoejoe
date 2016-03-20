@@ -5,9 +5,9 @@ import AssetManager from 'js/common/asset-manager';
 import KeyManager from 'js/common/key-manager';
 import { KEY_W, KEY_A, KEY_S, KEY_D } from 'js/common/key-codes';
 
+import StoryMode from 'js/trial/story-mode';
 import Bullet from 'js/trial/bullet';
 import Character from 'js/trial/character';
-import InGame from 'js/trial/in-game';
 import Stage from 'js/trial/stage';
 import StageBuilder from 'js/trial/parse/stage-builder';
 import Tile from 'js/trial/tile';
@@ -34,13 +34,12 @@ export default class Trial {
     this.keyManager = new KeyManager();
     this.initKeyEvents();
 
-    this.inGame = new InGame(this.context, this.keyManager);
     this.timer = new IntervalTimer(MS_PER_FRAME, () => {
       this.newFrame();
     });
 
     this.assetManager.onLoad(() => {
-      this.inGame.reset();
+      this.story = new StoryMode(this.context, this.keyManager);
       this.timer.start();
     });
   }
@@ -79,12 +78,12 @@ export default class Trial {
   }
 
   update() {
-    this.inGame.update();
+    this.story.update();
     this.keyManager.newFrame();
   }
 
   draw() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.inGame.draw();
+    this.story.draw();
   }
 }
