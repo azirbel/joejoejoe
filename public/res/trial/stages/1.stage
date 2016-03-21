@@ -1,57 +1,337 @@
 xxxxxxxxxxxxxxxxxxxx
+xs        x        x
+xS        x        x
+xx        x        x
 x                  x
-x                  x
-x                  e
-x                  e
-x           xxxxxxxx
-x                  x
-x                  x
-x                  x
-xxxxxxxx           x
-x                  x
-x                  x
-x          xxxxxxxxx
-x                  x
-x                  x
-x                  x
-xxxxxxxx           x
-xssssssx           x
-xSssssss           x
+x         x        x
+x         x        x
+x         x        x
+x         x        x
+x         x        x
+x         x        x
+x  xxx    x        x
+x         x        x
+x         x        x
+x         x        x
+x         x        x
+x         x      x x
+x         x      x e
+x         x      x e
 xxxxxxxxxxxxxxxxxxxx
 
 turret:
-  x: 18
-  y: 13
+  x: 1
+  y: 18
   timeOffset: 0
-  interval: 100
+  interval: 1
+  bulletSpeed: 13
+  constAngle: 270
 
 turret:
-  x: 18
+  x: 2
   y: 18
-  timeOffset: 50
-  interval: 100
+  timeOffset: 0
+  interval: 1
+  bulletSpeed: 10
+  constAngle: 270
+
+turret:
+  x: 3
+  y: 18
+  timeOffset: 0
+  interval: 1
+  bulletSpeed: 8
+  constAngle: 270
+
+turret:
+  x: 4
+  y: 18
+  timeOffset: 0
+  interval: 1
+  bulletSpeed: 6
+  constAngle: 270
+
+turret:
+  x: 5
+  y: 18
+  timeOffset: 3
+  interval: 1
+  bulletSpeed: 7
+  constAngle: 270
+
+turret:
+  x: 6
+  y: 18
+  timeOffset: 0
+  interval: 1
+  bulletSpeed: 7
+  constAngle: 270
+
+turret:
+  x: 7
+  y: 18
+  timeOffset: 10
+  interval: 1
+  bulletSpeed: 8
+  constAngle: 270
+
+turret:
+  x: 8
+  y: 18
+  timeOffset: 8
+  interval: 1
+  bulletSpeed: 8
+  constAngle: 270
+
+turret:
+  x: 9
+  y: 18
+  timeOffset: 8
+  interval: 1
+  bulletSpeed: 8
+  constAngle: 270
+
+
+
 
 turret:
   x: 1
-  y: 15
-  timeOffset: 0
-  interval: 100
+  y: 4
+  timeOffset: 20
+  interval: 1
+  bulletSpeed: 4
+  constAngle: 0
 
 turret:
-  x: 18
-  y: 11
-  timeOffset: 50
-  interval: 100
+  x: 1
+  y: 5
+  timeOffset: 16
+  interval: 1
+  bulletSpeed: 4
+  constAngle: 0
+
+turret:
+  x: 1
+  y: 6
+  timeOffset: 13
+  interval: 1
+  bulletSpeed: 4
+  constAngle: 0
+
+turret:
+  x: 1
+  y: 7
+  timeOffset: 10
+  interval: 1
+  bulletSpeed: 4
+  constAngle: 0
 
 turret:
   x: 1
   y: 8
+  timeOffset: 10
+  interval: 1
+  bulletSpeed: 4
+  constAngle: 0
+
+turret:
+  x: 1
+  y: 9
+  timeOffset: 10
+  interval: 1
+  bulletSpeed: 4
+  constAngle: 0
+
+turret:
+  x: 1
+  y: 10
+  timeOffset: 10
+  interval: 1
+  bulletSpeed: 4
+  constAngle: 0
+
+
+
+turret:
+  x: 4
+  y: 1
   timeOffset: 0
-  interval: 100
+  interval: 1
+  bulletSpeed: 5
+  constAngle: 90
+
+turret:
+  x: 5
+  y: 1
+  timeOffset: 24
+  interval: 1
+  bulletSpeed: 5
+  constAngle: 90
+
+turret:
+  x: 6
+  y: 1
+  timeOffset: 36
+  interval: 1
+  bulletSpeed: 5
+  constAngle: 90
+
+turret:
+  x: 7
+  y: 1
+  timeOffset: 40
+  interval: 1
+  bulletSpeed: 5
+  constAngle: 90
+
+turret:
+  x: 8
+  y: 1
+  timeOffset: 43
+  interval: 1
+  bulletSpeed: 5
+  constAngle: 90
+
+turret:
+  x: 9
+  y: 1
+  timeOffset: 46
+  interval: 1
+  bulletSpeed: 5
+  constAngle: 90
+
+
+
+
+turret:
+  x: 11
+  y: 1
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 6
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 7
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 8
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 9
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 10
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 11
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 12
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 13
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 14
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 15
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 16
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 17
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 11
+  y: 18
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 12
+  y: 18
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 13
+  y: 18
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 14
+  y: 18
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
+
+turret:
+  x: 15
+  y: 18
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10
 
 turret:
   x: 16
-  y: 1
-  timeOffset: 50
-  interval: 140
-  bulletSpeed: 3.5
+  y: 18
+  timeOffset: 0
+  interval: 10
+  bulletSpeed: 10

@@ -1,86 +1,1460 @@
 xxxxxxxxxxxxxxxxxxxx
 x                  x
 x                  x
+x    x  xx     xxx x
+x   xx             x
+xx    x          xxx
+x             x    x
 x                  x
 x                  x
+x  x               x
 x                  x
-x                  x
-x                  x
-x                  x
-x                  x
-x                  x
-x                  x
-x                  x
-x                  x
-x   xxxxxxxxxxxx   x
-x                  x
-x                  x
-s                  e
-S                  e
+x              xxxxx
+x  x               x
+x xx        xxxxxx x
+x     xx           x
+x      x           x
+x      x           x
+sxxxxx x   xx      e
+S      x           e
 xxxxxxxxxxxxxxxxxxxx
 
 turret:
-  x: 2
-  y: 2
+  x: 9
+  y: 12
   timeOffset: 0
-
-turret:
-  x: 3
-  y: 2
-  timeOffset: 5
-
-turret:
-  x: 4
-  y: 2
-  timeOffset: 10
-
-turret:
-  x: 5
-  y: 2
-  timeOffset: 15
-
-turret:
-  x: 6
-  y: 2
-  timeOffset: 20
-
-turret:
-  x: 7
-  y: 2
-  timeOffset: 25
-
-turret:
-  x: 8
-  y: 2
-  timeOffset: 30
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 160
 
 turret:
   x: 9
-  y: 2
-  timeOffset: 35
+  y: 12
+  timeOffset: 4
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 162
 
 turret:
-  x: 10
-  y: 2
+  x: 9
+  y: 12
+  timeOffset: 8
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 164
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 12
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 166
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 16
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 168
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 20
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 170
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 24
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 172
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 28
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 174
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 32
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 176
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 36
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 178
+
+turret:
+  x: 9
+  y: 12
   timeOffset: 40
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 180
 
 turret:
-  x: 11
-  y: 2
-  timeOffset: 45
+  x: 9
+  y: 12
+  timeOffset: 44
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 182
 
 turret:
-  x: 12
-  y: 2
-  timeOffset: 50
+  x: 9
+  y: 12
+  timeOffset: 48
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 184
 
 turret:
-  x: 13
-  y: 2
-  timeOffset: 55
+  x: 9
+  y: 12
+  timeOffset: 52
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 186
 
 turret:
-  x: 10
-  y: 18
-  interval: 5
-  bulletSpeed: 5
+  x: 9
+  y: 12
+  timeOffset: 56
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 188
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 60
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 190
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 64
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 192
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 68
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 194
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 72
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 196
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 76
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 198
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 80
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 200
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 84
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 202
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 88
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 204
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 92
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 206
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 96
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 208
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 100
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 210
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 104
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 212
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 108
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 214
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 112
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 216
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 116
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 218
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 120
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 220
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 124
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 222
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 128
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 224
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 132
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 226
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 136
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 228
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 140
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 230
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 144
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 232
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 148
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 234
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 152
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 236
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 156
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 238
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 160
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 240
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 164
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 242
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 168
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 244
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 172
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 246
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 176
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 248
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 180
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 250
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 184
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 252
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 188
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 254
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 192
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 256
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 196
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 258
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 200
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 260
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 204
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 262
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 208
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 264
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 212
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 266
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 216
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 268
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 220
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 270
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 224
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 272
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 228
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 274
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 232
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 276
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 236
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 278
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 240
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 280
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 244
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 282
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 248
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 284
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 252
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 286
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 256
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 288
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 260
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 290
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 264
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 292
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 268
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 294
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 272
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 296
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 276
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 298
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 280
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 300
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 284
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 302
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 288
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 304
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 292
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 306
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 296
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 308
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 300
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 310
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 304
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 312
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 308
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 314
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 312
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 316
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 316
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 318
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 320
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 320
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 324
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 322
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 328
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 324
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 332
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 326
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 336
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 328
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 340
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 330
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 344
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 332
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 348
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 334
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 352
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 336
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 356
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 338
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 360
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 340
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 364
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 342
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 368
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 344
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 372
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 346
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 376
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 348
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 380
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 350
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 384
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 352
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 388
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 354
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 392
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 356
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 396
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 358
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 400
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 0
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 404
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 2
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 408
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 4
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 412
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 6
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 416
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 8
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 420
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 10
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 424
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 12
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 428
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 14
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 432
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 16
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 436
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 18
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 440
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 20
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 444
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 22
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 448
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 24
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 452
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 26
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 456
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 28
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 460
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 30
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 464
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 32
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 468
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 34
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 472
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 36
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 476
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 38
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 480
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 40
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 484
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 42
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 488
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 44
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 492
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 46
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 496
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 48
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 500
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 50
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 504
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 52
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 508
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 54
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 512
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 56
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 516
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 58
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 520
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 60
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 524
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 62
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 528
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 64
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 532
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 66
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 536
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 68
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 540
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 70
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 544
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 72
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 548
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 74
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 552
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 76
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 556
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 78
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 560
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 80
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 564
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 82
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 568
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 84
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 572
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 86
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 576
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 88
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 580
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 90
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 584
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 92
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 588
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 94
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 592
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 96
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 596
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 98
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 600
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 100
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 604
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 102
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 608
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 104
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 612
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 106
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 616
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 108
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 620
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 110
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 624
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 112
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 628
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 114
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 632
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 116
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 636
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 118
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 640
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 120
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 644
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 122
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 648
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 124
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 652
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 126
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 656
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 128
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 660
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 130
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 664
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 132
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 668
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 134
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 672
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 136
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 676
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 138
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 680
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 140
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 684
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 142
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 688
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 144
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 692
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 146
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 696
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 148
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 700
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 150
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 704
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 152
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 708
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 154
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 712
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 156
+
+turret:
+  x: 9
+  y: 12
+  timeOffset: 716
+  interval: 100
+  bulletSpeed: 8
+  constAngle: 158

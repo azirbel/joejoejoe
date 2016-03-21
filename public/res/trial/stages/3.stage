@@ -4,46 +4,18 @@ x                  x
 x                  x
 x                  x
 x                  x
+x    xx      xx    x
+x    xx      xx    x
 x                  x
 x                  x
 x                  x
+x   x          x   x
+x    xx      xx    x
+x      xxxxxx      x
 x                  x
 x                  x
-x                  x
-x                  x
-x                  x
-x                  x
-x                  x
-x                  x
-s                  e
-S                  e
+xs                sx
+ss                se
+Ss                se
 xxxxxxxxxxxxxxxxxxxx
 
-turret:
-  x: 1
-  y: 18
-  constAngle: 0
-  interval: 100
-  timeOffset: 50
-
-turret:
-  x: 1
-  y: 16
-  constAngle: 0
-  interval: 100
-  timeOffset: 50
-
-turret:
-  x: 18
-  y: 17
-  constAngle: 180
-  interval: 100
-
-
-turret:
-  x: 4
-  y: 4
-
-turret:
-  x: 15
-  y: 4
